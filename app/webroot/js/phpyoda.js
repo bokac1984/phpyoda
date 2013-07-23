@@ -15,6 +15,11 @@ $(document).ready(function(){
         }
     }
     , ".home-page li");
+    
+    $("#contact-btn").click(function(e){
+        e.preventDefault();
+        alert('wroks');
+    });
 });
 
 

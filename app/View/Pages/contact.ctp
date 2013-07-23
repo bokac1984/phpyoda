@@ -18,6 +18,10 @@
         'placeholder' => 'Your message',
         'label' => false
     ));
-    echo $this->Form->button('Send message', array('type' => 'submit', 'class' => 'btn btn-large btn-block btn-primary'));
+    echo $this->Form->button('Send message', array(
+        'type' => 'submit', 
+        'class' => 'btn btn-large btn-block btn-primary',
+        'id' => 'contact-btn'
+        ));
     echo $this->Form->end();
 ?>

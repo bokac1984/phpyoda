@@ -23,17 +23,11 @@
     <div class="container">
 
       <div class="masthead">
-        <h3 class="muted">Project name</h3>
+        <h3 class="muted">PHP Yoda</h3>
         <div class="navbar">
           <div class="navbar-inner">
             <div class="container">
-              <ul class="nav">
-                <li class="active"><a href="./Template · Bootstrap_files/Template · Bootstrap.html">Home</a></li>
-                <li><?php echo $this->Html->link("Portfolio", array('controller' => 'pages', 'action' => 'portfolio')); ?></li>
-                <li><?php echo $this->Html->link("About", array('controller' => 'pages', 'action' => 'about')); ?></li>
-                <li><?php echo $this->Html->link("Contact", array('controller' => 'pages', 'action' => 'contact')); ?></li>
-                <li><?php echo $this->Html->link("Blog", array('controller' => 'blog', 'action' => 'index')); ?></li>
-              </ul>
+                <?php echo $this->element("menu"); ?>
             </div>
           </div>
         </div><!-- /.navbar -->
