@@ -24,6 +24,7 @@ class UsersController extends AppController {
     
     
     public function login() {
+        $this->layout = 'signin';
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
                 $this->redirect($this->Auth->redirect());
@@ -131,4 +132,8 @@ class UsersController extends AppController {
 		$this->Session->setFlash(__('User was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+    
+    public function contact() {
+        
+    }
 }
