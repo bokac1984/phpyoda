@@ -24,13 +24,13 @@
 
       <div class="masthead">
         <h3 class="muted">PHP Yoda</h3>
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="container">
-                <?php echo $this->element("menu"); ?>
-            </div>
-          </div>
-        </div><!-- /.navbar -->
+        <?php 
+            if (!$this->Session->read('Auth.User')) {
+                echo $this->element("menu");
+            } else {
+                echo $this->element("adminMenu");
+            }
+         ?>
       </div>
       
       <!-- Example row of columns -->

@@ -4,12 +4,12 @@
         'class' => 'form-signin'
         ));
     echo '<h2 class="form-signin-heading">Please sign in</h2>';
-    echo $this->Form->input('Email Address', array(
+    echo $this->Form->input('username', array(
         'class' => 'input-block-level',
-        'placeholder' => 'Email address',
+        'placeholder' => 'Username',
         'label' => false
     ));
-    echo $this->Form->input('Email Address', array(
+    echo $this->Form->input('password', array(
         'class' => 'input-block-level',
         'placeholder' => 'Password',
         'label' => false
