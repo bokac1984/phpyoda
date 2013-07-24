@@ -21,7 +21,7 @@ $url = $this->request->here;
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Blog <b class="caret"></b></a>
         <ul class="dropdown-menu">
-            <li<?php echo (preg_match("/blog/", $url))? ' class="active"' : ''?>><?php echo $this->Html->link("Blog", array('controller' => 'blog', 'action' => 'index')); ?></li>
+            <li<?php echo (preg_match("/blog/", $url))? ' class="active"' : ''?>><?php echo $this->Html->link("Blog", array('controller' => 'pages', 'action' => 'blog')); ?></li>
         </ul>
     </li>
     <li class="dropdown">

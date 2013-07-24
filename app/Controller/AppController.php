@@ -57,5 +57,7 @@ class AppController extends Controller {
         //Configure AuthComponent
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
+        $this->Auth->authError = __('Did you really think, allowed to see that, you are, hmm?');
+        $this->Auth->loginError = __('Invalid Username or Password entered, please try again.');
     }
 }

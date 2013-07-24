@@ -34,15 +34,14 @@
       </div>
       
       <!-- Example row of columns -->
-      <div class="row-fluid">
-        <div class="span12">
-			<?php 
-            echo $this->Session->flash('auth');
-            echo $this->Session->flash(); 
-            ?>
-            <?php echo $this->fetch('content'); ?>
-        </div>
-      </div>
+
+    <?php 
+    echo $this->Session->flash('auth');
+    echo $this->Session->flash(); 
+
+    echo $this->fetch('content'); 
+    ?>
+
 
       <hr>
 

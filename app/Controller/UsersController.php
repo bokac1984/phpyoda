@@ -10,20 +10,18 @@ class UsersController extends AppController {
         
     public function beforeFilter() {
         parent::beforeFilter();
-
-        // For CakePHP 2.1 and up
-        $this->Auth->allow();
     }
     
     public function beforeRender() {
 		parent::beforeRender();
 		// unset passwords before displaying form
-//		unset($this->request->data['User']['password']);
-//		unset($this->request->data['User']['pass_again']);
+		unset($this->request->data['User']['password']);
+		unset($this->request->data['User']['pass_again']);
 	}
     
     
     public function login() {
+        $this->set( 'title_for_layout', 'Login for admin');
         $this->layout = 'signin';
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
@@ -35,7 +33,7 @@ class UsersController extends AppController {
 	}
 
 	public function logout() {
-		$this->Session->setFlash('Good-Bye');
+		$this->Session->setFlash('For visiting thank you, with you may the force be.');
 		$this->redirect($this->Auth->logout());
 	}
 /**
