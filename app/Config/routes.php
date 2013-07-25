@@ -31,7 +31,10 @@
  * ...and connect the rest of 'Pages' controller's urls.
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
-    Router::connect('/about', array('controller' => 'pages', 'action' => 'display', 'about'));
+    Router::connect('/contact', array('controller' => 'pages', 'action' => 'display', 'contact'));
+    
+    Router::connect('/portfolio', array('controller' => 'portfolios', 'action' => 'index'));
+    Router::connect('/about', array('controller' => 'users', 'action' => 'about'));
     
     Router::connect('/admin', array('controller' => 'pages', 'action' => 'index', 'admin' => true));
 

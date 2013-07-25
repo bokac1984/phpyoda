@@ -16,10 +16,22 @@ $(document).ready(function(){
     }
     , ".home-page li");
     
-    $("#contact-btn").click(function(e){
+    $(document).on('click', '#contact-btn', function(e){
         e.preventDefault();
-        alert('wroks');
+        $(this).html('<img src="../img/ajax-loader.gif" /> Sending...').addClass('disabled');
+        $.ajax({
+            type: 'POST',
+            url: '/Contacts/add',
+            data: $("#ContactAddForm").serialize(),
+            dataType: "html",
+            success: function(data) {
+                $(".contact-form").empty();
+                $(".contact-form").html(data);
+            },
+            error: function(response, status) {
+                
+            }
+        });
     });
+
 });
-
-

@@ -10,6 +10,7 @@ class UsersController extends AppController {
         
     public function beforeFilter() {
         parent::beforeFilter();
+        $this->Auth->allow(array('contact', 'about'));
     }
     
     public function beforeRender() {
@@ -131,7 +132,5 @@ class UsersController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
     
-    public function contact() {
-        
-    }
+    public function about() {}
 }
