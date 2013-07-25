@@ -7,9 +7,14 @@ App::uses('AppModel', 'Model');
  * @property Post $Post
  */
 class User extends AppModel {
-    
-    public $displayField = 'username';
-    
+
+/**
+ * Display field
+ *
+ * @var string
+ */
+	public $displayField = 'username';
+
 /**
  * Validation rules
  *
@@ -19,6 +24,24 @@ class User extends AppModel {
 		'group_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'email' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -65,7 +88,7 @@ class User extends AppModel {
 			'counterQuery' => ''
 		)
 	);
-    
+ 
 	public $actsAs = array('Acl' => array('type' => 'requester', 'enabled' => false));
 
     public function parentNode() {
@@ -97,5 +120,4 @@ class User extends AppModel {
         $this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
         return parent::beforeSave();
     }
-
 }

@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('Sanitize', 'Utility');
 /**
  * Contacts Controller
  *
@@ -47,12 +48,24 @@ class ContactsController extends AppController {
 	public function add() {
 		$this->autoRender = false;
         if ($this->request->is('ajax')){
+            $this->request->data = Sanitize::clean($this->request->data);
             $name = $this->request->data['Contact']['name'];
-            $email = $this->request->data['Contact']['email'];
-            $message = $this->request->data['Contact']['message'];
             
-            $this->set(compact('name'));
-            $this->render('response');
+            $data = array(
+                'name' => $this->request->data['Contact']['name'],
+                'email' => $this->request->data['Contact']['email'],
+                'message' => $this->request->data['Contact']['message'],
+                'ip_address' => $this->request->clientIp()
+            );
+            
+            if ($this->Contact->save($data)) {
+                echo json_encode(array('success' => 1, 'message' => "For contacting me, I thank you <i>{$name}</i>."));
+            } else {
+                echo json_encode(array('success' => 0, 'message' => $this->Contact->validationErrors));
+            }
+        } else {
+            $this->Session->setFlash("You can't go there directly.");
+            $this->redirect("/");
         }
 	}
 

@@ -2,19 +2,21 @@
 	<h2><?php echo __('Contacts'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('email'); ?></th>
 			<th><?php echo $this->Paginator->sort('message'); ?></th>
+            <th><?php echo $this->Paginator->sort('ip_address'); ?></th>
+            <th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php
 	foreach ($contacts as $contact): ?>
 	<tr>
-		<td><?php echo h($contact['Contact']['id']); ?>&nbsp;</td>
 		<td><?php echo h($contact['Contact']['name']); ?>&nbsp;</td>
 		<td><?php echo h($contact['Contact']['email']); ?>&nbsp;</td>
 		<td><?php echo h($contact['Contact']['message']); ?>&nbsp;</td>
+        <td><?php echo h($contact['Contact']['ip_address']); ?>&nbsp;</td>
+        <td><?php echo h($contact['Contact']['created']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $contact['Contact']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $contact['Contact']['id'])); ?>

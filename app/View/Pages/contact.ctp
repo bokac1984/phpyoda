@@ -1,7 +1,5 @@
 <?php 
-$this->start('scriptBottom');
-echo $this->Html->script('phpyoda');
-$this->end();
+echo $this->Html->script('phpyoda', array('block' => 'scriptBottom'));
 ?>
 <div class="row-fluid">
   <div class="span6">  

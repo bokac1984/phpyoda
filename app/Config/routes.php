@@ -34,7 +34,7 @@
     Router::connect('/contact', array('controller' => 'pages', 'action' => 'display', 'contact'));
     
     Router::connect('/portfolio', array('controller' => 'portfolios', 'action' => 'index'));
-    Router::connect('/about', array('controller' => 'users', 'action' => 'about'));
+    Router::connect('/about', array('controller' => 'abouts', 'action' => 'index'));
     
     Router::connect('/admin', array('controller' => 'pages', 'action' => 'index', 'admin' => true));
 
