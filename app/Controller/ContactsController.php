@@ -64,7 +64,7 @@ class ContactsController extends AppController {
                 echo json_encode(array('success' => 0, 'message' => $this->Contact->validationErrors));
             }
         } else {
-            $this->Session->setFlash("You can't go there directly.");
+            $this->Session->setFlash("You can't go there directly.", "flashError");
             $this->redirect("/");
         }
 	}
