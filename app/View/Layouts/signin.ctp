@@ -28,7 +28,8 @@
             <?php echo $this->fetch('content'); ?>
         </div>
       </div>
-
+      <hr />
+    <?php echo $this->element("/layout/footer"); ?>
     </div> <!-- /container -->
         
     <?php 
