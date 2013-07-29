@@ -1,6 +1,9 @@
 <div class="row-fluid">
-  <div class="span12">
-      <p>Oh no, what have you done?</p>
+  <div class="span4">
+      <?php echo $this->Html->image('locked.png', array('alt' => 'Google Plus')); ?>
+      </div>
+  <div class="span6">
+      <h3>Oh no, what have you done?</h3>
       <p>You have tried logging in <?php echo $attempts; ?> time(s), so you have to wait <?php echo $time; ?> to log in again.</p>
   </div>
 </div>

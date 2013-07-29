@@ -1,4 +1,4 @@
-`<?php
+<?php
 echo $this->Html->script('phpyoda', array('block' => 'scriptBottom'));
 ?>
 <div class="row-fluid">

@@ -20,7 +20,7 @@ class BruteForceComponent extends Component {
     private $error_count_key = 'count_number';
     private $error_count_key_time = 'count_time';
     
-    public $expired_time_error_login = 10;
+    public $expired_time_error_login = 600;
     
     public function initialize(Controller $controller) {
         parent::initialize($controller);
@@ -67,7 +67,7 @@ class BruteForceComponent extends Component {
     
     public function getNextLoginTime() {
         $time = ceil($this->expired_time_error_login - (time() - $this->Session->read($this->error_count_key_time)));
-        return round($time%60)." minutes ";
+        return round($time/60)." minutes ";
     }
 }
 
