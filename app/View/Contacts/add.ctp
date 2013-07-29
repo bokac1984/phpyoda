@@ -1,5 +1,5 @@
 <div class="row-fluid">
-  <div class="span6">    
+  <div class="span12">    
     <?php
         echo $this->Form->create('Contact', array(
             'action' => 'add'

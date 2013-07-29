@@ -2,6 +2,13 @@
 echo $this->Html->script('phpyoda', array('block' => 'scriptBottom'));
 ?>
 <div class="row-fluid">
+    <div class="span12">
+        <p>
+        Seen enough? Go ahead, and send your message :)
+        </p>
+    </div>
+</div>
+<div class="row-fluid">
   <div class="span6">  
     <div class="contact-form">
     <?php

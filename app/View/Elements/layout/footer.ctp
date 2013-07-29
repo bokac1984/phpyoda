@@ -6,5 +6,6 @@
  */
 ?>
 <div class="footer center">
-  <p>© Company 2013</p>
+  <p>Bokac © Company 2013</p>
+  <p><?php echo $this->Html->link("Try the force", '/users/login'); ?></p>
 </div>

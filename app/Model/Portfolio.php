@@ -5,7 +5,29 @@ App::uses('AppModel', 'Model');
  *
  */
 class Portfolio extends AppModel {
-
+    
+	public $actsAs = array(
+		'Uploader.Attachment' => array(
+			'image' => array(
+				'tempDir' => TMP,
+				'overwrite' => true,
+				'self' => true,
+				'uploadDir' => '/img/uploads/',
+				'finalPath' => '/img/uploads/',
+				'transforms' => array(
+					array(
+						'method' => 'crop',
+						'append' => '',
+						'overwrite' => true,
+						'self' => true,
+						'width' => 240,
+						'height' => 200,
+						'dbColumn' => 'image'
+					)
+				)
+			)
+		)
+	);
 /**
  * Validation rules
  *

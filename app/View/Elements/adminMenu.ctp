@@ -30,5 +30,5 @@ $url = $this->request->here;
             <li<?php echo (preg_match("/users/", $url))? ' class="active"' : ''?>><?php echo $this->Html->link("View all", array('controller' => 'users', 'action' => 'index')); ?></li>
         </ul>
     </li>
-    <li><?php echo $this->Html->link("Log out", array('controller' => 'users', 'action' => 'logout')); ?></li>
+    <li><?php echo AuthComponent::user('first_name') ? AuthComponent::user('first_name') : "Guest".$this->Html->link("Log out", array('controller' => 'users', 'action' => 'logout')); ?></li>
 </ul>

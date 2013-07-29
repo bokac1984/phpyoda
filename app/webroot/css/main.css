@@ -11,8 +11,9 @@ root {
 }
 
 body {
-  padding-top: 20px;
-  padding-bottom: 60px;
+    background: url('../img/ticks.png') repeat 0 0;
+    padding-top: 20px;
+    padding-bottom: 60px;
 }
 
 /* Custom container */
@@ -34,6 +35,7 @@ body {
     text-align: center;
     font-size: 1.1em;
 }
+
 
 /* Main marketing message and sign up button */
 .jumbotron {
