@@ -34,7 +34,7 @@ class UsersController extends AppController {
 	}
 
 	public function logout() {
-		$this->Session->setFlash('For visiting thank you, with you may the force be.');
+		$this->Session->setFlash('For visiting thank you, with you may the force be.', 'flashSuccess');
 		$this->redirect($this->Auth->logout());
 	}
 /**

@@ -26,6 +26,30 @@ class Portfolio extends AppModel {
 					)
 				)
 			)
+		),
+		'Uploader.FileValidation' => array(
+			'fileName' => array(
+				'maxWidth' => array(
+					'value' => 1200, 
+					'error' => 'Width incorrect'
+				),
+				'maxHeight' => array(
+					'value' => 1200, 
+					'error' => 'Height incorrect'
+				),
+				'extension' => array(
+					'value' => array('gif', 'jpg', 'png', 'jpeg'),
+					'error' => 'Mimetype incorrect',
+				),
+				'filesize' => array(
+					'value' => 1048576,
+					'error' => 'Filesize incorrect'
+				),
+				'required' => array(
+					'value' => true,
+					'error' => 'File required'
+				)
+			)
 		)
 	);
 /**

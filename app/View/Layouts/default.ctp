@@ -23,7 +23,7 @@
     <div class="container">
 
       <div class="masthead">
-        <h3 class="muted">PHP Yoda</h3>
+        <h3 class="muted title">PHPYoda</h3>
         <?php 
             if (!$this->Session->read('Auth.User')) {
                 echo $this->element("menu");

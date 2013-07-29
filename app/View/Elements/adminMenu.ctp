@@ -25,10 +25,11 @@ $url = $this->request->here;
         </ul>
     </li>
     <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Users <b class="caret"></b></a>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i> Users <b class="caret"></b></a>
         <ul class="dropdown-menu">
-            <li<?php echo (preg_match("/users/", $url))? ' class="active"' : ''?>><?php echo $this->Html->link("View all", array('controller' => 'users', 'action' => 'index')); ?></li>
+            <li><?php echo $this->Link->cLink("Manage", array('controller' => 'users', 'action' => 'index'), 'wrench'); ?></li>
+            <li><?php echo $this->Link->cLink("Logout", array('controller' => 'users', 'action' => 'logout'), 'off'); ?></li>
         </ul>
     </li>
-    <li><?php echo AuthComponent::user('first_name') ? AuthComponent::user('first_name') : "Guest".$this->Html->link("Log out", array('controller' => 'users', 'action' => 'logout')); ?></li>
+    <li>
 </ul>

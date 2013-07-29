@@ -51,7 +51,7 @@ class AppController extends Controller {
 		'Cookie'
     );
     
-    public $helpers = array('Html', 'Form', 'Session', 'Js');
+    public $helpers = array('Html', 'Link', 'Form', 'Session', 'Js');
 	
     public function beforeFilter() {
         //Configure AuthComponent
