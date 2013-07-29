@@ -48,7 +48,8 @@ class AppController extends Controller {
         ),
         'Session',
 		'RequestHandler',
-		'Cookie'
+		'Cookie',
+        'Security'
     );
     
     public $helpers = array('Html', 'Link', 'Form', 'Session', 'Js');
@@ -60,5 +61,12 @@ class AppController extends Controller {
         $this->Auth->authError = __('Did you really think, allowed to see that, you are, hmm?');
         $this->Auth->loginError = __('Invalid Username or Password entered, please try again.');
         $this->Auth->flash['element'] = "flashError"; 
+        
+        $this->Security->csrfExpires = '+1 hour';
+        $this->Security->blackHoleCallback = 'blackhole';
     }
+    
+    public function blackhole($type) {
+        $this->Session->setFlash(__('ERROR: %s',$type), 'flash/error');
+   }
 }

@@ -1,4 +1,4 @@
-<?php
+`<?php
 echo $this->Html->script('phpyoda', array('block' => 'scriptBottom'));
 ?>
 <div class="row-fluid">
@@ -49,27 +49,39 @@ echo $this->Html->script('phpyoda', array('block' => 'scriptBottom'));
             <div class="row-fluid">
                 <div class="span4">
                     <?php
-                        echo $this->Html->image("si/transparent/facebook.png", array(
-                            "alt" => "Facebook",
-                            'url' => 'https://www.facebook.com/milovanovic.bojan')
+                        echo $this->Html->link(
+                            $this->Html->image('si/transparent/facebook.png', array('alt' => 'Facebook')),
+                            'https://www.facebook.com/milovanovic.bojan',
+                            array(
+                                'target'=>'_blank',
+                                'escape'=>false
+                            )
                         );
                     ?>
                 </div>
                 <div class="span4">
                     <?php
-                        echo $this->Html->image("si/transparent/googleplus.png", array(
-                            "alt" => "Google Plus",
-                            'url' => 'https://plus.google.com/108973512907493500741')
+                        echo $this->Html->link(
+                            $this->Html->image('si/transparent/googleplus.png', array('alt' => 'Google Plus')),
+                            'https://plus.google.com/108973512907493500741',
+                            array(
+                                'target'=>'_blank',
+                                'escape'=>false
+                            )
                         );
                     ?>
                 </div>
                 <div class="span4">
                     <?php
-                        echo $this->Html->image("si/transparent/linkedin.png", array(
-                            "alt" => "Google Plus",
-                            'url' => 'http://ba.linkedin.com/pub/bojan-milovanovi%C4%87/3a/2a9/21a')
+                        echo $this->Html->link(
+                            $this->Html->image('si/transparent/linkedin.png', array('alt' => 'Linkedin')),
+                            'http://ba.linkedin.com/pub/bojan-milovanovi%C4%87/3a/2a9/21a',
+                            array(
+                                'target'=>'_blank',
+                                'escape'=>false
+                            )
                         );
-                    ?>
+                    ?>            
                 </div>
             </div>
         </div>

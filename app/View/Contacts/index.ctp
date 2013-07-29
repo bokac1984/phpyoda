@@ -14,7 +14,7 @@
 	<tr>
 		<td><?php echo h($contact['Contact']['name']); ?>&nbsp;</td>
 		<td><?php echo h($contact['Contact']['email']); ?>&nbsp;</td>
-		<td><?php echo h($contact['Contact']['message']); ?>&nbsp;</td>
+		<td><?php echo Sanitize::html($contact['Contact']['message']);?>&nbsp;</td>
         <td><?php echo h($contact['Contact']['ip_address']); ?>&nbsp;</td>
         <td><?php echo h($contact['Contact']['created']); ?>&nbsp;</td>
 		<td class="actions">

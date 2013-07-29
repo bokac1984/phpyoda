@@ -7,6 +7,7 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
 
+    public $components = array('BruteForce');
         
     public function beforeFilter() {
         parent::beforeFilter();
@@ -24,11 +25,20 @@ class UsersController extends AppController {
     public function login() {
         $this->set( 'title_for_layout', 'Login for admin');
         $this->layout = 'signin';
-        if ($this->request->is('post')) {
+        $bf = $this->BruteForce->isBruteForceAttack();
+        if ($bf) {
+            $time = $this->BruteForce->getNextLoginTime();
+            $attempts = $this->BruteForce->getLoginCount();
+            $this->set(compact('time', 'attempts'));
+            $this->render("bfattack");
+        }
+        
+        if ($this->request->is('post') && !$bf) {
             if ($this->Auth->login()) {
                 $this->redirect($this->Auth->redirect());
             } else {
-                $this->Session->setFlash('Your username or password was incorrect.', 'flashError');
+                $this->BruteForce->errorLogin();
+                $this->Session->setFlash('Your username or password is incorrect, please try again.', 'flashError');
             }
         }
 	}

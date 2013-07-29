@@ -11,9 +11,11 @@ class ContactsController extends AppController {
     
     public function beforeFilter() {
         parent::beforeFilter();
-
+        $this->Security->unlockedActions = array('add');
         // For CakePHP 2.1 and up
         $this->Auth->allow('add');
+        
+        
     }
 /**
  * index method
@@ -48,7 +50,7 @@ class ContactsController extends AppController {
 	public function add() {
 		$this->autoRender = false;
         if ($this->request->is('ajax')){
-            $this->request->data = Sanitize::clean($this->request->data);
+            //$this->request->data = Sanitize::clean($this->request->data);
             $name = $this->request->data['Contact']['name'];
             
             $data = array(
