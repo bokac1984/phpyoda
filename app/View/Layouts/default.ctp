@@ -50,6 +50,7 @@
     </div> <!-- /container -->
         
     <?php 
+    echo $this->element("/layout/ga");
     echo $this->Html->script('bootstrap.min');
     echo $this->fetch('scriptBottom'); 
     ?>
