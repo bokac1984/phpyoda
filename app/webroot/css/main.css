@@ -126,4 +126,22 @@ body {
     -webkit-box-shadow:  1px 1px 10px 1px #fbeed5;
     box-shadow:  1px 1px 10px 1px #fbeed5;  
 }
+
+.margint20 {
+    margin-top: 20px;
+}
    
+.portfolios.form {
+    width: 40%;
+}
+
+.loggedin .thumbnail {
+    position: relative;
+}
+
+.remove-port {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}

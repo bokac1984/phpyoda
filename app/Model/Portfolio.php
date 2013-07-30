@@ -3,12 +3,13 @@ App::uses('AppModel', 'Model');
 /**
  * Portfolio Model
  *
+ * @property Tag $Tag
+ * @property Tag $Tag
  */
 class Portfolio extends AppModel {
-    
 	public $actsAs = array(
 		'Uploader.Attachment' => array(
-			'image' => array(
+			'screen_shot' => array(
 				'tempDir' => TMP,
 				'overwrite' => true,
 				'self' => true,
@@ -20,15 +21,15 @@ class Portfolio extends AppModel {
 						'append' => '',
 						'overwrite' => true,
 						'self' => true,
-						'width' => 240,
+						'width' => 300,
 						'height' => 200,
-						'dbColumn' => 'image'
+						'dbColumn' => 'screen_shot'
 					)
 				)
 			)
 		),
 		'Uploader.FileValidation' => array(
-			'fileName' => array(
+			'screen_shot' => array(
 				'maxWidth' => array(
 					'value' => 1200, 
 					'error' => 'Width incorrect'
@@ -58,16 +59,6 @@ class Portfolio extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'text' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 		'screen_shot' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -78,5 +69,71 @@ class Portfolio extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'project_name' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'technologies' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'description' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'order' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 	);
+    
+//The Associations below have been created with all possible keys, those that are not needed can be removed
+    
+/**
+ * hasAndBelongsToMany associations
+ *
+ * @var array
+ */
+	public $hasAndBelongsToMany = array(
+		'Tag' => array(
+			'className' => 'Tag',
+			'joinTable' => 'portfolios_tags',
+			'foreignKey' => 'portfolio_id',
+			'associationForeignKey' => 'tag_id',
+			'unique' => 'keepExisting',
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		)
+	);
+
 }

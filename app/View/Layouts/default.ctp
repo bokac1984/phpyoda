@@ -16,7 +16,7 @@
         echo $this->Html->css('main');
         echo $this->Html->css('bootstrap-responsive');
         
-        echo $this->Html->script('jquery-2.0.0.min');
+        echo $this->Html->script('/js/lib/jquery-2.0.0.min');
 	?>
 </head>
 <body>
@@ -51,7 +51,7 @@
         
     <?php 
     echo $this->element("/layout/ga");
-    echo $this->Html->script('bootstrap.min');
+    echo $this->Html->script('/js/lib/bootstrap.min');
     echo $this->fetch('scriptBottom'); 
     ?>
     

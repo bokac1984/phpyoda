@@ -52,7 +52,7 @@ class AppController extends Controller {
         'Security'
     );
     
-    public $helpers = array('Html', 'Link', 'Form', 'Session', 'Js');
+    public $helpers = array('Html', 'Link', 'Form', 'Session', 'Js', 'Display');
 	
     public function beforeFilter() {
         //Configure AuthComponent
@@ -67,6 +67,6 @@ class AppController extends Controller {
     }
     
     public function blackhole($type) {
-        $this->Session->setFlash(__('ERROR: %s',$type), 'flash/error');
+        $this->Session->setFlash(__('ERROR: %s',$type), 'flashError');
    }
 }

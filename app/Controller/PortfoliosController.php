@@ -9,7 +9,8 @@ class PortfoliosController extends AppController {
     
     public function beforeFilter() {
         parent::beforeFilter();
-
+        $this->Security->unlockedActions = array('delete');
+        
         // For CakePHP 2.1 and up
         $this->Auth->allow('index');
     }
@@ -48,9 +49,10 @@ class PortfoliosController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Portfolio->create();
 			if ($this->Portfolio->save($this->request->data)) {
-				$this->Session->setFlash(__('The portfolio has been saved'));
+				$this->Session->setFlash(__('The portfolio has been saved'), 'flashSuccess');
 				$this->redirect(array('action' => 'index'));
 			} else {
+                print_r($this->Portfolio->validationErrors);
 				$this->Session->setFlash(__('The portfolio could not be saved. Please, try again.'));
 			}
 		}
@@ -88,19 +90,23 @@ class PortfoliosController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
-		if (!$this->request->is('post')) {
-			throw new MethodNotAllowedException();
-		}
-		$this->Portfolio->id = $id;
-		if (!$this->Portfolio->exists()) {
-			throw new NotFoundException(__('Invalid portfolio'));
-		}
-		if ($this->Portfolio->delete()) {
-			$this->Session->setFlash(__('Portfolio deleted'));
-			$this->redirect(array('action' => 'index'));
-		}
-		$this->Session->setFlash(__('Portfolio was not deleted'));
-		$this->redirect(array('action' => 'index'));
+	public function delete() {
+		$this->autoRender = false;
+        if ($this->request->is('ajax')){ 
+            $this->Portfolio->id = $this->request->data['id'];
+            if (!$this->Portfolio->exists()) {
+                echo json_encode(array('success' => 0, 'message' => "Error while deleting portfolio. Does not exist."));
+                exit();
+            }
+
+            if ($this->Portfolio->delete()) {
+                echo json_encode(array('success' => 1, 'message' => "0"));
+            } else {
+                echo json_encode(array('success' => 0, 'message' => 'Error while deleting portfolio. Unknown.'));
+            }
+        } else {
+            $this->Session->setFlash("You can't go there directly.", "flashError");
+            $this->redirect("/");
+        }
 	}
 }

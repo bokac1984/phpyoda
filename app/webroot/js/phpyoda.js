@@ -1,5 +1,41 @@
 $(document).ready(function(){
-
+    $(document).on(
+    {
+        mouseenter: function() 
+        {
+            $(this).append('<div class="remove-port"><i class="icon-trash"></i></div>')
+        },
+        mouseleave: function()
+        {
+            $('.remove-port').remove();
+        }
+    }
+    , ".portfolios .loggedin li .thumbnail");
+    
+    $(document).on('click', '.remove-port', function(){
+        var answer = confirm('Are you sure');
+        var removeDiv = $(this).parent();
+        if (answer) {
+            var rm = {};
+            rm.id = removeDiv.attr('data-id');
+            $.ajax({
+                type: 'POST',
+                url: '/Portfolios/delete',
+                data: rm,
+                dataType: "json",
+                success: function(data) {
+                    if (data.success) {
+                        var del = removeDiv.parent();
+                        del.hide('slow', function(){
+                            del.remove();
+                        });
+                    } else {
+                        alert(data.message);
+                    }
+                }
+            });
+        }
+    });
     
     $(document).on('click', '#contact-btn', function(e){
         e.preventDefault();
