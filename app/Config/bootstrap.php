@@ -110,4 +110,5 @@ CakeLog::config('error', array(
 
 CakePlugin::load('AclExtras');
 CakePlugin::load('Uploader');
+CakePlugin::load('DebugKit');
 CakePlugin::load('Acl', array('bootstrap' => true));

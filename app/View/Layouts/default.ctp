@@ -15,6 +15,7 @@
         echo $this->Html->css('bootstrap');
         echo $this->Html->css('main');
         echo $this->Html->css('bootstrap-responsive');
+        echo $this->fetch('css'); 
         
         echo $this->Html->script('/js/lib/jquery-2.0.0.min');
 	?>

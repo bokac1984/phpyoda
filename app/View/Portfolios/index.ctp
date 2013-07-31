@@ -27,7 +27,11 @@ foreach ( $portfolios as $portfolio):
                 <div class="caption">
                     <h3><?php echo $portfolio['Portfolio']['project_name']; ?></h3>
                     <p><?php echo $portfolio['Portfolio']['description']; ?></p>
-                    <p>Technologies: <span class="badge badge-info"><?php echo $portfolio['Portfolio']['technologies']; ?></span></p>
+                    <p>Technologies: 
+                        <?php foreach ($portfolio['Tag'] as $tag): ?>
+                        <span class="badge badge-info"><?php echo $tag['tag']; ?></span>
+                        <?php endforeach; ?>
+                    </p>
                   </div>
             </div>
         </li>

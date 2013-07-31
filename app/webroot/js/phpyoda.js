@@ -60,7 +60,27 @@ $(document).ready(function(){
             }
         });
     });
-
+    
+    if ($(".tags-input").length > 0) { // if there is element on the page
+        $(".tags-input").removeAttr('required');
+        $(".tags-input").tagit({
+            tagSource: function(search, showChoices){
+				var that = this;
+				if(search.term && search.term.length > 1 ){
+					$.ajax({
+						url: "/Portfolios/getTags",
+						type: 'POST',
+						data: {search: search.term},
+						success: function(data) {
+                            var json = $.parseJSON(data);
+                            console.log(json);
+                            showChoices(that._subtractArray(json.choices, that.assignedTags()));
+						}
+					});
+				}
+			}
+        });
+    }
 });
 
 function processErrors(errorArr) {

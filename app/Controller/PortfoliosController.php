@@ -9,10 +9,10 @@ class PortfoliosController extends AppController {
     
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Security->unlockedActions = array('delete');
+        $this->Security->unlockedActions = array('delete', 'getTags');
         
         // For CakePHP 2.1 and up
-        $this->Auth->allow('index');
+        $this->Auth->allow('index', 'getTags');
     }
     
 /**
@@ -21,7 +21,7 @@ class PortfoliosController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Portfolio->recursive = 0;
+		$this->Portfolio->recursive = 1;
 		$this->set('portfolios', $this->paginate());
 	}
 
@@ -48,11 +48,12 @@ class PortfoliosController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Portfolio->create();
+            //debug($this->request->data);exit();
 			if ($this->Portfolio->save($this->request->data)) {
-				$this->Session->setFlash(__('The portfolio has been saved'), 'flashSuccess');
-				$this->redirect(array('action' => 'index'));
+                //debug($this->Portfolio->getLastQuery());exit();
+//				$this->Session->setFlash(__('The portfolio has been saved'), 'flashSuccess');
+//				$this->redirect(array('action' => 'index'));
 			} else {
-                print_r($this->Portfolio->validationErrors);
 				$this->Session->setFlash(__('The portfolio could not be saved. Please, try again.'));
 			}
 		}
@@ -109,4 +110,17 @@ class PortfoliosController extends AppController {
             $this->redirect("/");
         }
 	}
+    
+    /**
+	 * displays available tags - ajax only usage
+	 */
+    public function getTags() {
+		$this->autoRender = false;
+        if ($this->request->is('ajax')){
+            $search = $this->request->data['search'];
+            $tags = $this->Portfolio->Tag->getTags($search);
+            
+            echo json_encode($tags);
+        }
+    }
 }

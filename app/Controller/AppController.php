@@ -49,6 +49,7 @@ class AppController extends Controller {
         'Session',
 		'RequestHandler',
 		'Cookie',
+        'DebugKit.Toolbar',
         'Security'
     );
     

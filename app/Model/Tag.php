@@ -13,7 +13,7 @@ class Tag extends AppModel {
  *
  * @var string
  */
-	public $displayField = 'name';
+	public $displayField = 'tag';
 
 /**
  * Validation rules
@@ -21,51 +21,75 @@ class Tag extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'name' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
+		'tag' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'There needs to be at least one tag added here.',
 				//'allowEmpty' => false,
-				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
-		'portfolio_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-	);
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-/**
- * hasAndBelongsToMany associations
- *
- * @var array
- */
-	public $hasAndBelongsToMany = array(
-		'Portfolio' => array(
-			'className' => 'Portfolio',
-			'joinTable' => 'portfolios_tags',
-			'foreignKey' => 'tag_id',
-			'associationForeignKey' => 'portfolio_id',
-			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
 		)
 	);
 
+    /**
+     * Ajax needed method
+     * 
+     * @param type $s Search string
+     * @return type
+     */
+    public function getTags($s) {
+		$params = array(
+			'conditions' => array("Tag.tag LIKE " => "%$s%"),
+            'recursive' => -1, //int
+			'fields' => array("Tag.tag")              
+		);
+        
+        $tags = $this->find('all', $params);
+        $tmp = array();
+        $tmp['choices'] = array();
+        
+        foreach($tags as $tag) {
+            $tmp['choices'][] = $tag['Tag']['tag'];
+        }
+        return $tmp;
+    }
+    
+    /**
+     * If some tag exists get it's key else save it and get it's key
+     * 
+     * @param array $data Array of tag values to save
+     * @return array Containes id's of saved tags
+     */
+    public function saveTags($data) {  
+        $tags = $this->find('list', array('fields'=> array('Tag.id', 'Tag.tag')));
+        $ids = array();
+        if (is_array($tags)) {
+            foreach($tags as $k=>$v) {
+                if (in_array($v, $data) && count($data) > 0) {
+                    $ids[] = (string)$k;
+                    if(($key = array_search($v, $data)) !== false) {
+                        unset($data[$key]);
+                    }
+                    unset($tags[$k]);
+                }
+            }
+        }
+        
+        if (count($data) > 0) {
+            foreach ($data as $tag) {
+                $this->create();
+                $d = array(
+                    'Tag' => array(
+                        'tag' => $tag
+                    )
+                );
+                
+                if ($this->save($d) ){
+                    $ids[] = (string)$this->getLastInsertID();
+                }
+            }
+        }
+        return $ids;
+    }
 }
