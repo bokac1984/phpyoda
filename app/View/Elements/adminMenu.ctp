@@ -14,8 +14,8 @@ $url = $this->request->here;
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Contacts <b class="caret"></b></a>
         <ul class="dropdown-menu">
-            <li<?php echo (preg_match("/contact/", $url))? ' class="active"' : ''?>><?php echo $this->Html->link("Index", array('controller' => 'contacts', 'action' => 'index')); ?></li>
-            <li<?php echo (preg_match("/contact\/add/", $url))? ' class="active"' : ''?>><?php echo $this->Html->link("Add Contact", array('controller' => 'contacts', 'action' => 'add')); ?></li>
+            <li<?php echo (preg_match("/contact/", $url))? ' class="active"' : ''?>><?php echo $this->Html->link("View All Messages", array('controller' => 'contacts', 'action' => 'index')); ?></li>
+            <!--<li<?php //echo (preg_match("/contact\/add/", $url))? ' class="active"' : ''?>><?php echo $this->Html->link("Add Contact", array('controller' => 'contacts', 'action' => 'add')); ?></li>-->
         </ul>
     </li>
     <li class="dropdown">

@@ -112,3 +112,8 @@ CakePlugin::load('AclExtras');
 CakePlugin::load('Uploader');
 CakePlugin::load('DebugKit');
 CakePlugin::load('Acl', array('bootstrap' => true));
+
+/**
+ * Website title
+ */
+Configure::write('Website.title','PHPY0da');

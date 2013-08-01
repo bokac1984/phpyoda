@@ -14,6 +14,12 @@ body {
     background: url('../img/ticks.png') repeat 0 0;
     padding-top: 20px;
     padding-bottom: 60px;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 16px;
+}
+
+.title {
+    font-size: 2.3em;
 }
 
 /* Custom container */
@@ -30,13 +36,22 @@ body {
 
 .footer p {
     text-align: center;
-    font-size: 1.1em;
+    font-size: 0.8em;
+}
+
+.footer p a {
+    color: #333333;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    font-weight: 600;
 }
 
 
 /* Main marketing message and sign up button */
 .jumbotron {
-  margin: 22px 0;
+  margin: 10px 0;
   text-align: center;
 }
 .jumbotron h1 {
@@ -149,4 +164,15 @@ body {
 td.actions a {
     text-decoration: none;
     margin-right: 20px;
+}
+
+.label {
+    font-size: 14px;
+    background: 0 none;
+    color: #FF6969;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+hr {
+    border-top: 1px solid #B9B9B9;
 }
