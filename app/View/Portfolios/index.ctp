@@ -4,13 +4,13 @@ $logged = AuthComponent::user('id') ? 'loggedin' : '';
 ?>
 <div class="portfolios index">
     <div class="row-fluid">
+        <div class="span12">
+            <h3>Here are some projects I participated or created on my own.</h3>
+        </div>
+    </div>
+    <div class="row-fluid">
         <ul class="thumbnails <?php echo $logged;  ?>">
 <?php
-
-/*
- To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 $numPortfolios = count($portfolios);
 $i = 0;
 foreach ( $portfolios as $portfolio):

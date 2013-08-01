@@ -25,6 +25,10 @@ class UsersController extends AppController {
     public function login() {
         $this->set( 'title_for_layout', 'Login for admin');
         $this->layout = 'signin';
+        if ($this->Auth->user()) {
+            $this->redirect($this->Auth->redirect());
+        }
+        
         $bf = $this->BruteForce->isBruteForceAttack();
         if ($bf) {
             $time = $this->BruteForce->getNextLoginTime();

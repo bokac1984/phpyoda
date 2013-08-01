@@ -10,6 +10,11 @@
             'placeholder' => 'Name',
             'label' => false
         ));
+        echo $this->Form->input('website', array(
+            'class' => 'input-block-level',
+            'placeholder' => 'Website',
+            'label' => false
+        ));
         echo $this->Form->input('email', array(
             'class' => 'input-block-level',
             'placeholder' => 'Email Address',
