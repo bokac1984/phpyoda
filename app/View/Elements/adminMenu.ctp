@@ -12,6 +12,13 @@ $url = $this->request->here;
         </ul>
     </li>
     <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">About <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li<?php echo (preg_match("/abouts\/edit/", $url))? ' class="active"' : ''?>><?php echo $this->Html->link("Edit about", array('controller' => 'abouts', 'action' => 'edit', 1)); ?></li>
+            <li><?php echo $this->Html->link("View about", array('controller' => 'abouts', 'action' => 'index')); ?></li>
+        </ul>
+    </li>
+    <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Contacts <b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li<?php echo (preg_match("/contact/", $url))? ' class="active"' : ''?>><?php echo $this->Html->link("View All Messages", array('controller' => 'contacts', 'action' => 'index')); ?></li>
