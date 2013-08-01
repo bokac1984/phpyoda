@@ -145,3 +145,8 @@ body {
     right: 5px;
     cursor: pointer;
 }
+
+td.actions a {
+    text-decoration: none;
+    margin-right: 20px;
+}

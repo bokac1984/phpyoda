@@ -12,9 +12,8 @@
 		<td><?php echo h($contact['Contact']['name']); ?>&nbsp;</td>
         <td><?php echo $this->Time->format('F jS, Y h:i A', $contact['Contact']['created']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $contact['Contact']['id']), array('class'=>'alerted')); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $contact['Contact']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $contact['Contact']['id']), null, __('Are you sure you want to delete # %s?', $contact['Contact']['id'])); ?>
+            <?php echo $this->Link->cLink(__(''), array('action' => 'view', $contact['Contact']['id']), 'eye-open'); ?>
+			<?php echo $this->Link->dLink("", array('action' => 'delete', $contact['Contact']['id']), 'trash',$contact['Contact']['id']); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
