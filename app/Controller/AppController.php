@@ -57,6 +57,7 @@ class AppController extends Controller {
 	
     public function beforeFilter() {
         //Configure AuthComponent
+        $this->Auth->autoRedirect = false;
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
         $this->Auth->authError = __('Did you really think, allowed to see that, you are, hmm?');
@@ -65,9 +66,22 @@ class AppController extends Controller {
         
         $this->Security->csrfExpires = '+1 hour';
         $this->Security->blackHoleCallback = 'blackhole';
+        
+        $this->Cookie->name = Configure::read('Website.cookie.name');
+        $this->checkCookie();
     }
     
     public function blackhole($type) {
-        $this->Session->setFlash(__('ERROR: %s',$type), 'flashError');
-   }
+        $this->Session->setFlash(__('ERROR: %s', $type), 'flashError');
+    }
+    
+    protected function checkCookie() {
+        if ($this->Auth->user() == null) {
+            $user = $this->Cookie->read('User');
+            
+            if (!empty($user) && $this->Auth->login($user)) {
+                $this->redirect($this->Auth->redirect());
+            }
+        }
+    }
 }

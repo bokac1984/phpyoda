@@ -38,7 +38,18 @@ class UsersController extends AppController {
         }
         
         if ($this->request->is('post') && !$bf) {
+           // try to login in user with data
+
             if ($this->Auth->login()) {
+                if ($this->request->data['User']['rememberme']) {
+                    $this->Cookie->write('User', array_intersect_key(
+                                    $this->request->data['User'], array('username' => null, 'password' => null)
+                            )
+                    );
+                } elseif ($this->Cookie->read('User') !== null) {
+                    $this->Cookie->delete('User');
+                }
+
                 $this->redirect($this->Auth->redirect());
             } else {
                 $this->BruteForce->errorLogin();
@@ -48,6 +59,10 @@ class UsersController extends AppController {
 	}
 
 	public function logout() {
+        if ($this->Cookie->read('User') != null) {
+            $this->Cookie->delete('User');
+        }
+
 		$this->Session->setFlash('For visiting thank you, with you may the force be.', 'flashSuccess');
 		$this->redirect($this->Auth->logout());
 	}
@@ -146,5 +161,7 @@ class UsersController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
     
-    public function about() {}
+    public function about() {
+        //$this->Session->destroy();
+    }
 }

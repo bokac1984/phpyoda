@@ -114,6 +114,11 @@ CakePlugin::load('DebugKit');
 CakePlugin::load('Acl', array('bootstrap' => true));
 
 /**
- * Website title
+ * Website specific variables
  */
 Configure::write('Website.title','PHPY0da');
+// admin mail
+Configure::write('Website.admin.mail','bokac1984@gmail.com');
+
+Configure::write('Website.cookie.name','cYoda');
+CakePlugin::load('Blog', array('bootstrap' => false, 'routes' => false));

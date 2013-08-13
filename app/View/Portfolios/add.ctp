@@ -48,7 +48,7 @@ echo $this->Html->script('phpyoda', array('block'=>'scriptBottom'));
             'label' => 'Tags'
         ));
         
-        echo $this->Form->button('Send message', array(
+        echo $this->Form->button('Save portfolio', array(
             'type' => 'submit', 
             'class' => 'btn btn-primary margint20',
             'id' => 'save-portfolio'

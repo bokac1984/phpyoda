@@ -16,11 +16,15 @@
             'placeholder' => 'Password',
             'label' => false
         ));
-    ?>
-        <label class="checkbox">
-            <input type="checkbox" value="remember-me"> Remember me
-        </label>
-    <?php
+        echo $this->Form->input('rememberme', array(
+            'after' => '</label>',
+            'before' => '<label class="checkbox">',
+            'between' => 'Remember me',
+            'type' => 'checkbox',
+            'div' => false,
+            'label' => false
+        ));
+        
         echo $this->Form->button('Sign in', array('type' => 'submit', 'class' => 'btn btn-large btn-block btn-primary'));
         echo $this->Form->end();
     ?>
