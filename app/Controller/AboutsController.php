@@ -22,6 +22,12 @@ class AboutsController extends AppController {
 		$this->About->recursive = 0;
 		$this->set('abouts', $this->paginate());
 	}
+    
+    public function listAll() {
+        $this->set( 'title_for_layout', 'List');
+		$this->About->recursive = 0;
+		$this->set('abouts', $this->paginate());
+    }
 
 /**
  * view method

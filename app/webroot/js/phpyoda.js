@@ -1,4 +1,20 @@
 $(document).ready(function(){
+    
+    if ($('.masthead').is(':visible')) {
+        console.log('yes');
+    } else {
+        console.log('no');
+    }
+    
+    $(window).scroll(function () {
+        var masthead = $('.masthead').height();
+            if ($(this).scrollTop() > masthead) {
+				console.log('yes');
+			} else {
+				console.log('no');
+			}
+		});
+    
     $(document).on(
     {
         mouseenter: function() 

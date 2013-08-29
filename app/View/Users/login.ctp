@@ -2,8 +2,11 @@
   <div class="span12">
     <?php
         echo $this->Form->create('User', array(
+            'plugin' => null,
+            'controller' => 'users',
             'action' => 'login', 
-            'class' => 'form-signin'
+            'class' => 'form-signin',
+            'method' => 'post'
             ));
         echo '<h2 class="form-signin-heading">Please sign in</h2>';
         echo $this->Form->input('username', array(

@@ -3,4 +3,4 @@
     <p>
         <?php echo $abouts[0]['About']['text']; ?>
     </p>
-</div>
+</div

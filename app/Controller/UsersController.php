@@ -25,8 +25,10 @@ class UsersController extends AppController {
     public function login() {
         $this->set( 'title_for_layout', 'Login for admin');
         $this->layout = 'signin';
+        
         if ($this->Auth->user()) {
-            $this->redirect($this->Auth->redirect());
+            $this->Session->setFlash('Login page is useless now, since I am already logged in.', 'flashError');
+            $this->redirect('/', null, false);
         }
         
         $bf = $this->BruteForce->isBruteForceAttack();
@@ -36,20 +38,19 @@ class UsersController extends AppController {
             $this->set(compact('time', 'attempts'));
             $this->render("bfattack");
         }
-        
-        if ($this->request->is('post') && !$bf) {
-           // try to login in user with data
 
+        if ( !empty($this->request->data) && !$bf) {
+            // try to login in user with data
+            
             if ($this->Auth->login()) {
                 if ($this->request->data['User']['rememberme']) {
                     $this->Cookie->write('User', array_intersect_key(
-                                    $this->request->data['User'], array('username' => null, 'password' => null)
+                                $this->request->data['User'], array('username' => null, 'password' => null)
                             )
                     );
                 } elseif ($this->Cookie->read('User') !== null) {
                     $this->Cookie->delete('User');
                 }
-
                 $this->redirect($this->Auth->redirect());
             } else {
                 $this->BruteForce->errorLogin();
@@ -62,7 +63,7 @@ class UsersController extends AppController {
         if ($this->Cookie->read('User') != null) {
             $this->Cookie->delete('User');
         }
-
+        
 		$this->Session->setFlash('For visiting thank you, with you may the force be.', 'flashSuccess');
 		$this->redirect($this->Auth->logout());
 	}

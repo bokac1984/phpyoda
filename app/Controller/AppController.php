@@ -58,8 +58,18 @@ class AppController extends Controller {
     public function beforeFilter() {
         //Configure AuthComponent
         $this->Auth->autoRedirect = false;
-        $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
-        $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
+        $this->Auth->loginAction = array(
+                'prefix' => null,
+                'plugin' => null,
+                'controller' => 'users',
+                'action' => 'login'
+            );
+        $this->Auth->logoutRedirect = array(
+                'prefix' => null,
+                'plugin' => null,
+                'controller' => 'users',
+                'action' => 'login'
+            );
         $this->Auth->authError = __('Did you really think, allowed to see that, you are, hmm?');
         $this->Auth->loginError = __('Invalid Username or Password entered, please try again.');
         $this->Auth->flash['element'] = "flashError"; 
@@ -72,7 +82,7 @@ class AppController extends Controller {
     }
     
     public function blackhole($type) {
-        $this->Session->setFlash(__('ERROR: %s', $type), 'flashError');
+        $this->Session->setFlash(__('<br />If you are having trouble with this, email admin, else STOP THIS.<br/> Error type: %s', $type), 'flashError');
     }
     
     protected function checkCookie() {
