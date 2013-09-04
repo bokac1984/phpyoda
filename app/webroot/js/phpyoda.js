@@ -1,19 +1,15 @@
+
 $(document).ready(function(){
     
-    if ($('.masthead').is(':visible')) {
-        console.log('yes');
-    } else {
-        console.log('no');
-    }
-    
-    $(window).scroll(function () {
-        var masthead = $('.masthead').height();
-            if ($(this).scrollTop() > masthead) {
-				console.log('yes');
-			} else {
-				console.log('no');
-			}
-		});
+// //saved for later    
+//    $(window).scroll(function () {
+//        var masthead = $('.masthead').height();
+//            if ($(this).scrollTop() > masthead) {
+//				console.log('yes');
+//			} else {
+//				console.log('no');
+//			}
+//		});
     
     $(document).on(
     {
@@ -102,7 +98,7 @@ $(document).ready(function(){
 function processErrors(errorArr) {
     for (key in errorArr) {
         var name = capitalize(key);
-        $("#Contact"+name).before('<span class="label label-warning" style="margin-bottom: 5px;">'+errorArr[key][0]+'</span>');
+        $("#Contact"+name).before('<span class="label3" style="margin-bottom: 5px;">'+errorArr[key][0]+'</span>');
     }
 }
 

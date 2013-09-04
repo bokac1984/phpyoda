@@ -28,15 +28,12 @@ class Post extends BlogAppModel {
 			'notempty' => array(
 				'rule' => array('notempty'),
 				'message' => 'Where is the title?',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
             'unique' => array(
                 'rule' => 'isUnique',
                 'required' => 'create',
                 'message' => 'The title of the post must be unique.',
+                'on' => 'update'
                 )
             )  
         );
@@ -79,11 +76,29 @@ class Post extends BlogAppModel {
 		)
 	);
     
-    public  $actsAs = array('Blog.Sluggable' => array(
-        'label'=>'title',
-        'slug'=>'slug',
-        'separator'=>'-',
-        'overwrite'=>true   
-    ));
+    public  $actsAs = array(
+        'Blog.Sluggable' => array(
+            'label'=>'title',
+            'slug'=>'slug',
+            'separator'=>'-',
+            'overwrite'=>true,
+            'case' => 'low'
+        ),
+        'Taggable' => array(
+			'joinTable' => 'posts_tags',
+			'foreignKey' => 'post_id',
+        )
+    );
 
+    public function extractTags($data){
+        if (is_array($data) && !empty($data)) {
+            $tmp = '';
+            foreach ($data as $tag) {
+                $tmp .= ", ".$tag['tag'];
+            }
+            return $tmp;
+        } else {
+            return array();
+        }
+    }
 }

@@ -1,6 +1,8 @@
-<div class="abouts index">
+<div class="row">
+    <div class="col-lg-12">
     <h2>Some general information about me</h2>
     <p>
-        <?php echo $abouts[0]['About']['text']; ?>
+        <?php echo $abouts['About']['text']; ?>
     </p>
-</div
+    </div>
+</div>

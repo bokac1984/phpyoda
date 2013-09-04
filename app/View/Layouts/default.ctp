@@ -11,10 +11,11 @@
 	<?php
 		echo $this->Html->meta('icon');
         
-        echo $this->Html->css('bootstrap');
+        echo $this->Html->css('bootstrap');      
         echo $this->Html->css('main');
-        echo $this->Html->css('bootstrap-responsive');
+        echo $this->Html->css('justified');
         echo $this->fetch('css'); 
+        echo $this->fetch('script'); 
         
         echo $this->Html->script('/js/lib/jquery-2.0.0.min');
 	?>
@@ -41,10 +42,7 @@
 
     echo $this->fetch('content'); 
     ?>
-
-
-      <hr>
-
+    <hr>
     <?php echo $this->element("/layout/footer"); ?>
 
     </div> <!-- /container -->

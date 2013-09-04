@@ -21,6 +21,7 @@ class PortfoliosController extends AppController {
  * @return void
  */
 	public function index() {
+        $this->set( 'title_for_layout', 'My Portfolio');
 		$this->Portfolio->recursive = 1;
 		$this->set('portfolios', $this->paginate());
 	}

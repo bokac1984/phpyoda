@@ -4,10 +4,10 @@ App::uses('AppController', 'Controller');
 
 class BlogAppController extends AppController {
     private $adminUser = true;
+    protected $limitQuery = 5;
     
     public function beforeFilter() {
         if (!$this->Auth->user()) {
-            $this->layout = 'Blog.blog';
             $this->adminUser = false;
         }
         

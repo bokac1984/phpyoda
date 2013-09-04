@@ -1,23 +1,23 @@
 <?php 
 $c = $contact['Contact'];
 ?>
-<div class="row-fluid">
-    <div class="span3">
+<div class="row">
+    <div class="col-xs-3 col-sm-3">
         <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-                <li class="nav-header">Message</li>
+            <ul class="nav">
+                <li>Message</li>
                 <li class=""><a href="#">Reply</a></li>
                 <li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $c['id']), null, __('Are you sure you want to delete # %s?', $c['id'])); ?></li>
-                <li class="nav-header">Navigation</li>
+                <li>Navigation</li>
                 <li class=""><a href="/contacts/index">Back</a></li>
             </ul>
         </div><!--/.well -->
     </div><!--/span-->
-    <div class="span9">
-        <div class="row-fluid">
-            <div class="span12">
+    <div class="col-xs-9 col-sm-9">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
                 <div class="comments view">
-                <h2><?php  echo __('Information about contact'); ?></h2>
+                <h2><?php  echo __('Information about contact message'); ?></h2>
                     <dl>
                         <dt><?php echo __('Name'); ?></dt>
                         <dd>

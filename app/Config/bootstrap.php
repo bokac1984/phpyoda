@@ -112,6 +112,8 @@ CakePlugin::load('AclExtras');
 CakePlugin::load('Uploader');
 CakePlugin::load('DebugKit');
 CakePlugin::load('Acl', array('bootstrap' => true));
+CakePlugin::load('Blog', array('bootstrap' => false, 'routes' => false));
+CakePlugin::load('Interactive');
 
 /**
  * Website specific variables
@@ -121,4 +123,4 @@ Configure::write('Website.title','PHPY0da');
 Configure::write('Website.admin.mail','bokac1984@gmail.com');
 
 Configure::write('Website.cookie.name','cYoda');
-CakePlugin::load('Blog', array('bootstrap' => false, 'routes' => false));
+

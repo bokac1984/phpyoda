@@ -8,15 +8,18 @@ App::uses('Sanitize', 'Utility');
  */
 class ContactsController extends AppController {
 
+    public $paginate = array(
+        'limit' => 10
+    );
     
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Security->unlockedActions = array('add');
         // For CakePHP 2.1 and up
         $this->Auth->allow('add');
-        
-        
     }
+    
+    
 /**
  * index method
  *
@@ -39,6 +42,9 @@ class ContactsController extends AppController {
 		if (!$this->Contact->exists()) {
 			throw new NotFoundException(__('Invalid contact'));
 		}
+        
+        $this->Contact->saveField('read', 1);
+        
 		$this->set('contact', $this->Contact->read(null, $id));
 	}
 

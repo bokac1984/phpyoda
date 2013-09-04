@@ -17,7 +17,8 @@ echo $this->Html->script('phpyoda', array('block'=>'scriptBottom'));
                             'wrap' => 'div',
                             'class' => 'label label-warning'
                         )
-                    )
+                    ),
+                    'div' => 'form-group'
             )
         );
 ?>
@@ -26,17 +27,17 @@ echo $this->Html->script('phpyoda', array('block'=>'scriptBottom'));
 		<legend><?php echo __('Add Portfolio'); ?></legend>
 	<?php
         echo $this->Form->input('project_name', array(
-            'class' => 'input-block-level',
+            'class' => 'form-control',
             'placeholder' => 'Project Name',
             'label' => false
         ));
         echo $this->Form->input('technologies', array(
-            'class' => 'input-block-level',
+            'class' => 'form-control',
             'placeholder' => 'Technologies',
             'label' => false
         ));
         echo $this->Form->textarea('description', array(
-            'class' => 'input-block-level',
+            'class' => 'form-control',
             'placeholder' => 'Brief description of the project',
             'label' => false
         ));

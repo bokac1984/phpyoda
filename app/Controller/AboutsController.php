@@ -20,7 +20,8 @@ class AboutsController extends AppController {
 	public function index() {
         $this->set( 'title_for_layout', 'About me');
 		$this->About->recursive = 0;
-		$this->set('abouts', $this->paginate());
+        $aboutMe = $this->About->find('first', array('conditions' => array('About.active' => 1)));
+		$this->set('abouts', $aboutMe);
 	}
     
     public function listAll() {
@@ -50,6 +51,7 @@ class AboutsController extends AppController {
  * @return void
  */
 	public function add() {
+        $this->set( 'title_for_layout', 'Add new about me');
 		if ($this->request->is('post')) {
 			$this->About->create();
 			if ($this->About->save($this->request->data)) {
@@ -68,11 +70,7 @@ class AboutsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
-		$this->About->id = $id;
-		if (!$this->About->exists()) {
-			throw new NotFoundException(__('Invalid about'));
-		}
+	public function edit() {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->About->save($this->request->data)) {
 				$this->Session->setFlash(__('The about has been saved'));
@@ -81,7 +79,7 @@ class AboutsController extends AppController {
 				$this->Session->setFlash(__('The about could not be saved. Please, try again.'));
 			}
 		} else {
-			$this->request->data = $this->About->read(null, $id);
+			$this->request->data = $this->About->find('first', array('conditions' => array('About.active' => 1)));
 		}
 	}
 

@@ -14,7 +14,8 @@ class PostsController extends BlogAppController {
     }
     
     public $paginate = array(
-        'limit' => 4
+        'limit' => 5,
+        'contain' => 'Comment'
     );
 /**
  * index method
@@ -22,7 +23,7 @@ class PostsController extends BlogAppController {
  * @return void
  */
 	public function index() {
-		$this->Post->recursive = 0;
+		$this->Post->recursive = 1;
         try {
             $this->set('posts', $this->paginate());
         } catch (NotFoundException $e) {
@@ -39,8 +40,10 @@ class PostsController extends BlogAppController {
  * @return void
  */
 	public function view($slug = null) {
+        $this->Post->Behaviors->load('Containable');
         $post = $this->Post->find('first', array(
-            'conditions' => array('Post.slug' => $slug)
+            'conditions' => array('Post.slug' => $slug),
+            'contain' => 'Comment'
         ));
 		if (!$post) {
 			throw new NotFoundException(__('Invalid post'));
@@ -54,6 +57,7 @@ class PostsController extends BlogAppController {
  * @return void
  */
 	public function add() {
+        //debug($this->request);exit();
 		if ($this->request->is('post')) {
 			$this->Post->create();
 			if ($this->Post->save($this->request->data)) {
@@ -74,11 +78,14 @@ class PostsController extends BlogAppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
-		$this->Post->id = $id;
-		if (!$this->Post->exists()) {
+	public function edit($slug = null) {
+        $post = $this->Post->find('first', array(
+            'conditions' => array('Post.slug' => $slug)
+        ));
+		if (!$post) {
 			throw new NotFoundException(__('Invalid post'));
 		}
+        $this->Post->id = $post['Post']['id'];
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Post->save($this->request->data)) {
 				$this->Session->setFlash(__('The post has been saved'));
@@ -87,9 +94,14 @@ class PostsController extends BlogAppController {
 				$this->Session->setFlash(__('The post could not be saved. Please, try again.'));
 			}
 		} else {
-			$this->request->data = $this->Post->read(null, $id);
+			$this->request->data = $post;
 		}
 		$users = $this->Post->User->find('list');
+        $tag = $this->Post->extractTags($post['Tag']);
+        unset($this->request->data['Tag']);
+        $this->request->data['Tag']['tag'] = $tag;
+        $ref = $this->referer();
+        $this->set('ref', $ref);
 		$this->set(compact('users'));
 	}
 

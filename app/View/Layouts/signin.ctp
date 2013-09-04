@@ -19,8 +19,8 @@
 <body>
     <div class="container">
       <!-- Example row of columns -->
-      <div class="row-fluid">
-        <div class="span12">
+      <div class="row">
+        <div class="col-lg-12">
 			<?php 
             echo $this->Session->flash('auth');
             echo $this->Session->flash(); 

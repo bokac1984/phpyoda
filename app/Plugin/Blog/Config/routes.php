@@ -2,7 +2,7 @@
 
 Router::connect('/posts/:slug', 
         array(
-            'plugin' => 'blog', 
+            'plugin' => 'Blog', 
             'controller' => 'posts', 
             'action' => 'view'),
         array(

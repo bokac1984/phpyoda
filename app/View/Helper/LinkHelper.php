@@ -18,7 +18,7 @@ class LinkHelper extends AppHelper {
      * @return type
      */
     public function cLink($title = '', $url = '/pages/index', $iconName = 'home') {
-        return $this->Html->link('<i class="icon-'.$iconName.'"></i> '.$title, $url, array('escape' => false));
+        return $this->Html->link('<i class="glyphicon  glyphicon-'.$iconName.'"></i> '.$title, $url, array('escape' => false));
     }
     
     /**
@@ -30,7 +30,7 @@ class LinkHelper extends AppHelper {
      * @return string
      */
     public function dLink($title = '', $url = '/pages/index', $iconName = 'home', $delId = 0) {
-        return $this->Form->postLink('<i class="icon-'.$iconName.'"></i> '.$title, $url, array('escape' => false), __('Are you sure you want to delete # %s?', $delId));
+        return $this->Form->postLink('<i class="glyphicon  glyphicon-'.$iconName.'"></i> '.$title, $url, array('escape' => false), __('Are you sure you want to delete # %s?', $delId));
     }
 }
 

@@ -1,5 +1,5 @@
-<div class="row-fluid">
-  <div class="span12">
+<div class="row">
+  <div class="col-lg-12">
     <?php
         echo $this->Form->create('User', array(
             'plugin' => null,
@@ -10,12 +10,12 @@
             ));
         echo '<h2 class="form-signin-heading">Please sign in</h2>';
         echo $this->Form->input('username', array(
-            'class' => 'input-block-level',
+            'class' => 'form-control',
             'placeholder' => 'Username',
             'label' => false
         ));
         echo $this->Form->input('password', array(
-            'class' => 'input-block-level',
+            'class' => 'form-control',
             'placeholder' => 'Password',
             'label' => false
         ));
@@ -33,12 +33,12 @@
     ?>
   </div>
 </div>
-<div class="row-fluid">
-  <div class="span4 offset4">
+<div class="row">
+  <div class="col-xs-6 col-sm-4 col-lg-4 col-lg-offset-5">
       <?php 
       echo $this->Html->link("Get me out of here", 
               array('controller' => 'pages', 'action' => 'index'),
-              array('class' => 'btn btn-large btn-block btn-primary'));
+              array('class' => 'btn btn-large btn-primary'));
       ?>
   </div>
 </div>

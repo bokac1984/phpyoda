@@ -20,12 +20,7 @@ body {
 
 .title {
     font-size: 2.3em;
-}
-
-/* Custom container */
-.container {
-  margin: 0 auto;
-  max-width: 1000px;
+    color: #999999;
 }
 
 .center {
@@ -43,9 +38,14 @@ body {
 .footer p a {
     color: #333333;
     text-decoration: none;
+    -webkit-transition: text-shadow 1s linear;
+    -moz-transition: text-shadow 1s linear;
+    -ms-transition: text-shadow 1s linear;
+    -o-transition: text-shadow 1s linear;
+    transition: text-shadow 1s linear;
 }
 
-.footer a:hover {
+.footer p a:hover {
     text-shadow: 0 0 2px rgba(125, 255, 255, 1);
 }
 
@@ -77,36 +77,6 @@ body {
   margin-top: 28px;
 }
 
-
-/* Customize the navbar links to be fill the entire space of the .navbar */
-.navbar .navbar-inner {
-  padding: 0;
-}
-.navbar .nav {
-  margin: 0;
-  display: table;
-  width: 100%;
-}
-.navbar .nav li {
-  display: table-cell;
-  width: 1%;
-  float: none;
-}
-.navbar .nav li a {
-  font-weight: bold;
-  text-align: center;
-  border-left: 1px solid rgba(255,255,255,.75);
-  border-right: 1px solid rgba(0,0,0,.1);
-}
-.navbar .nav li:first-child a {
-  border-left: 0;
-  border-radius: 3px 0 0 3px;
-}
-.navbar .nav li:last-child a {
-  border-right: 0;
-  border-radius: 0 3px 3px 0;
-}
-
 /* sign in */
 
 .form-signin {
@@ -118,13 +88,14 @@ body {
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.5);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.5);
+          box-shadow: 0 1px 2px rgba(0,0,0,.5);
 }
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
   margin-bottom: 10px;
+  font-weight: normal;
 }
 .form-signin input[type="text"],
 .form-signin input[type="password"] {
@@ -168,7 +139,7 @@ td.actions a {
     margin-right: 20px;
 }
 
-.label {
+.label3 {
     font-size: 14px;
     background: 0 none;
     color: #FF6969;
@@ -177,4 +148,18 @@ td.actions a {
 
 hr {
     border-top: 1px solid #B9B9B9;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.small-subhead small {
+    font-size: 0.5em;
+}
+
+.bp-title {
+    font-size: 1.2em;
+    
+}
+
+.edit-post {
+    padding-left: 5px;
 }
