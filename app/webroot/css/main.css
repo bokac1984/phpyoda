@@ -163,3 +163,10 @@ hr {
 .edit-post {
     padding-left: 5px;
 }
+
+@media (min-width: 768px) {
+    .jumbotron h1 {
+        font-size: 1.7em;
+        line-height: 1;
+    }
+}
