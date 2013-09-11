@@ -13,8 +13,8 @@
         <div class="col-xs-9 col-sm-9">
             <h2><?php echo __('Users'); ?></h2>
             <table class="table table-bordered table-hover users-table" cellpadding="0" cellspacing="0">
-                <tr>
-                    <th><?php echo $this->Paginator->sort('id'); ?></th                    <th><?php echo $this->Paginator->sort('group_id'); ?></th>
+                <tr>                  
+                    <th><?php echo $this->Paginator->sort('group_id'); ?></th>
                     <th><?php echo $this->Paginator->sort('username'); ?></th>
                     <th><?php echo $this->Paginator->sort('first_name'); ?></th>
                     <th><?php echo $this->Paginator->sort('last_name'); ?></th>

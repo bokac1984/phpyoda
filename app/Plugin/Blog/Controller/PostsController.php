@@ -73,7 +73,6 @@ class PostsController extends BlogAppController {
  * @return void
  */
 	public function add() {
-        //debug($this->request);exit();
 		if ($this->request->is('post')) {
 			$this->Post->create();
 			if ($this->Post->save($this->request->data)) {

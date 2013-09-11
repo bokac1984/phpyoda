@@ -42,7 +42,7 @@ class Portfolio extends AppModel {
 		'Image' => array(
 			'className' => 'Image',
 			'foreignKey' => 'portfolio_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',

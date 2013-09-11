@@ -26,7 +26,7 @@
       <div class="masthead">
           <?php 
             echo $this->Html->link(
-                            $this->Html->image('logo.png', array('alt' => 'PHP:Yoda', 'class' => 'logo-img')),
+                            $this->Html->image('logo24.png', array('alt' => 'PHP:Yoda', 'class' => 'logo-img')),
                             array('plugin' => null, 'controller' => 'pages', 'action' => 'index'),
                             array(
                                 'escape' => false,

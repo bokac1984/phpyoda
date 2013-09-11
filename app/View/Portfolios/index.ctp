@@ -14,10 +14,11 @@ foreach ( $portfolios as $portfolio ):
         <div class="wrapper row">
             <div class="col-lg-12">
                 <div class="row">
-                    <h4><?php echo $portfolio['Portfolio']['project_name']; ?></h4><hr />
+                    <h4><?php echo $portfolio['Portfolio']['project_name']; ?></h4>
+                    <hr />
                     <?php
                         echo $this->Html->link(
-                            $this->Html->image($portfolio['Image'][0]['medium'], array('alt' => 'Facebook')),
+                            $this->Html->image($portfolio['Image'][0]['medium']),
                             $portfolio['Image'][0]['uploaded'],
                             array(
                                 'target'=> '_blank',

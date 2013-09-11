@@ -5,7 +5,12 @@
             <div class="row margint20">
                 <div class="col-lg-12">
                     <div class="blogpost-title">
-                        <span class="bp-title"><?php echo $this->Html->link($post['Post']['title'], array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'view', $post['Post']['slug']), array('class' => 'post-title')); ?><?php if ($admin) : ?><span class="edit-post"><?php echo $this->Link->cLink("", array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'edit', $post['Post']['slug']), 'wrench'); ?></span><?php endif; ?></span>
+                        <span class="bp-title">
+                            <?php echo $this->Html->link($post['Post']['title'], array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'view', $post['Post']['slug']), array('class' => 'post-title')); ?>
+                            <?php if ($admin) : ?>
+                            <span class="edit-post"><?php echo $this->Link->cLink("", array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'edit', $post['Post']['slug']), 'wrench'); ?></span>
+                            <?php endif; ?>
+                        </span>
                     </div>
                     <div class="sub-data">
                         <small><?php echo $this->Time->format('F jS, Y', $post['Post']['created']); ?></small>,

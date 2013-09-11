@@ -45,13 +45,6 @@ $this->Form->inputDefaults(array(
             'id' => 'save'
             )
         );
-//        echo $this->Form->button('Publish', array(
-//            'type' => 'submit', 
-//            'class' => 'btn btn-primary col-lg-offset-1',
-//            'id' => 'publish',
-//            'onclick' => 'processForm("this");'
-//            )
-//        );
         echo $this->Html->link('Discard', 
             $ref,
             array(

@@ -118,7 +118,7 @@ CakePlugin::load('Interactive');
 /**
  * Website specific variables
  */
-Configure::write('Website.title','PHP:Y0da');
+Configure::write('Website.title','PHP:Yoda');
 // admin mail
 Configure::write('Website.admin.mail','bokac1984@gmail.com');
 

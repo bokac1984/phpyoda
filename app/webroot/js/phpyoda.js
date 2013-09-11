@@ -14,19 +14,19 @@ $(document).ready(function(){
     if ($(".test").length > 0) {
         $('.test').roundabout();
     }
-    
-    $(document).on(
-    {
-        mouseenter: function() 
-        {
-            $(this).append('<div class="remove-port"><i class="glyphicon glyphicon-trash"></i></div>')
-        },
-        mouseleave: function()
-        {
-            $('.remove-port').remove();
-        }
-    }
-    , ".portfolios .loggedin li .thumbnail");
+//    
+//    $(document).on(
+//    {
+//        mouseenter: function() 
+//        {
+//            $(this).append('<div class="remove-port"><i class="glyphicon glyphicon-trash"></i></div>')
+//        },
+//        mouseleave: function()
+//        {
+//            $('.remove-port').remove();
+//        }
+//    }
+//    , ".portfolios .loggedin .wrapper");
     
     $(document).on('click', '.remove-port', function(){
         var answer = confirm('Are you sure');

@@ -7,8 +7,9 @@ $url = $this->request->here;
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Portfolios <b class="caret"></b></a>
         <ul class="dropdown-menu">
-            <li<?php echo (preg_match("/portfolio/", $url))? ' class="active"' : ''?>><?php echo $this->Html->link("Index", array('plugin' => null, 'controller' => 'portfolios', 'action' => 'index')); ?></li>
-            <li<?php echo (preg_match("/portfolio\/add/", $url))? ' class="active"' : ''?>><?php echo $this->Html->link("Add", array('plugin' => null, 'controller' => 'portfolios', 'action' => 'add')); ?></li>
+            <li><?php echo $this->Html->link("Index", array('plugin' => null, 'controller' => 'portfolios', 'action' => 'index')); ?></li>
+            <li><?php echo $this->Html->link("Manage Portfolios", array('plugin' => null, 'controller' => 'portfolios', 'action' => 'listAll')); ?></li>
+            <li><?php echo $this->Html->link("Add", array('plugin' => null, 'controller' => 'portfolios', 'action' => 'add')); ?></li>
         </ul>
     </li>
     <li class="dropdown">
@@ -23,7 +24,6 @@ $url = $this->request->here;
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Contacts <b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li<?php echo (preg_match("/contact/", $url))? ' class="active"' : ''?>><?php echo $this->Html->link("View All Messages", array('plugin' => null, 'controller' => 'contacts', 'action' => 'index')); ?></li>
-            <!--<li<?php //echo (preg_match("/contact\/add/", $url))? ' class="active"' : ''?>><?php echo $this->Html->link("Add Contact", array('plugin' => null, 'controller' => 'contacts', 'action' => 'add')); ?></li>-->
         </ul>
     </li>
     <li class="dropdown">

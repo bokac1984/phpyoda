@@ -25,6 +25,18 @@ class PortfoliosController extends AppController {
 		$this->Portfolio->recursive = 1;
 		$this->set('portfolios', $this->paginate());
 	}
+    
+    
+/**
+ * index method
+ *
+ * @return void
+ */
+	public function listAll() {
+        $this->set( 'title_for_layout', 'My Portfolio');
+		$this->Portfolio->recursive = 1;
+		$this->set('portfolios', $this->paginate());
+	}
 
 /**
  * view method
@@ -48,18 +60,12 @@ class PortfoliosController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
-            //debug($this->request->data);
-//            $t = $this->request->data["Image"]['uploaded'];
-//            unset($this->request->data["Image"]['uploaded']);
-//           // debug($this->request->data);
-//            $this->request->data["Image"][]['uploaded'] = $t;debug($this->request->data);
-            //exit();
 			$this->Portfolio->create();
 			if ($this->Portfolio->saveAll($this->request->data, array('deep' => true))) {
 				$this->Session->setFlash(__('The portfolio has been saved'), 'flashSuccess');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The portfolio could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The portfolio could not be saved. Please, try again.'), 'flashError');
 			}
 		}
 	}
@@ -78,10 +84,10 @@ class PortfoliosController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Portfolio->save($this->request->data)) {
-				$this->Session->setFlash(__('The portfolio has been saved'));
+				$this->Session->setFlash('The portfolio has been saved', 'flashSuccess');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The portfolio could not be saved. Please, try again.'));
+				$this->Session->setFlash('The portfolio could not be saved. Please, try again.', 'flashError');
 			}
 		} else {
 			$this->request->data = $this->Portfolio->read(null, $id);
@@ -96,23 +102,19 @@ class PortfoliosController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete() {
-		$this->autoRender = false;
-        if ($this->request->is('ajax')){ 
-            $this->Portfolio->id = $this->request->data['id'];
+	public function delete($id = null) {
+        if ($this->request->is('post')){ 
+            $this->Portfolio->id = $id;
             if (!$this->Portfolio->exists()) {
-                echo json_encode(array('success' => 0, 'message' => "Error while deleting portfolio. Does not exist."));
-                exit();
+                throw new NotFoundException(__('Invalid portfolio'));
             }
 
-            if ($this->Portfolio->delete()) {
-                echo json_encode(array('success' => 1, 'message' => "0"));
-            } else {
-                echo json_encode(array('success' => 0, 'message' => 'Error while deleting portfolio. Unknown.'));
-            }
-        } else {
-            $this->Session->setFlash("You can't go there directly.", "flashError");
-            $this->redirect("/");
+		if ($this->Portfolio->delete($id, true)) {
+			$this->Session->setFlash('Portfolio deleted', 'flashSuccess');
+			$this->redirect(array('action' => 'listAll'));
+		}
+		$this->Session->setFlash('Portfolio was not deleted', 'flashError');
+		$this->redirect(array('action' => 'listAll'));
         }
 	}
     

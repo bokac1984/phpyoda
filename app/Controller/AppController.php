@@ -32,7 +32,10 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-    	/**
+    
+    private $adminUser = true;
+    
+    /**
 	 * Pagination
 	 */
 	public $paginate = array(
@@ -79,6 +82,12 @@ class AppController extends Controller {
         
         $this->Cookie->name = Configure::read('Website.cookie.name');
         $this->checkCookie();
+        
+        if (!$this->Auth->user()) {
+            $this->adminUser = false;
+        }
+        
+        $this->set('admin', $this->adminUser);
     }
     
     public function blackhole($type) {
