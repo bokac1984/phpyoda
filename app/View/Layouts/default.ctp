@@ -7,10 +7,11 @@
 	<?php echo $this->Html->charset(); ?>
 	<title><?php echo $title_for_layout; ?> </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
 	<?php
+        echo $this->fetch('meta');
 		echo $this->Html->meta('icon');
-        
+               
+        echo $this->Html->css('http://fonts.googleapis.com/css?family=Oxygen:400,300,700');
         echo $this->Html->css('bootstrap');      
         echo $this->Html->css('main');
         echo $this->Html->css('justified');
@@ -22,10 +23,16 @@
 </head>
 <body>
     <div class="container">
-
       <div class="masthead">
-          <h3 class="muted title"><?php echo Configure::read('Website.title'); ?></h3>
-        <?php 
+          <?php 
+            echo $this->Html->link(
+                            $this->Html->image('logo.png', array('alt' => 'PHP:Yoda', 'class' => 'logo-img')),
+                            array('plugin' => null, 'controller' => 'pages', 'action' => 'index'),
+                            array(
+                                'escape' => false,
+                                'class' => 'logo-a'
+                            )
+                        );
             if (!$this->Session->read('Auth.User')) {
                 echo $this->element("menu");
             } else {

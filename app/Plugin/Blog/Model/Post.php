@@ -17,11 +17,6 @@ class Post extends BlogAppModel {
 		'user_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 		'title' => array(
@@ -78,10 +73,10 @@ class Post extends BlogAppModel {
     
     public  $actsAs = array(
         'Blog.Sluggable' => array(
-            'label'=>'title',
-            'slug'=>'slug',
-            'separator'=>'-',
-            'overwrite'=>true,
+            'label'=> 'title',
+            'slug'=> 'slug',
+            'separator'=> '-',
+            'overwrite'=> true,
             'case' => 'low'
         ),
         'Taggable' => array(

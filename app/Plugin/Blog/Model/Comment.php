@@ -16,6 +16,31 @@ class Comment extends BlogAppModel {
 		'post_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
+			),
+		),
+		'text' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Nothing to say? Eh...',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'commentator' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Who are you?',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'website' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -23,11 +48,11 @@ class Comment extends BlogAppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'text' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
+		'email' => array(
+			'email' => array(
+				'rule' => array('email'),
+				'message' => 'If you already provide this, make it real',
+				'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations

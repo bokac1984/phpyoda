@@ -48,8 +48,14 @@ class PortfoliosController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+            //debug($this->request->data);
+//            $t = $this->request->data["Image"]['uploaded'];
+//            unset($this->request->data["Image"]['uploaded']);
+//           // debug($this->request->data);
+//            $this->request->data["Image"][]['uploaded'] = $t;debug($this->request->data);
+            //exit();
 			$this->Portfolio->create();
-			if ($this->Portfolio->save($this->request->data)) {
+			if ($this->Portfolio->saveAll($this->request->data, array('deep' => true))) {
 				$this->Session->setFlash(__('The portfolio has been saved'), 'flashSuccess');
 				$this->redirect(array('action' => 'index'));
 			} else {

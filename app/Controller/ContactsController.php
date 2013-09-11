@@ -60,6 +60,7 @@ class ContactsController extends AppController {
             
             $data = array(
                 'name' => $this->request->data['Contact']['name'],
+                'website' => $this->request->data['Contact']['website'],
                 'email' => $this->request->data['Contact']['email'],
                 'message' => $this->request->data['Contact']['message'],
                 'ip_address' => $this->request->clientIp()

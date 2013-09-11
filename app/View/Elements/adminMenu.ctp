@@ -37,6 +37,7 @@ $url = $this->request->here;
         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon  glyphicon-user"></i> Users <b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li><?php echo $this->Link->cLink("Manage", array('plugin' => null, 'controller' => 'users', 'action' => 'index'), 'wrench'); ?></li>
+            <li><?php echo $this->Link->cLink("User groups", array('plugin' => null, 'controller' => 'groups', 'action' => 'index'), 'tasks'); ?></li>
             <li><?php echo $this->Link->cLink("Logout", array('plugin' => null, 'controller' => 'users', 'action' => 'logout'), 'off'); ?></li>
         </ul>
     </li>

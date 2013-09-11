@@ -14,9 +14,7 @@ class CommentTest extends CakeTestCase {
  */
 	public $fixtures = array(
 		'plugin.blog.comment',
-		'plugin.blog.post',
-		'plugin.blog.user',
-		'plugin.blog.group'
+		'plugin.blog.post'
 	);
 
 /**

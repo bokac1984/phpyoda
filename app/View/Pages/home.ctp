@@ -5,7 +5,7 @@ echo $this->Html->script('phpyoda', array('block' => 'scriptBottom'));
     <div class="hero-unit jumbotron">
         <h1>Welcome to PHP Yoda</h1>
         <p class="lead">Where the <i>Code</i> meets the <i>Force</i></p>
-        <p>I will post my work here, share thoughts through my blog, and greet people who stumble upon this page.</p>
+        <p>I will post my work here, share thoughts through my <?php echo $this->Html->link('blog', array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'index')); ?>, and greet people who stumble upon this page.</p>
         <p>Feel free to contact me about business proposal, job opportunity or just to say "hi".</p>
     </div>
 </div>

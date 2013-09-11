@@ -11,11 +11,15 @@ $(document).ready(function(){
 //			}
 //		});
     
+    if ($(".test").length > 0) {
+        $('.test').roundabout();
+    }
+    
     $(document).on(
     {
         mouseenter: function() 
         {
-            $(this).append('<div class="remove-port"><i class="icon-trash"></i></div>')
+            $(this).append('<div class="remove-port"><i class="glyphicon glyphicon-trash"></i></div>')
         },
         mouseleave: function()
         {
@@ -67,7 +71,7 @@ $(document).ready(function(){
                 if (data.success) {
                     $('.contact-form').empty().html(data.message);
                 } else {
-                    processErrors(data.message);
+                    processErrors(data.message, "#Contact");
                 }
             }
         });
@@ -93,12 +97,13 @@ $(document).ready(function(){
 			}
         });
     }
+
 });
 
-function processErrors(errorArr) {
+function processErrors(errorArr, form) {
     for (key in errorArr) {
         var name = capitalize(key);
-        $("#Contact"+name).before('<span class="label3" style="margin-bottom: 5px;">'+errorArr[key][0]+'</span>');
+        $(form+name).before('<span class="label3" style="margin-bottom: 5px;">'+errorArr[key][0]+'</span>');
     }
 }
 

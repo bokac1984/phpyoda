@@ -25,6 +25,10 @@ class Tag extends AppModel {
 			'notempty' => array(
 				'rule' => array('notempty'),
 				'message' => 'There needs to be at least one tag added here.',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		)
 	);

@@ -14,8 +14,14 @@ class PostsController extends BlogAppController {
     }
     
     public $paginate = array(
-        'limit' => 5,
-        'contain' => 'Comment'
+        'limit' => 10,
+        'contain' => array(
+            'Comment' => array(
+                'conditions' => array('Comment.approved = 1', 'Comment.deleted = 1'),
+                'order' => 'Comment.created DESC'
+                )
+            ),
+        'order' => 'Post.created DESC'
     );
 /**
  * index method
@@ -40,14 +46,24 @@ class PostsController extends BlogAppController {
  * @return void
  */
 	public function view($slug = null) {
+        if (!$slug) {
+			throw new NotFoundException(__('Invalid post'));
+		}
         $this->Post->Behaviors->load('Containable');
         $post = $this->Post->find('first', array(
             'conditions' => array('Post.slug' => $slug),
-            'contain' => 'Comment'
-        ));
+            'contain' => array('Comment' => array(
+                    'conditions' => array('Comment.approved = 0', 'Comment.deleted = 1'),
+                    'order' => 'Comment.created DESC'
+                    )
+                )
+            )
+        );
 		if (!$post) {
 			throw new NotFoundException(__('Invalid post'));
 		}
+        $this->request->data['Comment']['post_id'] = $post['Post']['id'];
+        $this->set('title_for_layout', $post['Post']['title']);
 		$this->set('post', $post);
 	}
 

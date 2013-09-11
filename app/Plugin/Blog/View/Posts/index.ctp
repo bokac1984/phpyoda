@@ -1,6 +1,5 @@
 <?php echo $this->Html->script('/js/blog', array('block'=>'scriptBottom')); ?>
-<div class="row">
-    
+<div class="row">   
     <div class="col-lg-12"><h3>List of all posts</h3>
         <?php foreach ($posts as $post): ?>
             <div class="row margint20">

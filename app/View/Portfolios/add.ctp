@@ -31,17 +31,18 @@ echo $this->Html->script('phpyoda', array('block'=>'scriptBottom'));
             'placeholder' => 'Project Name',
             'label' => false
         ));
-        echo $this->Form->input('technologies', array(
-            'class' => 'form-control',
-            'placeholder' => 'Technologies',
-            'label' => false
-        ));
         echo $this->Form->textarea('description', array(
             'class' => 'form-control',
             'placeholder' => 'Brief description of the project',
             'label' => false
         ));
-        echo $this->Form->input('screen_shot', array('type' => 'file'));
+        
+        echo $this->Form->input('Image.0.uploaded', array(
+            'type' => 'file', 
+            'multiple' => 'multiple',
+            'label' => 'Project images (Select as many as you want)'
+            )
+        );
         
         echo $this->Form->input('Tag.tag', array(
             'class' => 'tags-input',
@@ -53,7 +54,7 @@ echo $this->Html->script('phpyoda', array('block'=>'scriptBottom'));
             'type' => 'submit', 
             'class' => 'btn btn-primary margint20',
             'id' => 'save-portfolio'
-            ));
+        ));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(); ?>

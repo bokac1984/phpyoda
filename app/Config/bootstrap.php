@@ -110,7 +110,7 @@ CakeLog::config('error', array(
 
 CakePlugin::load('AclExtras');
 CakePlugin::load('Uploader');
-CakePlugin::load('DebugKit');
+//CakePlugin::load('DebugKit');
 CakePlugin::load('Acl', array('bootstrap' => true));
 CakePlugin::load('Blog', array('bootstrap' => false, 'routes' => false));
 CakePlugin::load('Interactive');
@@ -118,7 +118,7 @@ CakePlugin::load('Interactive');
 /**
  * Website specific variables
  */
-Configure::write('Website.title','PHPY0da');
+Configure::write('Website.title','PHP:Y0da');
 // admin mail
 Configure::write('Website.admin.mail','bokac1984@gmail.com');
 
