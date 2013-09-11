@@ -28,7 +28,7 @@ class Post extends BlogAppModel {
                 'rule' => 'isUnique',
                 'required' => 'create',
                 'message' => 'The title of the post must be unique.',
-                'on' => 'update'
+                'on' => 'create'
                 )
             )  
         );
@@ -95,11 +95,5 @@ class Post extends BlogAppModel {
         } else {
             return array();
         }
-    }
-    
-    public function beforeSave($options = array()) {
-        parent::beforeSave($options);
-        
-        $this->log($this->data, 'post');
     }
 }
