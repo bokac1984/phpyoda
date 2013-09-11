@@ -21,7 +21,7 @@ $url = $this->request->here;
         </ul>
     </li>
     <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Contacts <b class="caret"></b></a>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $this->element('/layout/newcontact'); ?> Contacts <b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li<?php echo (preg_match("/contact/", $url))? ' class="active"' : ''?>><?php echo $this->Html->link("View All Messages", array('plugin' => null, 'controller' => 'contacts', 'action' => 'index')); ?></li>
         </ul>
@@ -34,7 +34,7 @@ $url = $this->request->here;
         </ul>
     </li>
     <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon  glyphicon-user"></i> Users <b class="caret"></b></a>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> Users <b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li><?php echo $this->Link->cLink("Manage", array('plugin' => null, 'controller' => 'users', 'action' => 'index'), 'wrench'); ?></li>
             <li><?php echo $this->Link->cLink("User groups", array('plugin' => null, 'controller' => 'groups', 'action' => 'index'), 'tasks'); ?></li>

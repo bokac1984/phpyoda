@@ -96,4 +96,10 @@ class Post extends BlogAppModel {
             return array();
         }
     }
+    
+    public function beforeSave($options = array()) {
+        parent::beforeSave($options);
+        
+        $this->log($this->data, 'post');
+    }
 }

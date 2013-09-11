@@ -9,7 +9,8 @@ App::uses('Sanitize', 'Utility');
 class ContactsController extends AppController {
 
     public $paginate = array(
-        'limit' => 10
+        'limit' => 10,
+        'order' => 'Contact.created DESC'
     );
     
     public function beforeFilter() {
@@ -17,6 +18,13 @@ class ContactsController extends AppController {
         $this->Security->unlockedActions = array('add');
         // For CakePHP 2.1 and up
         $this->Auth->allow('add');
+    }
+    
+    public function newContacts() {
+        if (empty($this->request->params['requested'])) {
+            throw new ForbiddenException();
+        }
+        return $this->Contact->find('count', array('conditions' => 'Contact.read = 0'));
     }
     
     

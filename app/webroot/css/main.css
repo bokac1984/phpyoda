@@ -249,6 +249,36 @@ hr {
     opacity: 0.8;
 }
 
+/* contact message envelope */
+
+/* The actual animation */
+@keyframes unread-contact {
+    from {color: #79B0E0;}
+    to {color: #428bca;}
+}
+@-webkit-keyframes unread-contact {
+    from {color: #79B0E0;}
+    to {color: #428bca;}
+}
+
+.unread-contact {
+    color: #428bca;
+    
+    /* Set the animation properties */
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: unread-contact;
+    
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-name: unread-contact;
+    
+    -moz-animation-duration: 1s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-name: unread-contact;
+}
+/* contact message envelope */
+
 @media (max-width: 768px) {
     .jumbotron h1 {
         font-size: 1.7em;
