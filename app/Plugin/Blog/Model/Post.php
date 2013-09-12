@@ -77,7 +77,7 @@ class Post extends BlogAppModel {
             'slug'=> 'slug',
             'separator'=> '-',
             'overwrite'=> true,
-            'mode' => 'url',
+            'mode' => 'ascii',
             'run' => 'beforeSave',
             'case' => 'low'
         ),
