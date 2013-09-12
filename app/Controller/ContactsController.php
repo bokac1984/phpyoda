@@ -52,8 +52,12 @@ class ContactsController extends AppController {
 		}
         
         $this->Contact->saveField('read', 1);
+        $contact = $this->Contact->read(null, $id);
         
-		$this->set('contact', $this->Contact->read(null, $id));
+        if (substr($contact['Contact']['website'], 0, 7) !== 'http://')
+            $contact['Contact']['website'] = 'http://' . $contact['Contact']['website'];
+        
+		$this->set('contact', $contact);
 	}
 
 /**
@@ -62,6 +66,7 @@ class ContactsController extends AppController {
  * @return void
  */
 	public function add() {
+        //pr($this->request->data);exit();
 		$this->autoRender = false;
         if ($this->request->is('ajax')){
             $name = $this->request->data['Contact']['name'];
@@ -75,7 +80,7 @@ class ContactsController extends AppController {
             );
             
             if ($this->Contact->save($data)) {
-                echo json_encode(array('success' => 1, 'message' => "For contacting me, I thank you <i>{$name}</i>."));
+                echo json_encode(array('success' => 1, 'message' => h("For contacting me, I thank you <i>{$name}</i>.")));
             } else {
                 echo json_encode(array('success' => 0, 'message' => $this->Contact->validationErrors));
             }

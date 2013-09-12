@@ -30,7 +30,7 @@ class CommentsController extends BlogAppController {
             );
             
             if ($this->Comment->save($data)) {
-                echo json_encode(array('success' => 1, 'message' => "Your comment is waiting to be approved, for that I thank you <i>{$data['commentator']}</i>."));
+                echo json_encode(array('success' => 1, 'message' => h("Your comment is waiting to be approved, for that I thank you <i>{$data['commentator']}</i>.")));
             } else {
                 echo json_encode(array('success' => 0, 'message' => $this->Comment->validationErrors));
             }

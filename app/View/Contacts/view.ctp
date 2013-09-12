@@ -22,9 +22,10 @@ $c = $contact['Contact'];
                         <dt><?php echo __('Name'); ?></dt>
                         <dd>
                             <?php 
-                            echo $c['website'] != "" ? $this->Html->link($c['name'], $c['website'], array('title' => 'That person\'s website'))
-                            : $this->Html->link($c['name'], '#', array('title' => 'That person doesn\'t have a website'));
-                            ?>
+                            echo $this->Link->displayUrl(Sanitize::html($c['website']), Sanitize::html($c['name']));
+//                            echo $c['website'] != "" ? $this->Html->link(Sanitize::html($c['name']), Sanitize::html($c['website']), array('title' => 'That person\'s website'))
+//                            : $this->Html->link(Sanitize::html($c['name']), '#', array('title' => 'That person doesn\'t have a website'));
+//                            ?>
                             &nbsp;
                         </dd>
                         <dt><?php echo __('E-mail'); ?></dt>

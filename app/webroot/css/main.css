@@ -249,6 +249,25 @@ hr {
     opacity: 0.8;
 }
 
+.post-title {
+    font-size: 1.8em;
+}
+
+a {
+    color: #428bca;
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    color: #2a6496;
+    text-decoration: none;
+    -webkit-transition: color .4s linear;
+    -moz-transition: color .4s linear;
+    -ms-transition: color .4s linear;
+    -o-transition: color .4s linear;
+    transition: color .4s linear;
+}
+
 /* contact message envelope */
 
 /* The actual animation */
