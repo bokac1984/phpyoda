@@ -77,6 +77,7 @@ class Post extends BlogAppModel {
             'slug'=> 'slug',
             'separator'=> '-',
             'overwrite'=> true,
+            'mode' => 'url',
             'case' => 'low'
         ),
         'Taggable' => array(

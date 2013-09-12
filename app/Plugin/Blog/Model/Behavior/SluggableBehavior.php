@@ -553,12 +553,12 @@ class SluggableBehavior extends ModelBehavior {
 	protected function _pregReplace($pattern, $replace, $string, $encoding = 'UTF-8') {
         $this->log($encoding, 'encoding');
 		if ($encoding && $encoding !== 'UTF-8') {
-			$string = @mb_convert_encoding($string, 'UTF-8', $encoding);
+			$string = mb_convert_encoding($string, 'UTF-8', $encoding);
 		}
         $this->log($string, 'encoding');
-		$return = @preg_replace($pattern, $replace, $string);
+		$return = preg_replace($pattern, $replace, $string);
 		if ($encoding && $encoding !== 'UTF-8') {
-			$return = @mb_convert_encoding($return, $encoding, 'UTF-8');
+			$return = mb_convert_encoding($return, $encoding, 'UTF-8');
 		}
         $this->log($return, 'encoding');
 		return $return;
