@@ -78,6 +78,7 @@ class Post extends BlogAppModel {
             'separator'=> '-',
             'overwrite'=> true,
             'mode' => 'url',
+            'run' => 'beforeSave',
             'case' => 'low'
         ),
         'Taggable' => array(
