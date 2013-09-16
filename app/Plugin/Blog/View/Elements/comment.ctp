@@ -1,14 +1,14 @@
 <?php
 // blog comment elemenet
 ?>
-<div class="contact-form">
+<div class="comment-form">
     <?php
     echo $this->Form->create('Comment', array(
         'action' => 'add'
     ));
     $this->Form->inputDefaults(array(
-        'div' => 'form-group'
-            )
+            'div' => 'form-group'
+        )
     );
     echo $this->Form->input('post_id', array('type' => 'hidden'));
     echo '<h2 class="form-signin-heading">Leave a comment</h2>';
@@ -26,6 +26,17 @@
         'class' => 'form-control',
         'placeholder' => 'Email Address',
         'label' => false
+    ));
+    echo $this->Form->input('gravatar', array(
+        'label' => false,
+        'before' => '<label class="checkbox" style="font-weight: normal; color: #838282;">',
+        'after' => ' Use my Gravatar</label>',
+        'type' => 'checkbox',
+        'div' => false
+    ));
+    echo $this->Form->input('field', array(
+        'label' => false,
+        'class' => 'hide-this'
     ));
     ?>
     <div class="form-group"><?php

@@ -5,7 +5,7 @@
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
-	<title><?php echo $title_for_layout; ?> </title>
+    <title><?php echo Configure::read('Website.title')." - ".$title_for_layout; ?> </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<?php
         echo $this->fetch('meta');
@@ -57,8 +57,9 @@
     <?php 
     echo $this->element("/layout/ga");
     echo $this->Html->script('/js/lib/bootstrap.min');
+    echo $this->Html->script('/js/lib/common');
     echo $this->fetch('scriptBottom'); 
     ?>
-    
+    <?php echo $this->element('sql_dump'); ?>
 </body>
 </html>

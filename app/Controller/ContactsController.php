@@ -80,7 +80,7 @@ class ContactsController extends AppController {
             );
             
             if ($this->Contact->save($data)) {
-                echo json_encode(array('success' => 1, 'message' => h("For contacting me, I thank you <i>{$name}</i>.")));
+                echo json_encode(array('success' => 1, 'message' => h("For contacting me, I thank you {$name}.")));
             } else {
                 echo json_encode(array('success' => 0, 'message' => $this->Contact->validationErrors));
             }

@@ -56,8 +56,8 @@ $(document).ready(function(){
     $(document).on('click', '#contact-btn', function(e){
         e.preventDefault();
         var button = $(this);
-        $(this).html('<img src="../img/ajax-loader.gif" /> Sending...').addClass('disabled');
-        $("#ContactAddForm .label-warning").each(function(){
+        $(this).html('<i class="blogicon icon-loading"></i> Sending...').addClass('disabled');
+        $("#ContactAddForm .label3").each(function(){
             $(this).remove();
         });
         $.ajax({
@@ -89,7 +89,6 @@ $(document).ready(function(){
 						data: {search: search.term},
 						success: function(data) {
                             var json = $.parseJSON(data);
-                            console.log(json);
                             showChoices(that._subtractArray(json.choices, that.assignedTags()));
 						}
 					});
@@ -97,25 +96,4 @@ $(document).ready(function(){
 			}
         });
     }
-
 });
-
-function processErrors(errorArr, form) {
-    for (key in errorArr) {
-        var name = capitalize(key);
-        $(form+name).before('<span class="label3" style="margin-bottom: 5px;">'+errorArr[key][0]+'</span>');
-    }
-}
-
-function capitalize(a) {
-    s = [];
-    for (var i=0; i<a.length; i++) {
-        if (i == 0) {
-            s.push(a[i].charAt(i).toUpperCase());
-        } else {
-            s.push(a[i]);
-        }
-    }
-    s = s.join('');
-    return s;
-}

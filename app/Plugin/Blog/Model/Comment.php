@@ -22,40 +22,25 @@ class Comment extends BlogAppModel {
 			'notempty' => array(
 				'rule' => array('notempty'),
 				'message' => 'Nothing to say? Eh...',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			)
 		),
 		'commentator' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				'message' => 'Who are you?',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'last' => true, // Stop validation after this rule
+
 			),
-		),
-		'website' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+            'alphanumeric' => array(
+                'rule' => 'alphanumeric',
+                'message' => 'Only letters'
+            )
 		),
 		'email' => array(
 			'email' => array(
 				'rule' => array('email'),
-				'message' => 'If you already provide this, make it real',
+				'message' => 'If you\'re already providing this, make it real',
 				'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 	);

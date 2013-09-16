@@ -9,6 +9,7 @@
                             <?php echo $this->Html->link($post['Post']['title'], array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'view', $post['Post']['slug']), array('class' => 'post-title')); ?>
                             <?php if ($admin) : ?>
                             <span class="edit-post"><?php echo $this->Link->cLink("", array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'edit', $post['Post']['slug']), 'wrench'); ?></span>
+                            <span class="delete-post"><?php echo $this->Link->dLink("", array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'delete', $post['Post']['slug']), 'trash',$post['Post']['slug']); ?></span>
                             <?php endif; ?>
                         </span>
                     </div>

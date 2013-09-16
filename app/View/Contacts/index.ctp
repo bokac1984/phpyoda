@@ -15,7 +15,7 @@
 		<td class="actions">
             <?php echo $this->Link->cLink(__(''), array('action' => 'view', $contact['Contact']['id']), 'eye-open'); ?>
 			<?php echo $this->Link->dLink("", array('action' => 'delete', $contact['Contact']['id']), 'trash',$contact['Contact']['id']); ?>
-            <a href="#"><i class="glyphicon  glyphicon-<?php echo $contact['Contact']['read'] ? "folder-open" : "folder-close"; ?>"></i></a>
+            <a href="#"><i class="glyphicon glyphicon-<?php echo $contact['Contact']['read'] ? "folder-open" : "folder-close"; ?>"></i></a>
 		</td>
 	</tr>
 <?php endforeach; ?>

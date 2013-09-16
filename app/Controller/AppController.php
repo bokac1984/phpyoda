@@ -77,7 +77,6 @@ class AppController extends Controller {
         $this->Auth->loginError = __('Invalid Username or Password entered, please try again.');
         $this->Auth->flash['element'] = "flashError"; 
         
-        $this->Security->csrfExpires = '+1 hour';
         $this->Security->blackHoleCallback = 'blackhole';
         
         $this->Cookie->name = Configure::read('Website.cookie.name');

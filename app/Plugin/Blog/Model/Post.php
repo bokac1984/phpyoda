@@ -84,7 +84,8 @@ class Post extends BlogAppModel {
         'Taggable' => array(
 			'joinTable' => 'posts_tags',
 			'foreignKey' => 'post_id',
-        )
+        ),
+        'Containable'
     );
 
     public function extractTags($data){

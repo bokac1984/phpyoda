@@ -1,5 +1,4 @@
 <?php
-debug($this->request->data);
 echo $this->Html->css('jquery-ui-1.9.2.custom', null, array('inline' => false));
 echo $this->Html->css('jquery.tagit', null, array('inline' => false));
 
@@ -49,13 +48,12 @@ $this->Form->inputDefaults(array(
             'id' => 'save'
             )
         );
-//        echo $this->Form->button('Publish', array(
-//            'type' => 'submit', 
-//            'class' => 'btn btn-primary col-lg-offset-1',
-//            'id' => 'publish',
-//            'onclick' => 'processForm("this");'
-//            )
-//        );
+        echo $this->Form->button('Publish', array(
+            'type' => 'submit', 
+            'class' => 'btn btn-primary col-lg-offset-1',
+            'id' => 'publish'
+            )
+        );
 //        echo $this->Form->button('Discard', array(
 //            'type' => 'submit', 
 //            'class' => 'btn btn-primary col-lg-offset-1',
