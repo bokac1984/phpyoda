@@ -8,7 +8,7 @@ echo $this->Html->scriptBlock('SyntaxHighlighter.all();');
 
 $this->log($post, 'view');
 if ($admin):
-    ?>
+?>
     <div class="row">
         <div class="col-lg-12">
             <?php echo $this->Link->cLink("Edit", array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'edit', $post['Post']['slug']), 'edit'); ?></span>-->
@@ -16,7 +16,7 @@ if ($admin):
         </div>
     </div>
 <?php endif; ?>
-<div class="row">
+<div class="row post-row">
     <div class="col-lg-12">
         <h3><?php echo $post['Post']['title']; ?></h3>
         <small><?php echo $this->Time->format('F jS, Y', $post['Post']['created']); ?></small>
@@ -35,7 +35,7 @@ if ($admin):
             </div>
         <?php endif; ?>
         <?php foreach ($post['Comment'] as $comment): ?>
-            <div class="row margint20">
+            <div class="row comment-row">
                 <div class="col-lg-1">
                     <div class="comment-image"><?php echo $this->Gravatar->image($comment['email']); ?></div>
                 </div>

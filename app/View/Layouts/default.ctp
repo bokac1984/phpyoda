@@ -60,6 +60,6 @@
     echo $this->Html->script('/js/lib/common');
     echo $this->fetch('scriptBottom'); 
     ?>
-    <?php echo $this->element('sql_dump'); ?>
+    <?php //echo $this->element('sql_dump'); ?>
 </body>
 </html>

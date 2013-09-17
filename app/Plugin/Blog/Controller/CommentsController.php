@@ -26,6 +26,7 @@ class CommentsController extends BlogAppController {
                 'commentator' => $this->request->data['Comment']['commentator'],
                 'email' => $this->request->data['Comment']['email'],
                 'text' => $this->request->data['Comment']['text'],
+                'gravatar' => $this->request->data['Comment']['gravatar'],
                 'ip_address' => $this->request->clientIp()
             );
             

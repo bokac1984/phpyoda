@@ -315,6 +315,13 @@ a:hover, a:focus {
     display: none;
 }
 
+.comment-row, .post-row {
+    margin-bottom: 2em;
+    font-size: 1em;
+    color: #444;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
+}
+
 @media (max-width: 768px) {
     .jumbotron h1 {
         font-size: 1.7em;
