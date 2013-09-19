@@ -1,11 +1,11 @@
 <?php
-App::uses('User', 'Model');
+App::uses('Group', 'Model');
 
 /**
- * User Test Case
+ * Group Test Case
  *
  */
-class UserTest extends CakeTestCase {
+class GroupTest extends CakeTestCase {
 
 /**
  * Fixtures
@@ -13,9 +13,7 @@ class UserTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.user',
-		'app.group',
-		'app.post'
+		'app.group'
 	);
 
 /**
@@ -25,7 +23,7 @@ class UserTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->User = ClassRegistry::init('User');
+		$this->Group = ClassRegistry::init('Group');
 	}
 
 /**
@@ -34,7 +32,7 @@ class UserTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->User);
+		unset($this->Group);
 
 		parent::tearDown();
 	}
@@ -45,14 +43,6 @@ class UserTest extends CakeTestCase {
  * @return void
  */
 	public function testParentNode() {
-	}
-
-/**
- * testBindNode method
- *
- * @return void
- */
-	public function testBindNode() {
 	}
 
 }

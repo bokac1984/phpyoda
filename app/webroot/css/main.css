@@ -322,6 +322,36 @@ a:hover, a:focus {
     text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
 }
 
+.comment-heading h2 {
+    margin: 0;
+}
+
+.comment-heading {
+    margin-bottom: 1.5em;
+}
+
+.not-found {
+    width: 50em;
+    margin: 0 auto;
+    padding: 1.5em 0;
+    color: #444;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.not-found h1 {
+    font-size: 10em;
+}
+
+.not-found .error {
+    font-size: 1.5em;
+}
+
+.not-found img {
+    -moz-opacity: 0.85;
+    opacity: 0.85;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=85);
+}
+
 @media (max-width: 768px) {
     .jumbotron h1 {
         font-size: 1.7em;

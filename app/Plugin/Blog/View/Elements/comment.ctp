@@ -30,7 +30,7 @@
     echo $this->Form->input('gravatar', array(
         'label' => false,
         'before' => '<label class="checkbox" style="font-weight: normal; color: #838282;">',
-        'after' => ' Use my Gravatar</label>',
+        'after' => ' Use my Gravatar <a title="Gravatar" target="_blank" Website" href="http://en.gravatar.com/"><span class="badge">?</span></a></label>',
         'type' => 'checkbox',
         'div' => false
     ));

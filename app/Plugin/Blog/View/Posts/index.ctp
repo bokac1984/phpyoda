@@ -15,7 +15,13 @@
                     </div>
                     <div class="sub-data">
                         <small><?php echo $this->Time->format('F jS, Y', $post['Post']['created']); ?></small>,
-                        <small> posted by Admin | Comments (<?php echo count($post['Comment']) ? count($post['Comment']) : 0; ?>)</small>
+                        <small> posted by Admin | 
+                            <?php 
+                            $numComments = count($post['Comment']) ? count($post['Comment']) : 0;
+                            $title = "Comments ($numComments)";
+                            echo $this->Html->link($title, array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'view', $post['Post']['slug'], '#' => 'comments'), array('class' => 'comment-link'));
+                            ?>
+                        </small>
                     </div>
                 </div>
             </div>

@@ -12,7 +12,7 @@ class UserFixture extends CakeTestFixture {
  */
 	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'key' => 'primary'),
-		'mb_groups_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'key' => 'index'),
+		'group_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'key' => 'index'),
 		'username' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 80, 'collate' => 'utf8_bin', 'charset' => 'utf8'),
 		'password' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 80, 'collate' => 'utf8_bin', 'charset' => 'utf8'),
 		'first_name' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 80, 'collate' => 'utf8_bin', 'charset' => 'utf8'),
@@ -24,7 +24,7 @@ class UserFixture extends CakeTestFixture {
 		'is_banned' => array('type' => 'boolean', 'null' => true, 'default' => '0'),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1),
-			'rln_groups_users' => array('column' => 'mb_groups_id', 'unique' => 0)
+			'rln_groups_users' => array('column' => 'group_id', 'unique' => 0)
 		),
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_bin', 'engine' => 'InnoDB')
 	);
@@ -37,14 +37,14 @@ class UserFixture extends CakeTestFixture {
 	public $records = array(
 		array(
 			'id' => 1,
-			'mb_groups_id' => 1,
+			'group_id' => 1,
 			'username' => 'Lorem ipsum dolor sit amet',
 			'password' => 'Lorem ipsum dolor sit amet',
 			'first_name' => 'Lorem ipsum dolor sit amet',
 			'last_name' => 'Lorem ipsum dolor sit amet',
 			'email' => 'Lorem ipsum dolor sit amet',
-			'created' => '2013-05-21 21:29:18',
-			'modified' => 1369164558,
+			'created' => '2013-09-19 12:20:03',
+			'modified' => 1379586003,
 			'is_active' => 1,
 			'is_banned' => 1
 		),

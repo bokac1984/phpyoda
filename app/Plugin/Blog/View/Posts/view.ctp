@@ -5,14 +5,12 @@ echo $this->Html->script('/js/lib/shighliter/shCore', array('inline' => false));
 echo $this->Html->script('/js/lib/shighliter/shBrushPhp', array('inline' => false));
 echo $this->Html->script('blog', array('block' => 'scriptBottom'));
 echo $this->Html->scriptBlock('SyntaxHighlighter.all();');
-
 $this->log($post, 'view');
 if ($admin):
 ?>
     <div class="row">
         <div class="col-lg-12">
-            <?php echo $this->Link->cLink("Edit", array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'edit', $post['Post']['slug']), 'edit'); ?></span>-->
-            <?php echo $this->Link->cLink("Edit", array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'edit', $post['Post']['slug']), 'edit'); ?>
+            <?php echo $this->Link->cLink("Edit", array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'edit', $post['Post']['slug']), 'edit'); ?></span>
         </div>
     </div>
 <?php endif; ?>
@@ -29,15 +27,17 @@ if ($admin):
         <?php if (count($post['Comment'])) : ?>
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="pull-left">Comments</h2>
-                    <span><a class="pull-right btn btn-default" href="#commentthis">Comment</a></span> 
+                    <div class="row comment-heading">
+                        <div class="col-lg-6"><a name="comments"></a><h2 class="pull-left">Comments</h2></div>
+                        <div class="col-lg-6"><span><a style="margin-top: 2px;" class="pull-right btn btn-default" href="#commentthis">Comment</a></span></div>
+                    </div>
                 </div>
             </div>
         <?php endif; ?>
         <?php foreach ($post['Comment'] as $comment): ?>
             <div class="row comment-row">
                 <div class="col-lg-1">
-                    <div class="comment-image"><?php echo $this->Gravatar->image($comment['email']); ?></div>
+                    <div class="comment-image"><?php echo $this->Gravatar->image($comment['email'], array('gravatar' => $comment['gravatar'])); ?></div>
                 </div>
                 <div class="col-lg-11">
                     <div class="row">

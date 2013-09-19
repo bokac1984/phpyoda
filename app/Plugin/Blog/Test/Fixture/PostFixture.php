@@ -32,7 +32,7 @@ class PostFixture extends CakeTestFixture {
 		array(
 			'id' => 1,
 			'user_id' => 1,
-			'title' => 'Lorem ipsum dolor sit amet',
+			'title' => '@#(FLSDKJ@#JjlJ s.d,fmsdfm23f',
 			'body' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
 			'created' => '2013-08-14 00:43:07',
 			'modified' => '2013-08-14 00:43:07'
