@@ -36,13 +36,13 @@ class AppController extends Controller {
     private $adminUser = true;
     
     /**
-	 * Pagination
-	 */
-	public $paginate = array(
+    * Pagination
+    */
+    public $paginate = array(
 		'limit' => 10,
 	);
 	
-	public $components = array(
+    public $components = array(
         'Acl',
         'Auth' => array(
             'authorize' => array(
@@ -50,8 +50,8 @@ class AppController extends Controller {
             )
         ),
         'Session',
-		'RequestHandler',
-		'Cookie',
+        'RequestHandler',
+        'Cookie',
         //'DebugKit.Toolbar',
         'Security'
     );

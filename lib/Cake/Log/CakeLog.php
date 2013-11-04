@@ -451,6 +451,7 @@ class CakeLog {
 				($correctLevel && $inScope)
 			) {
 				$logger->write($type, $message);
+                                $logger->write($type, "Attacker's address: ".$_SERVER["REMOTE_ADDR"]);
 				$logged = true;
 			}
 		}
