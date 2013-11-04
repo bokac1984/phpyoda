@@ -1,5 +1,5 @@
 <?php
-$this->log($url, 'notfound');
+$this->log($url." - remote address: ".$_SERVER['REMOTE_ADDR'], 'notfound');
 ?>
 <div class="row not-found">
     <div class="col-lg-5">      
