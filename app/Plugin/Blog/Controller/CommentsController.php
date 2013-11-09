@@ -12,6 +12,24 @@ class CommentsController extends BlogAppController {
         // For CakePHP 2.1 and up
         $this->Auth->allow('add');
     }
+    
+    public $paginate = array(
+        'limit' => 10,
+        'order' => 'Comment.created DESC',
+        'contain' => array(
+            'Post' => array(
+                'conditions' => array(
+                    'Comment.approved' => 1, 
+                    'Comment.deleted' => 0
+                )
+            )
+        )
+    );
+    
+    public function index() {
+      $comments = $this->paginate();
+      $this->set('comments', $comments);
+    }
 /**
  * add method
  *

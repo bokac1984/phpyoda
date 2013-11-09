@@ -29,7 +29,7 @@
             echo $this->Link->cLink(__(''), '#', $icon, array('title' => $published, 'class' => 'publish', 'id' => $post['Post']['id'], 'data-published' => $post['Post']['published'])); ?></td>
 		<td class="actions">
             
-            <?php echo $this->Link->cLink(__(''), array('action' => 'view', $post['Post']['id']), 'eye-open'); ?>
+            <?php echo $this->Link->cLink(__(''), array('action' => 'view', $post['Post']['slug']), 'eye-open'); ?>
 			<?php echo $this->Link->dLink("", array('action' => 'delete', $post['Post']['id']), 'trash',$post['Post']['id']); ?>
 		</td>
 	</tr>

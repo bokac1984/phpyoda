@@ -12,4 +12,11 @@ $year = date('Y');
 				);
     ?>
   </p>
+  <p class="site-friends">Site friends: 
+      <?php echo $this->Html->link("Zoki",
+					'http://www.misterzoki.com/',
+					array('target' => '_blank', 'escape' => false)
+				);
+    ?>
+  </p>
 </div>

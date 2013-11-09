@@ -10,7 +10,7 @@ class PostsController extends BlogAppController {
     
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow(array('index', 'view'));
+        $this->Auth->allow(array('index', 'view', 'latest'));
         $this->Security->unlockedActions = array('publish');
     }
     
@@ -54,6 +54,13 @@ class PostsController extends BlogAppController {
         } catch (NotFoundException $e) {
             $this->Session->setFlash(__('Don\'t do that, ok?'), 'flashError');
             $this->redirect(array('action' => 'index'));
+        }
+    }
+    
+    public function latest() {
+        $posts = $this->paginate('Post', array('published' => true));
+        if ($this->request->is('requested')) {
+            return $posts;
         }
     }
 

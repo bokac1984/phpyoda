@@ -49,6 +49,10 @@ body {
     text-shadow: 0 0 2px rgba(125, 255, 255, 1);
 }
 
+.footer p.site-friends {
+  font-size: .6em;
+}
+
 
 /* Main marketing message and sign up button */
 .jumbotron {
@@ -328,6 +332,19 @@ a:hover, a:focus {
 
 .comment-heading {
     margin-bottom: 1.5em;
+}
+
+/* Latest posts */
+
+.latest-posts {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.latest-posts li {
+  margin-bottom: .6em;
+  font-size: 0.6em;
 }
 
 .not-found {

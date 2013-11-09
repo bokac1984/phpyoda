@@ -23,6 +23,7 @@ class UsersController extends AppController {
     
     
     public function login() {
+            //echo 'sthi here'; exit();
         $this->set( 'title_for_layout', 'Login for admin');
         $this->layout = 'signin';
         
@@ -51,6 +52,7 @@ class UsersController extends AppController {
                 } elseif ($this->Cookie->read('User') !== null) {
                     $this->Cookie->delete('User');
                 }
+                debug($this->Auth->redirect());
                 $this->redirect($this->Auth->redirect());
             } else {
                 $this->BruteForce->errorLogin();

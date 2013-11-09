@@ -33,6 +33,8 @@ $url = $this->request->here;
             <li><?php echo $this->Link->cLink("Blog", array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'index'), 'star'); ?></li>
             <li><?php echo $this->Link->cLink("Manage", array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'manage'), 'wrench'); ?></li>
             <li class="divider"></li>
+<li><?php echo $this->Link->cLink("Manage Comments", array('plugin' => 'blog', 'controller' => 'comments', 'action' => 'index'), 'wrench'); ?></li>
+            <li class="divider"></li>
             <li><?php echo $this->Link->cLink("New Post", array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'add'), 'new-window'); ?></li>
         </ul>
     </li>
