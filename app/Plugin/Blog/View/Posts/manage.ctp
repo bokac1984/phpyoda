@@ -1,6 +1,12 @@
 <?php echo $this->Html->script('/js/blog', array('block'=>'scriptBottom')); ?>
 <div class="posts manage-posts">
-	<h2><?php echo __('List of all posts'); ?></h2>
+	<p>
+    <?php
+    if ($admin)
+        echo $this->Html->link(__('New Post'), array('action' => 'add'), array('class' => 'btn btn-primary'));
+    ?>      
+    </p>
+
 	<table class="table" cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('title'); ?></th>

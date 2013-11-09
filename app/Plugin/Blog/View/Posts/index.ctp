@@ -15,7 +15,7 @@
                     </div>
                     <div class="sub-data">
                         <small><?php echo $this->Time->format('F jS, Y', $post['Post']['created']); ?></small>,
-                        <small> posted by Admin | 
+                        <small> posted by <?php echo $post['User']['nickname']; ?> | 
                             <?php 
                             $numComments = count($post['Comment']) ? count($post['Comment']) : 0;
                             $title = "Comments ($numComments)";

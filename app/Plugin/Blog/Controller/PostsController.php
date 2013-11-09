@@ -24,6 +24,11 @@ class PostsController extends BlogAppController {
                     'Comment.deleted' => 0
                 ),
                 'order' => 'Comment.created DESC'
+            ),
+            'User' => array(
+                'fields' => array(
+                    'nickname'
+                )
             )
         )
     );
@@ -34,7 +39,7 @@ class PostsController extends BlogAppController {
  */
 	public function index() {
         $this->set( 'title_for_layout', Configure::read('Website.title').' - Blog');
-		$this->Post->recursive = 1;
+		$this->Post->recursive = 2;
         // try paginate
         try {
             $posts = $this->paginate('Post', array('published' => true));
