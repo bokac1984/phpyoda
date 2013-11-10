@@ -76,4 +76,29 @@ $(document).ready(function(){
             }
         });
     });
+    
+    $(document).on('click', '#save-cat', function(e){
+        e.preventDefault();
+        var that = $(this);
+        var prevHtml = that.html();
+        var categoryForm = $("#new-cat-form");
+        that.attr('disabled', 'disabled').html('Saving...');
+        var data = categoryForm.serialize();
+        $.ajax({
+            type: 'POST',
+            url: '/blog/Categories/add',
+            data: data,
+            dataType: "json",
+            success: function(data) {
+              that.removeAttr("disabled");
+              that.empty().html(prevHtml);
+              if (data.success) {
+                   $("#close-save-modal").click();
+              } else {
+                categoryForm.find()l
+                  alert(data.message);
+              }
+            }
+        });
+    });
 });

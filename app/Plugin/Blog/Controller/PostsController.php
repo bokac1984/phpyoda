@@ -114,7 +114,8 @@ class PostsController extends BlogAppController {
 			}
 		}
 		$users = $this->Post->User->find('list');
-		$this->set(compact('users'));
+        $categories = $this->Post->Category->find('list');
+		$this->set(compact(array('users', 'categories')));
 	}
 
 /**
