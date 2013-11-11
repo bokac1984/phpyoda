@@ -115,6 +115,7 @@ class PostsController extends BlogAppController {
 		}
 		$users = $this->Post->User->find('list');
         $categories = $this->Post->Category->find('list');
+        
 		$this->set(compact(array('users', 'categories')));
 	}
 
@@ -147,8 +148,8 @@ class PostsController extends BlogAppController {
         $tag = $this->Post->extractTags($post['Tag']);
         unset($this->request->data['Tag']);
         $this->request->data['Tag']['tag'] = $tag;
-        $ref = $this->referer();
-        $this->set('ref', $ref);
+        
+        $this->set('ref', $this->referer());
 		$this->set(compact('users'));
 	}
     

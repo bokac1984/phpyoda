@@ -28,7 +28,7 @@ class TaggableBehavior extends ModelBehavior {
 		'associationForeignKey' => 'tag_id'
 	);
     
-    public function setup(Model $model, $config = array()) {
+    public function setup(\Model $model, $config = array()) {
         parent::setup($model, $config);
         
         if (!isset($this->settings[$model->alias])) {
@@ -53,10 +53,11 @@ class TaggableBehavior extends ModelBehavior {
         );
     }
     
-    public function beforeSave(Model $model) {
+    public function beforeSave(\Model $model) {
         extract($this->settings[$model->alias]);
         $model->data[$tagAlias][$tagAlias] = $this->prepareTags($model, $tagAlias, $associationForeignKey, $model->data[$tagAlias][$field]);
         unset($model->data[$tagAlias][$field]);
+        return parent::beforeSave($model);
     }
     
     /**
@@ -64,14 +65,14 @@ class TaggableBehavior extends ModelBehavior {
      * 
      * @param Model $model
      */
-    public function beforeValidate(Model $model) {
+    public function beforeValidate(\Model $model) {
         foreach($model->hasAndBelongsToMany as $k=>$v) { 
             if(isset($model->data[$k])) 
             { 
                 $data[$k] = $model->data[$k];
                 $model->{$k}->set($data);
                 
-                $model->{$k}->validates($data);
+                return $model->{$k}->validates($data);
             } 
         }
     }

@@ -1,11 +1,11 @@
 <?php
-App::uses('BlogAppModel', 'Blog.Model');
+App::uses('AppModel', 'Model');
 /**
  * Category Model
  *
  * @property Post $Post
  */
-class Category extends BlogAppModel {
+class Category extends AppModel {
 
 /**
  * Display field
@@ -23,16 +23,14 @@ class Category extends BlogAppModel {
 		'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-                'message' => 'Category name must not be blank.'
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-            'unique' => array(
-                'rule' => 'isUnique',
-                'required' => 'create',
-                'message' => 'The category name must be unique.',
-                'on' => 'create'
-                )
-            )
-      );
+		),
+	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

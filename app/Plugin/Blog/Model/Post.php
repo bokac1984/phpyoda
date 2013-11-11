@@ -19,6 +19,12 @@ class Post extends BlogAppModel {
 				'rule' => array('numeric'),
 			),
 		),
+		'category_id' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Where is the category?',
+			),
+		),
 		'title' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -48,13 +54,13 @@ class Post extends BlogAppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'Category' => array(
+        'Category' => array(
 			'className' => 'Category',
 			'foreignKey' => 'category_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		),
+		)
 	);
 
 /**

@@ -369,6 +369,28 @@ a:hover, a:focus {
     -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=85);
 }
 
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: #fff;
+  border: 1px solid #cccccc;
+  box-shadow: none;
+  color: #A0A0A0;
+  height: 35px;
+  line-height: 30px;
+  padding: 0 25px !important;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  /* fix for firefox */
+  text-indent: 1px;
+  text-overflow: '';
+}
+
+.modal-width {
+  width: 350px;
+}
 @media (max-width: 768px) {
     .jumbotron h1 {
         font-size: 1.7em;

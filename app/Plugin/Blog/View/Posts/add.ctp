@@ -5,7 +5,7 @@ echo $this->Html->css('jquery.tagit', null, array('inline' => false));
 echo $this->Html->script('/js/lib/ckeditor/ckeditor', array('block' => 'scriptBottom'));
 echo $this->Html->script('/js/lib/jquery-ui-1.9.2.custom.min', array('block' => 'scriptBottom'));
 echo $this->Html->script('/js/lib/tag-it.min', array('block' => 'scriptBottom'));
-//echo $this->Html->scriptBlock("$('#PostCategoryId').dropdown();");
+
 echo $this->Html->script('phpyoda', array('block' => 'scriptBottom'));
 echo $this->Html->script('blog', array('block' => 'scriptBottom'));
 ?>
@@ -20,7 +20,7 @@ echo $this->Html->script('blog', array('block' => 'scriptBottom'));
           )
       ),
       'div' => 'form-group'
-          )
+    )
   );
   ?>
   <fieldset>
@@ -36,6 +36,7 @@ echo $this->Html->script('blog', array('block' => 'scriptBottom'));
     );
     echo $this->Form->input('category_id', array(
         'label' => false,
+        'empty' => 'Choose Category',
         'after' => '<button type="button" style="margin-left: 10px;" class="btn btn-primary offset1" data-toggle="modal" data-target="#new-cat">New Category</button>'
     ));
     echo $this->Form->input('body', array('class' => 'ckeditor', 'id' => 'ckeditor', 'label' => false));
@@ -62,7 +63,7 @@ echo $this->Html->script('blog', array('block' => 'scriptBottom'));
 </div>
 <!-- Modal -->
 <div class="modal fade" id="new-cat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-width">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

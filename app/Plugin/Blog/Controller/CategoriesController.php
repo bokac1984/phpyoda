@@ -24,8 +24,10 @@ class CategoriesController extends BlogAppController {
     
     if ($this->request->is('ajax')) {
       if ($this->Category->save($this->request->data)) {
+        $return['success'] = 1;
         $return['message'] = array(
-            'id' => $this->Category->getLastInstertedId(),
+            'id' => $this->Category->getLastInsertID(),
+            'name' => $this->request->data['Category']['name']
         );
       } else {
         $return['message'] = $this->Category->validationErrors;
