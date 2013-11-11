@@ -46,18 +46,18 @@ $(document).ready(function(){
         });
     });
     
-    $(document).on('click', '#publish, #save', function(e){
-        e.preventDefault();
-        alert($(this));
-    });
+//    $(document).on('click', '#publish, #save', function(e){
+//        e.preventDefault();
+//        alert($(this));
+//    });
     
     $(document).on('click', '.publish, .unpublish', function(e){
         e.preventDefault();
         var that = $(this);
-        var classNam = that.attr('class') == "publish" ? "unpublish" : "publish";
+        var classNam = that.attr('data-published') == 0 ? "publish" : "unpublish";
         var data = {};
-        var icon = classNam == "publish" ? "ok" : "remove";
-
+        var icon = that.attr('data-published') == 0 ? "ok" : "remove";
+        console.log(icon+" "+classNam);
         that.empty().html('<i class="blogicon icon-loading"></i>');
         data.id = that.attr('id');
         data.published = that.attr('data-published');
@@ -95,8 +95,8 @@ $(document).ready(function(){
               if (data.success) {
                    $("#close-save-modal").click();
               } else {
-                categoryForm.find()l
-                  alert(data.message);
+                categoryForm.find();
+                alert(data.message);
               }
             }
         });
