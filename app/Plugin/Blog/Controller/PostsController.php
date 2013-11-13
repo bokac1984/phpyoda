@@ -29,7 +29,8 @@ class PostsController extends BlogAppController {
                 'fields' => array(
                     'nickname'
                 )
-            )
+            ),
+            'Category'
         )
     );
 /**

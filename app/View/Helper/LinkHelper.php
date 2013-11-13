@@ -7,7 +7,7 @@ App::uses('Sanitize', 'Utility');
  * @author bokac
  */
 class LinkHelper extends AppHelper {
-    public $helpers = array('Html', 'Form');
+    public $helpers = array('Html', 'Form', 'Time');
     
     /**
      * Custom link
@@ -61,6 +61,16 @@ class LinkHelper extends AppHelper {
             $r = $field === "" ? "No" : "Yes";
             return $r;
         }
+    }
+    
+    public function displayDate($date) {
+      $date = $this->Time->format('F-d-Y', $date);
+      $parts = explode('-', $date);
+      $day = '<div class="post-day">'.$parts[1]."</div>";
+      $month = '<div class="post-month">'.substr($parts[0], 0, 3)."</div>";
+      $year = '<div class="post-year">'.$parts[2]."</div>";
+      $returnDate = $day.$month.$year;
+      return $returnDate;
     }
 }
 

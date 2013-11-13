@@ -1,9 +1,13 @@
-<?php echo $this->Html->script('/js/blog', array('block'=>'scriptBottom')); ?>
+<?php echo $this->Html->script('/js/blog', array('block'=>'scriptBottom')); //debug($posts);?>
 <div class="row">   
-    <div class="col-lg-12"><h3>List of all posts</h3>
+    <div class="col-lg-12">
         <?php foreach ($posts as $post): ?>
             <div class="row margint20">
                 <div class="col-lg-12">
+                  <div class="post-date">
+                    <?php echo $this->Link->displayDate($post['Post']['created']); ?>
+                  </div>
+                  <div class="post-title1">
                     <div class="blogpost-title">
                         <span class="bp-title">
                             <?php echo $this->Html->link($post['Post']['title'], array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'view', $post['Post']['slug']), array('class' => 'post-title')); ?>
@@ -14,14 +18,14 @@
                         </span>
                     </div>
                     <div class="sub-data">
-                        <small><?php echo $this->Time->format('F jS, Y', $post['Post']['created']); ?></small>,
-                        <small> posted by <?php echo $post['User']['nickname']; ?> | 
+                        <small> posted by <?php echo $post['User']['nickname']; ?> in <?php echo $this->Html->link($post['Category']['name'], array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'search', $post['Category']['name'])); ?> | 
                             <?php 
                             $numComments = count($post['Comment']) ? count($post['Comment']) : 0;
                             $title = "Comments ($numComments)";
                             echo $this->Html->link($title, array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'view', $post['Post']['slug'], '#' => 'comments'), array('class' => 'comment-link'));
                             ?>
                         </small>
+                    </div>
                     </div>
                 </div>
             </div>
