@@ -50,7 +50,12 @@ class CommentsController extends BlogAppController {
             
             if ( empty($this->request->data['Comment']['field']) ) { // no value in this, else it's spam
                 if ($this->Comment->save($data)) {
-                    $this->sendEmail(array('message' => 'There is a new comment to be approved on your post.'));
+                    $this->sendEmail(array());
+                    $this->sendEmail(array(
+                        'message' => 'There is a new comment to be approved on your post.',
+                        'subject' => 'New Comment'
+                      )
+                    );
                     echo json_encode(array('success' => 1, 'message' => h("Your comment is waiting to be approved, for that I thank you {$data['commentator']}.")));
                 } else {
                     echo json_encode(array('success' => 0, 'message' => $this->Comment->validationErrors));

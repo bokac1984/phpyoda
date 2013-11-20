@@ -117,7 +117,7 @@ class AppController extends Controller {
         'message' => $data['message']
       )
     );
-    $Email->subject('Notification from '.Configure::read('Website.title'));
+    $Email->subject($data['subject']);
     $Email->send();
   }
 }
