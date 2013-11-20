@@ -10,12 +10,12 @@ class PostsController extends BlogAppController {
     
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow(array('index', 'view', 'latest'));
+        $this->Auth->allow(array('index', 'view', 'latest', 'popular'));
         $this->Security->unlockedActions = array('publish');
     }
     
     public $paginate = array(
-        'limit' => 10,
+        'limit' => 5,
         'order' => 'Post.created DESC',
         'contain' => array(
             'Comment' => array(
@@ -63,14 +63,29 @@ class PostsController extends BlogAppController {
         }
     }
     
+  /**
+   * Request action type, gets latest posts
+   * @return type
+   */
     public function latest() {
         $posts = $this->paginate('Post', array('published' => true));
         if ($this->request->is('requested')) {
             return $posts;
         }
     }
+    
+    public function popular() {
+        $posts = $this->Post->find('all', array(
+            'order' => array('Post.views' => 'desc'),
+            'fields' => array('Post.title', 'Post.slug', 'Post.views'),
+            'limit' => 5
+        ));
+        if ($this->request->is('requested')) {
+            return $posts;
+        }
+    }
 
-    /**
+/**
  * view method
  *
  * @throws NotFoundException
@@ -94,6 +109,9 @@ class PostsController extends BlogAppController {
 		if (!$post) {
 			throw new NotFoundException(__('Invalid post'));
 		}
+        
+        $this->Post->updateViews($post['Post']['id'], $post['Post']['views']);
+        
         $this->request->data['Comment']['post_id'] = $post['Post']['id'];
         $this->set('title_for_layout', $post['Post']['title']);
 		$this->set('post', $post);

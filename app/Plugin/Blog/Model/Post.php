@@ -112,4 +112,16 @@ class Post extends BlogAppModel {
             return array();
         }
     }
+    
+    /**
+     * Update views
+     * 
+     * @param int $id
+     * @param int $views
+     */
+    public function updateViews($id, $views) {
+      $this->id = $id;
+      $this->Behaviors->unload('Taggable');
+      $this->saveField('views', (int)++$views);
+    }
 }

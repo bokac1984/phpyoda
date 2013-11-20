@@ -70,8 +70,8 @@ class AppController extends Controller {
         $this->Auth->logoutRedirect = array(
                 'prefix' => null,
                 'plugin' => null,
-                'controller' => 'users',
-                'action' => 'login'
+                'controller' => 'pages',
+                'action' => 'index'
             );
         $this->Auth->authError = __('Did you really think, allowed to see that, you are, hmm?');
         $this->Auth->loginError = __('Invalid Username or Password entered, please try again.');

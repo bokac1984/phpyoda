@@ -70,5 +70,6 @@ if ($admin):
   </div>
   <div class="col-xs-6 col-sm-3 sidebar-offcanvas">
       <?php echo $this->element('latest'); ?>
+      <?php echo $this->element('popular'); ?>
   </div>
 </div>
