@@ -21,6 +21,7 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 App::uses('Controller', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 
 /**
  * Application Controller
@@ -101,5 +102,13 @@ class AppController extends Controller {
                 $this->redirect($this->Auth->redirect());
             }
         }
+    }
+    
+    public function sendEmail($data = array()) {
+      $Email = new CakeEmail();
+      $Email->from(array(Configure::read('Website.title')));
+      $Email->to(Configure::read('Website.admin.mail'));
+      $Email->subject('About');
+      $Email->send('My message');
     }
 }
