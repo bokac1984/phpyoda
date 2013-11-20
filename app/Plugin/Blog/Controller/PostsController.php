@@ -76,6 +76,7 @@ class PostsController extends BlogAppController {
     
     public function popular() {
         $posts = $this->Post->find('all', array(
+            'conditions' => array('Post.published' => true),
             'order' => array('Post.views' => 'desc'),
             'fields' => array('Post.title', 'Post.slug', 'Post.views'),
             'limit' => 5
