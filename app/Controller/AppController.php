@@ -106,10 +106,12 @@ class AppController extends Controller {
     
     public function sendEmail($data = array()) {
     $Email = new CakeEmail();
+    
     $Email->helpers(array('Html'));
     $Email->template('mail');
     $Email->emailFormat('html');
-    $Email->from(array('admin@phpyoda.com'));
+    
+    $Email->from(array('admin@phpyoda.com' => Configure::read('Website.title')));
     $Email->to(Configure::read('Website.admin.mail'));
     $Email->viewVars(array(
         'message' => $data['message']
