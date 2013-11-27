@@ -396,15 +396,24 @@ select {
 
 #filters {
   list-style-type: none;
-
 }
 
 #filters li {
   display: inline-block;  
   float: left;
   margin-right: 1em;
+  border-left: 1px solid gray;
+  padding-left: 1em;
 }
 
+#filters li:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.comment-time {
+  font-size: .8em;
+}
 
 /* post date */
 

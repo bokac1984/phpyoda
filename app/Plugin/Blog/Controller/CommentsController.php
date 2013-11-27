@@ -50,6 +50,7 @@ class CommentsController extends BlogAppController {
             $data = array(
                 'post_id' => $this->request->data['Comment']['post_id'],
                 'commentator' => $this->request->data['Comment']['commentator'],
+                'website' => $this->request->data['Comment']['website'],
                 'email' => $this->request->data['Comment']['email'],
                 'text' => $this->request->data['Comment']['text'],
                 'gravatar' => $this->request->data['Comment']['gravatar'],
@@ -76,5 +77,9 @@ class CommentsController extends BlogAppController {
             $this->redirect("/");
         }
 	}
+    
+    public function modify() {
+      debug($this->request->data);
+    }
 
 }

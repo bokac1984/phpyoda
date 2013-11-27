@@ -119,4 +119,8 @@ $(document).ready(function() {
       }
     });
   });
+
+   $(document).on('change', 'input[name="check-all"]',function() {
+            $('.comment-ids').prop("checked" , this.checked);
+    });
 });
