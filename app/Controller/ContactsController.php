@@ -82,7 +82,8 @@ class ContactsController extends AppController {
             if ($this->Contact->save($data)) {
                 $this->sendEmail(array(
                     'message' => 'There is a new contact message on your site.',
-                    'subject' => 'New Contact message'
+                    'subject' => 'New Contact message',
+                    'data' => $data
                     )
                 );
                 echo json_encode(array('success' => 1, 'message' => h("For contacting me, I thank you {$name}.")));
