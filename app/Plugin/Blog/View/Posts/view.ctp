@@ -36,7 +36,9 @@ if ($admin):
             </div>
           </div>
         <?php endif; ?>
-        <?php foreach ($post['Comment'] as $comment): ?>
+        <?php 
+        foreach ($post['Comment'] as $comment): 
+          if ($comment['approved']): ?>
           <div class="row comment-row">
             <div class="col-lg-1">
               <div class="comment-image"><?php echo $this->Gravatar->image($comment['email'], array('gravatar' => $comment['gravatar'])); ?></div>
@@ -58,7 +60,7 @@ if ($admin):
 
             </div>
           </div>
-        <?php endforeach; ?>
+        <?php endif; endforeach; ?>
       </div>
     </div>
     <div class="row">

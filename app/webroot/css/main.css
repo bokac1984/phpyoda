@@ -392,6 +392,18 @@ select {
   width: 350px;
 }
 
+/* blog start */ 
+
+#filters {
+  list-style-type: none;
+
+}
+
+#filters li {
+  display: inline-block;  
+  float: left;
+  margin-right: 1em;
+}
 
 
 /* post date */
@@ -429,6 +441,8 @@ select {
 .post-year {
   font-size: 1.2em;
 }
+
+/* blog end*/
 
 /* post date end */
 @media (max-width: 768px) {

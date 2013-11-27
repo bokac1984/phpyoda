@@ -18,16 +18,24 @@ class CommentsController extends BlogAppController {
         'order' => 'Comment.created DESC',
         'contain' => array(
             'Post' => array(
-                'conditions' => array(
-                    'Comment.approved' => 1, 
-                    'Comment.deleted' => 0
+                'fields' => array(
+                    'Post.slug'
                 )
             )
         )
     );
     
-    public function index() {
-      $comments = $this->paginate();
+    public function index($filter = '') {
+      $filterArray = array();
+      if ($filter != '') {
+        if ($filter == 'pending') {
+          $filterArray['approved'] = false;
+        } else {
+          $filterArray[$filter] = true;
+        }
+      }
+      
+      $comments = $this->paginate('Comment', $filterArray);
       $this->set('comments', $comments);
     }
 /**
