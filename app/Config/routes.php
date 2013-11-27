@@ -37,6 +37,17 @@
     Router::connect('/about', array('controller' => 'abouts', 'action' => 'index'));
     
     Router::connect('/admin', array('controller' => 'pages', 'action' => 'index', 'admin' => true));
+    
+//    Router::connect('/admin', array('controller' => 'pages', 'action' => 'index', 'admin' => true));
+//    Router::connect(
+//        '/blog/comments/index/:status/:id',
+//        array('plugin' => 'blog', 'controller' => 'comments', 'action' => 'index'),
+//        array(
+//            // order matters since this will simply map ":postid" to $postId in your action
+//            'pass' => array('status', 'id'),
+//            'id' => '[0-9]+'
+//        )
+//    );
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

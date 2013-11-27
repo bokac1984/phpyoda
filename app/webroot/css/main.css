@@ -394,7 +394,7 @@ select {
 
 /* blog start */ 
 
-#filters {
+#filters, .com-actions-ul{
   list-style-type: none;
 }
 
@@ -406,6 +406,13 @@ select {
   padding-left: 1em;
 }
 
+.com-actions-ul li {
+  display: inline-block;  
+  float: left;
+  margin-right: 1em;
+
+}
+
 #filters li:first-child {
   border-left: none;
   padding-left: 0;
@@ -415,6 +422,44 @@ select {
   font-size: .8em;
 }
 
+.comment-actions {
+  display: none;
+  padding: .2em;
+  background: #fff;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-border-bottom-right-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-bottom: 1px solid #dddddd;
+  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  -webkit-box-shadow:  0px 2px 2px 1px rgba(10, 0, 0, 0.2);
+
+  box-shadow:  0px 2px 2px 1px rgba(10, 0, 0, 0.2);
+}
+.comment-txt-container {
+  position: relative;
+}
+
+td.comment-txt-container:hover .comment-actions {
+  display: block;
+}
+
+.comments-icon {
+  background: url('../img/comment.png') repeat 0 0;
+  width: 32px;
+  height: 32px;
+  display: block;
+  float: left;
+  vertical-align: middle;
+  margin-right: .5em;
+  margin-top: -5px;
+}
 /* post date */
 
 .post-date {
