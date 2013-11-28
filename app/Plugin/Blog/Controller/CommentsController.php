@@ -10,7 +10,7 @@ class CommentsController extends BlogAppController {
 
   public function beforeFilter() {
     parent::beforeFilter();
-    $this->Security->unlockedActions = array('add');
+    $this->Security->unlockedActions = array('add', 'ajaxAction');
     // For CakePHP 2.1 and up
     $this->Auth->allow('add');
   }
@@ -102,9 +102,31 @@ class CommentsController extends BlogAppController {
   }
   
   public function ajaxAction() {
+    debug($this->request);
     $this->autoRender = false;
     if ($this->request->is('ajax')) {
-      debug($this->request->data);
+      $return = array(
+          'success' => 0,
+          'message' => ''
+      );
+      
+      $this->Comment->id = $this->request->data['id'];
+      $field[$this->request->data['status']] = true;
+      
+      if ($this->request->data['status'] === 'unapprove') {
+        $field = array();
+        $field['approved'] = false;
+      }
+      
+      $key = key($field);
+      if ($this->Comment->saveField($key, $field[$key])) {
+        $return['success'] = 1;
+      }
+      
+      echo json_encode($return);
+    } else {
+      $this->Session->setFlash("You can't go there directly.", "flashError");
+      $this->redirect("/");
     }
   }
 

@@ -52,7 +52,7 @@ $(document).ready(function() {
     var classNam = that.attr('data-published') == 0 ? "publish" : "unpublish";
     var data = {};
     var icon = that.attr('data-published') == 0 ? "ok" : "remove";
-    console.log(icon + " " + classNam);
+    
     that.empty().html('<i class="blogicon icon-loading"></i>');
     data.id = that.attr('id');
     data.published = that.attr('data-published');
@@ -126,6 +126,34 @@ $(document).ready(function() {
   
   $(document).on('click', '.table-responsive .com-actions-ul li a', function(e){
     e.preventDefault();
-    console.log($(this));
+    if ($(this).attr('data-status') === 'reply') {
+      replyComment();
+      return false;
+    }
+    var parent = $(this).parents('tr');
+    var data = {
+      id: $(this).attr('id'),
+      status: $(this).attr('data-status')
+    };
+    $.ajax({
+      type: 'POST',
+      url: '/blog/Comments/ajaxAction',
+      data: data,
+      dataType: "json",
+      success: function(data) {
+        if (data.success) {
+          parent.fadeOut(1000, function(){
+            parent.remove();
+          });
+        } else {
+          
+        }
+      }
+    });
+    
   });
 });
+
+function replyComment() {
+  $('#reply-modal').modal();
+}

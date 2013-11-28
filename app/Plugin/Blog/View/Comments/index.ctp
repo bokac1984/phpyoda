@@ -11,7 +11,7 @@ $sizes = array('empty' => 'Action', 'approve' => 'Approve', 'delete' => 'Delete'
   <div class="row">
     <div class="span12">
       <ul id="filters">
-        <li><?php echo $this->Html->link('All', array('plugin' => 'blog', 'controller' => 'comments', 'action' => 'index', 'status' => '', 'id' => $postId)); ?></li>
+        <li><?php echo $this->Html->link('All', array('plugin' => 'blog', 'controller' => 'comments', 'action' => 'index', 'id' => $postId)); ?></li>
         <li><?php echo $this->Html->link('Pending', array('plugin' => 'blog', 'controller' => 'comments', 'action' => 'index', 'status' => 'pending', 'id' => $postId)); ?></li>
         <li><?php echo $this->Html->link('Approved', array('plugin' => 'blog', 'controller' => 'comments', 'action' => 'index', 'status' => 'approved', 'id' => $postId)); ?></li>
         <li><?php echo $this->Html->link('Trash', array('plugin' => 'blog', 'controller' => 'comments', 'action' => 'index', 'status' => 'deleted', 'id' => $postId)); ?></li>
@@ -36,7 +36,28 @@ $sizes = array('empty' => 'Action', 'approve' => 'Approve', 'delete' => 'Delete'
       </thead>
       <tbody>
         <?php foreach ($comments as $comment): ?>
-          <tr>
+        <?php 
+        $contextClass = '';
+        $statusApproved['data'] =  'approved';
+        $statusApproved['text'] =  'Approve';
+        if ($comment['Comment']['approved']) {
+          $contextClass = 'success';
+          $statusApproved['data'] =  'unapprove';
+          $statusApproved['text'] =  'Unapprove';
+        }
+        
+        $statusDeleteed['data'] =  'deleted';
+        $statusDeleteed['text'] =  'Delete';
+        
+        if ($comment['Comment']['deleted']) {
+          $contextClass = 'danger';
+          $statusDeleteed['data'] =  'undelete';
+          $statusDeleteed['text'] =  'Undelete';
+        }
+        
+        
+        ?>
+        <tr class="<?php echo $contextClass; ?>">
             <td style="vertical-align: top;"><input type="checkbox" class="comment-ids" id="comment-<?php echo $comment['Comment']['id']; ?>" name="comment-<?php echo $comment['Comment']['id']; ?>"></td>
             <td>
               <div class="row">
@@ -69,9 +90,9 @@ $sizes = array('empty' => 'Action', 'approve' => 'Approve', 'delete' => 'Delete'
             <td class="comment-txt-container">
               <div class="comment-actions">
                 <ul class="com-actions-ul">
-                  <li><a href="#" id="<?php echo $comment['Comment']['id']; ?>" data-action="approve">Approve</a></li>
-                  <li><a href="#" id="<?php echo $comment['Comment']['id']; ?>" data-action="approve">Reply</a></li>
-                  <li><a href="#" id="<?php echo $comment['Comment']['id']; ?>" data-action="approve">Delete</a></li>
+                  <li><a href="#" id="<?php echo $comment['Comment']['id']; ?>" data-status="<?php echo $statusApproved['data']; ?>"><?php echo $statusApproved['text']; ?></a></li>
+                  <li><a href="#" id="<?php echo $comment['Comment']['id']; ?>" data-status="reply">Reply</a></li>
+                  <li><a href="#" id="<?php echo $comment['Comment']['id']; ?>" data-status="<?php echo $statusDeleteed['data']; ?>"><?php echo $statusDeleteed['text']; ?></a></li>
                 </ul>
               </div>
               <div class="span12">
@@ -100,5 +121,53 @@ $sizes = array('empty' => 'Action', 'approve' => 'Approve', 'delete' => 'Delete'
       ?>
     </div>
   </div>
-
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="reply-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Reply to Comment</h4>
+      </div>
+        <?php echo $this->Form->create('Comment', array(
+            'id' => 'comment-reply-form',
+            'action' => 'reply'
+            )
+        ); ?>
+        <?php
+        $this->Form->inputDefaults(array(
+            'error' => array(
+                'attributes' => array(
+                    'wrap' => 'div',
+                    'class' => 'label label-warning'
+                )
+            ),
+            'div' => 'form-group'
+                )
+        );
+        ?>
+      <div class="modal-body">
+
+        <fieldset>
+          <?php
+          echo $this->Form->input(
+              'name', 
+              array(
+              'type' => 'textarea',
+              'class' => 'form-control',
+              'label' => false
+          ));
+          ?>
+        </fieldset>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="close-save-modal">Close</button>
+        <button type="button" class="btn btn-primary" id="save-cat">Reply</button>     
+      </div>
+      <?php echo $this->Form->end(); ?>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+
+</div><!-- /.modal -->
