@@ -3,3 +3,4 @@ Disallow: /outbound/
 Disallow: /js/
 Disallow: /css/
 Disallow: /files/
+Disallow: /photo/

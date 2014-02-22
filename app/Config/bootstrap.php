@@ -114,13 +114,13 @@ CakePlugin::load('Uploader');
 CakePlugin::load('Acl', array('bootstrap' => true));
 CakePlugin::load('Blog', array('bootstrap' => false, 'routes' => false));
 CakePlugin::load('Interactive');
+CakePlugin::load('Photo', array('bootstrap' => false, 'routes' => true));
 
 /**
  * Website specific variables
  */
-Configure::write('Website.title','PHP:Yoda');
+Configure::write('Website.title','{ PHP : Yoda }');
 // admin mail
 Configure::write('Website.admin.mail','bokac1984@gmail.com');
 
 Configure::write('Website.cookie.name','cYoda');
-

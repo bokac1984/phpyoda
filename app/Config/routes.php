@@ -38,7 +38,7 @@
     
     Router::connect('/admin', array('controller' => 'pages', 'action' => 'index', 'admin' => true));
     
-//    Router::connect('/admin', array('controller' => 'pages', 'action' => 'index', 'admin' => true));
+    Router::connect('/photo/gallery', array('plugin' => 'photo', 'controller' => 'homes', 'action' => 'index'));
 //    Router::connect(
 //        '/blog/comments/index/:status/:id',
 //        array('plugin' => 'blog', 'controller' => 'comments', 'action' => 'index'),

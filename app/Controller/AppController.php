@@ -34,7 +34,7 @@ App::uses('CakeEmail', 'Network/Email');
  */
 class AppController extends Controller {
     
-    private $adminUser = true;
+    protected $adminUser = true;
     
     /**
     * Pagination
@@ -85,6 +85,8 @@ class AppController extends Controller {
         
         if (!$this->Auth->user()) {
             $this->adminUser = false;
+        } else {
+          $this->layout = 'admin2';
         }
         
         $this->set('admin', $this->adminUser);
