@@ -10,8 +10,8 @@ class PicturesController extends PhotoAppController {
 
   public function beforeFilter() {
     parent::beforeFilter();
+    $this->Auth->allow(array('index', 'updateViews'));
     $this->Security->unlockedActions = array('updateViews');
-    $this->Auth->allow(array('index'));
   }
 
   public function index() {
@@ -20,17 +20,19 @@ class PicturesController extends PhotoAppController {
     $pictures = $this->paginate('Picture');
     $this->set('pictures', $pictures);
   }
-  
+
   public function updateViews() {
-    $this->autoRender = false;	
-       
-    if ($this->request->is('ajax')){
-      debug($this->request->data);
-//    $this->Picture->id = $id;
-//    if (!$this->Picture->exists()) {
-//        throw new NotFoundException(__('Invalid Picture Id'));
-//    }
-//      $this->Picture->saveField('views', 'views + 1');
+    $this->autoRender = false;
+
+    if ($this->request->is('ajax')) {
+
+      $this->Picture->id = $this->request->data['id'];
+      if (!$this->Picture->exists()) {
+        throw new NotFoundException(__('Invalid Picture Id'));
+      }
+
+      $this->Picture->updateAll(array('Picture.views' => 'Picture.views + 1'), array('Picture.id' => $this->request->data['id']));
+      debug($this->Picture->getLastQuery());
     }
   }
 

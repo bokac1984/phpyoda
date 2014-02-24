@@ -40,9 +40,8 @@ $(document).ready(function() {
 function setViews(id) {
   $.ajax({
       type: 'POST',
-      url: '/photo/Pictures/updateViews',
+      url: '/photo/pictures/updateViews',
       data: {id: id},
-      dataType: "json",
       success: function(data) {
       }
   });

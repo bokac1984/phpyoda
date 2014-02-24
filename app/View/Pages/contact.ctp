@@ -99,4 +99,3 @@ echo $this->Html->script('phpyoda', array('block' => 'scriptBottom'));
         </div>
     </div>
 </div>
-<iframe id="webmasterframe" src="http://seo2.misterzoki.com/websites/flickr.com" frameborder="0" style="border:none; overflow:hidden; width: 100%; height: 100%;" allowtransparency="true"></iframe>
