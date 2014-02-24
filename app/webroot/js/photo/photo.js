@@ -15,18 +15,7 @@ $(document).ready(function() {
     window.location.href += "/view/"+id;
   });
   
-  
   $(document).on('click', '.select-objects', function(e){
-    e.preventDefault();
-    var $obj = $(this);
-    if ( !$obj.hasClass('selected-image') ) {
-      $obj.addClass('selected-image');
-    } else {
-      $obj.removeClass('selected-image');
-    }
-  });
-  
-    $(document).on('click', '.select-objects', function(e){
     e.preventDefault();
     var $obj = $(this);
     if ( !$obj.hasClass('selected-image') ) {

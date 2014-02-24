@@ -31,8 +31,7 @@ class PicturesController extends PhotoAppController {
         throw new NotFoundException(__('Invalid Picture Id'));
       }
 
-      $this->Picture->updateAll(array('Picture.views' => 'Picture.views + 1'), array('Picture.id' => $this->request->data['id']));
-      debug($this->Picture->getLastQuery());
+      $this->Picture->updateAll(array('Picture.views' => '`Picture`.`views` + 1'), array('Picture.id' => $this->request->data['id']));
     }
   }
 

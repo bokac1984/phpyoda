@@ -107,6 +107,14 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+// load plugin prior to using of logger
+CakePlugin::load('ErrorManager', array('bootstrap' => false, 'routes' => false));
+CakeLog::config('error', array(
+	'engine' => 'ErrorManager.DatabaseLog',
+    'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
+    'scopes' => array('error'),
+	'model' => 'ErrorLog',
+));
 
 CakePlugin::load('AclExtras');
 CakePlugin::load('Uploader');
@@ -124,3 +132,5 @@ Configure::write('Website.title','{ PHP : Yoda }');
 Configure::write('Website.admin.mail','bokac1984@gmail.com');
 
 Configure::write('Website.cookie.name','cYoda');
+
+CakePlugin::load('ErrorManager', array('bootstrap' => false, 'routes' => false));
