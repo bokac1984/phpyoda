@@ -3,13 +3,14 @@
 App::uses('PhotoAppController', 'Photo.Controller');
 
 /**
- * PicturesController
+ * Pictures Controller
  *
  */
 class PicturesController extends PhotoAppController {
 
   public function beforeFilter() {
     parent::beforeFilter();
+    $this->Security->unlockedActions = array('updateViews');
     $this->Auth->allow(array('index'));
   }
 
@@ -19,37 +20,18 @@ class PicturesController extends PhotoAppController {
     $pictures = $this->paginate('Picture');
     $this->set('pictures', $pictures);
   }
-//
-//  public function add() {
-//    if ($this->request->is('post')) {
-//      $this->Picture->create();
-//      $data = array(                  
-//          'Picture' => array(
-//              0 => array(
-//                  'location' => 'bbb'
-//                  ),
-//              1 => array(
-//                  'location' => 'aaa'
-//              )
-//          )
-//      );
-//      //$this->request->data = $data;
-//      debug($this->request->data);
-//      //exit();
-//      if ($this->Picture->saveMany($this->request->data['Picture'])) {
-//        $this->Session->setFlash(__('The images has been saved'), 'flashSuccess');
-//        //debug($this->insertedKeys);
-//        //$this->Session->write('imageKeys', $this->insertedKeys);
-//        //$this->redirect(array('action' => 'setup'));
-//      } else {
-//        $this->Session->setFlash(__('The pictures could not be saved. Please, try again.'), 'flashError');
-//      }
+  
+  public function updateViews() {
+    $this->autoRender = false;	
+       
+    if ($this->request->is('ajax')){
+      debug($this->request->data);
+//    $this->Picture->id = $id;
+//    if (!$this->Picture->exists()) {
+//        throw new NotFoundException(__('Invalid Picture Id'));
 //    }
-//    $this->set('albums', $this->Picture->Album->find('list'));
-//  }
-
-  public function setup() {
-    $this->set('keys', $this->Session->read('imageKeys'));
+//      $this->Picture->saveField('views', 'views + 1');
+    }
   }
 
 }

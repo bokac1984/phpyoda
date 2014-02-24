@@ -5,8 +5,10 @@ $this->end();
 
 $this->Html->addCrumb('Galerija', array('plugin' => 'photo', 'controller' => 'albums', 'action' => 'index'));
 $this->Html->addCrumb($album['Album']['name'], array('plugin' => 'photo', 'controller' => 'albums', 'action' => 'view', $album['Album']['id']));
-echo $this->Html->css('lightbox', null, array('inline' => false));
-echo $this->Html->script('/js/lib/lightbox/lightbox-2.6.min', array('block'=>'scriptBottom'));
+
+echo $this->Html->css('/js/lib/fancybox/source/jquery.fancybox', null, array('inline' => false));
+echo $this->Html->script('/js/lib/fancybox/source/jquery.fancybox.pack', array('block'=>'scriptBottom'));
+echo $this->Html->script('/js/photo/photo', array('block'=>'scriptBottom'));
 
 foreach($album['Picture'] as $img) {
   ?>
@@ -19,8 +21,10 @@ foreach($album['Picture'] as $img) {
         array(
             'target'=> '_blank',
             'escape'=> false,
-            'rel' => 'lightbox',
-            'data-lightbox' => $album['Album']['name']
+            'rel' => 'fancybox',
+            'class' => 'fancybox',
+            'title' => $img['title'],
+            'data-id' => $img['id']
         )
     );
   }

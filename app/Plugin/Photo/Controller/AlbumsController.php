@@ -15,8 +15,17 @@ class AlbumsController extends PhotoAppController {
 
   public function index() {
     $this->set('title_for_layout', Configure::read('Website.title') . ' - Photo');
-    $this->Album->recursive = 1;
-    $albums = $this->paginate('Album');
+    $this->Album->Behaviors->attach('Containable');
+    $albums = $this->Album->find('all', array(
+        'contain' => array(
+            'Picture' => array(
+                'conditions' => array(
+                    'cover' => true
+                )
+            )
+        )
+    ));
+    
     $this->set('albums', $albums);
   }
 

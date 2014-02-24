@@ -102,7 +102,6 @@ class CommentsController extends BlogAppController {
   }
   
   public function ajaxAction() {
-    debug($this->request);
     $this->autoRender = false;
     if ($this->request->is('ajax')) {
       $return = array(

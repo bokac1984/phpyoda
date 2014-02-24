@@ -16,16 +16,16 @@ $this->end();
       <?php
         echo $this->Form->create('Album', array('type' => 'file')); 
 
-        $this->Form->inputDefaults(array(
-                'error' => array(
-                        'attributes' => array(
-                            'wrap' => 'div',
-                            'class' => 'label label-warning'
-                        )
-                    ),
-                    'div' => 'form-group'
-            )
-        );
+//        $this->Form->inputDefaults(array(
+//                'error' => array(
+//                        'attributes' => array(
+//                            'wrap' => 'div',
+//                            'class' => 'label label-warning'
+//                        )
+//                    ),
+//                    'div' => 'form-group'
+//            )
+//        );
         echo $this->Form->input('id');
         echo $this->Form->input('Picture..location', array(
             'type' => 'file', 

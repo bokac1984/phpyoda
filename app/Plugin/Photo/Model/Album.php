@@ -1,5 +1,5 @@
 <?php
-
+App::uses('Security', 'Utility');
 App::uses('PhotoAppModel', 'Photo.Model');
 
 class Album extends PhotoAppModel {
@@ -12,13 +12,27 @@ class Album extends PhotoAppModel {
       )
   );
 
-  public function savePictures($id, array $data = array()) {
+  public function savePictures($id, array $data = array()) {    
     $this->loadBehaviors();
     $this->enableBehaviors();
     
     foreach($data as $k => $v) {
       $data[$k]['album_id'] = $id;
     }
+    
+    
+//    foreach($data as $k => $val) {
+//      if (is_array($val)) {
+//        foreach ($val as $n => $m) {
+//          if ($n == 'location') {
+//            debug($m);
+//            echo $m['name'] = $this->changeName($m['name']);
+//          }
+//        }
+//      }
+//    }
+//    
+//    debug($data);exit();
     
     return $this->Picture->saveMany($data);
   }
@@ -40,6 +54,16 @@ class Album extends PhotoAppModel {
     if (!$this->Picture->Behaviors->enabled('Uploader.FileValidation')) {
       $this->Picture->Behaviors->enable('Uploader.FileValidation');
     }
+  }
+  
+  private function changeName($name = '') {
+    if ($name != '') {
+      $filename  = basename($name);
+      $extension = pathinfo($filename, PATHINFO_EXTENSION);
+      $name = substr(Security::hash($filename, 'md5', 'SDA)d8adojasd908&'), 0, 8).'.'.$extension;
+    }
+    
+    return $name;
   }
 
 }

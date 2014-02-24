@@ -30,20 +30,8 @@ class Picture extends PhotoAppModel {
           'order' => ''
       )
   );
-
-//  public function afterSave($created) {
-//    parent::afterSave($created);
-//
-//    if ($created) {
-//      $this->insertedKeys[] = $this->getLastInsertID();
-//    }
-//  }
   
-  public function beforeSave($options = array()) {
-    parent::beforeSave($options);
-    
-    debug($this->data);
-    
-    return false;
-  }
+public function formatName($name, $file) {
+	return sprintf('%s-%s', $name, $file->size());
+}
 }

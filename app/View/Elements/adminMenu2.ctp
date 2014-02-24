@@ -54,6 +54,7 @@ $url = $this->request->here;
   <li class="treeview">
     <a href="#">
       <i class="fa fa-group"></i> <span>Blog</span>
+      <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
         <li><?php echo $this->Link->cLink("Blog", array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'index'), 'fa fa-star'); ?></li>
