@@ -25,18 +25,18 @@
         <td>
             <?php 
             if ($post['Post']['published']) {
-                $icon = 'ok';
+                $icon = 'fa fa-check-square-o';
                 $published = 'Published';
             } else {
-                $icon = 'remove';
+                $icon = 'fa fa-square-o';
                 $published = 'Not Published'; 
             }
             
             echo $this->Link->cLink(__(''), '#', $icon, array('title' => $published, 'class' => 'publish', 'id' => $post['Post']['id'], 'data-published' => $post['Post']['published'])); ?></td>
 		<td class="actions">
             
-            <?php echo $this->Link->cLink(__(''), array('action' => 'view', $post['Post']['slug']), 'eye-open'); ?>
-			<?php echo $this->Link->dLink("", array('action' => 'delete', $post['Post']['id']), 'trash',$post['Post']['id']); ?>
+            <?php echo $this->Link->cLink(__(''), array('action' => 'view', $post['Post']['slug']), 'fa fa-eye'); ?>
+			<?php echo $this->Link->dLink("", array('action' => 'delete', $post['Post']['id']), 'fa fa-trash-o',$post['Post']['id']); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

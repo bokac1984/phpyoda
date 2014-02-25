@@ -32,8 +32,8 @@ class LinkHelper extends AppHelper {
      * @param string $iconName
      * @return string
      */
-    public function dLink($title = '', $url = '/pages/index', $iconName = 'home', $delId = 0) {
-        return $this->Form->postLink('<i class="glyphicon glyphicon-'.$iconName.'"></i> '.$title, $url, array('escape' => false), __('Are you sure you want to delete # %s?', $delId));
+    public function dLink($title = '', $url = '/pages/index', $classes = 'fa ', $delId = 0) {
+        return $this->Form->postLink('<i class="'.$classes.'"></i> '.$title, $url, array('escape' => false), __('Are you sure you want to delete # %s?', $delId));
     }
     
     public function displayUrl($url, $name) {
