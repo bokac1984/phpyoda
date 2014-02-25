@@ -11,7 +11,7 @@
  * @license     http://opensource.org/licenses/mit-license.php - Licensed under The MIT License
  * @link        http://milesj.me/code/cakephp/uploader
  */
-
+ini_set("gd.jpeg_ignore_warning", 1);
 Configure::load('Uploader.config');
 
 class Uploader {
