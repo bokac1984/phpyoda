@@ -30,3 +30,7 @@ box-shadow: 0 0 10px 5px rgba(255,23,0,0.5);
 .vertical-space div {
   margin: 10px 0;
 }
+
+.cover-size {
+  max-height: 200px;
+}
