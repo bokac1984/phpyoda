@@ -15,7 +15,7 @@ class AlbumsController extends PhotoAppController {
 
   public function index() {
     $this->set('title_for_layout', Configure::read('Website.title') . ' - Photo');
-    $this->Album->Behaviors->attach('Containable');
+    
     $albums = $this->Album->find('all', array(
         'contain' => array(
             'Picture' => array(
@@ -42,7 +42,15 @@ class AlbumsController extends PhotoAppController {
       throw new NotFoundException(__('Invalid contact'));
     }
 
-    $album = $this->Album->read(null, $id);
+    $album = $this->Album->find('all', array(
+      'contain' => array(
+          'Picture' => array(
+              'conditions' => array(
+                  'display' => true
+              )
+          )
+      )
+    ));
     
     if (empty($album['Picture'])) {
         $this->Session->setFlash(__('The selected album is empty, try different one', 'flashError'));
@@ -88,7 +96,16 @@ class AlbumsController extends PhotoAppController {
     if (!$this->Album->exists()) {
       throw new NotFoundException(__('Album does not exist'));
     }
-    $album = $album = $this->Album->read(null, $id);
+    
+    $album = $this->Album->find('first', array(
+      'contain' => array(
+          'Picture' => array(
+              'order' => array(
+                  'views' => 'DESC'
+              )
+          )
+      )
+    ));
     
     if (empty($album['Picture'])) {
         $this->Session->setFlash(__('The selected album is empty, please add some photos to it.', 'flashError'));

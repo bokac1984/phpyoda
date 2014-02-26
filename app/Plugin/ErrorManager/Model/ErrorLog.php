@@ -12,8 +12,16 @@ class ErrorLog extends ErrorManagerAppModel {
     $this->data[$this->alias]['method'] = env('REQUEST_METHOD');
     $this->data[$this->alias]['path'] = env('PATH');
     $this->data[$this->alias]['query_string'] = env('QUERY_STRING');
-    
+
     return parent::beforeSave($options);
+  }
+
+  public function getLogCountByDate($date = '2013-05-21 13:03:32') {
+    return $this->find('count', array(
+        'conditions' => array(
+            'created >' => $date
+        )
+    ));
   }
 
 }

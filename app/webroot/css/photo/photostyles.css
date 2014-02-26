@@ -1,0 +1,32 @@
+/* 
+    Created on : Feb 26, 2014, 12:34:27 PM
+    Author     : Bokac
+*/
+.displayed-img {
+  background: #9ad717;
+}
+
+.hidden-img {
+  background: #d58512;
+}
+
+.space-img {
+  margin: 10px;
+}
+
+.horizontal-space {
+margin: 0 3%;
+}
+
+.selected-image {
+  border: 1px solid blue;
+}
+
+.cover-photo {
+-webkit-box-shadow: 0 0 10px 5px rgba(255,23,0,0.5);
+box-shadow: 0 0 10px 5px rgba(255,23,0,0.5);
+}
+
+.vertical-space div {
+  margin: 10px 0;
+}

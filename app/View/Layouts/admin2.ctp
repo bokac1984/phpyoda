@@ -285,18 +285,18 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                 <?php echo $this->fetch('maintitle', '<h1>Page <small>subtitle</small></h1>'); ?>
-                    <?php 
-                    echo $this->Html->getCrumbList(
-                            array(
-                              'class' => 'breadcrumb',
-                            ), 
-                            array(
-                              'text' => 'Home',
-                              'url' => array('plugin' => 'photo', 'controller' => 'galleries', 'action' => 'index'),
-                              'escape' => false
-                            )
-                          ); 
-                    ?>
+                <?php 
+                echo $this->Html->getCrumbList(
+                        array(
+                          'class' => 'breadcrumb',
+                        ), 
+                        array(
+                          'text' => 'Home',
+                          'url' => array('plugin' => 'photo', 'controller' => 'galleries', 'action' => 'index'),
+                          'escape' => false
+                        )
+                      ); 
+                ?>
                 </section>
 
                 <!-- Main content -->

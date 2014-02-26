@@ -124,4 +124,20 @@ class Post extends BlogAppModel {
       $this->Behaviors->unload('Taggable');
       $this->saveField('views', (int)++$views);
     }
+    
+    /**
+     * This method is used by dashboard action of users Controller
+     * @return type
+     */
+    public function getTotalViews() {
+      $this->recursive = -1;
+      $result = $this->find('all',
+                array(
+                  'fields' =>  array(
+                      'SUM(Post.views) AS total'
+                  )
+                )
+              );
+      return $result[0][0]['total'];
+    }
 }

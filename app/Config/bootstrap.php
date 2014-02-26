@@ -108,7 +108,7 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 // load plugin prior to using of logger
-CakePlugin::load('ErrorManager', array('bootstrap' => false, 'routes' => false));
+CakePlugin::load('ErrorManager', array('bootstrap' => false, 'routes' => true));
 CakeLog::config('error', array(
 	'engine' => 'ErrorManager.DatabaseLog',
     'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),

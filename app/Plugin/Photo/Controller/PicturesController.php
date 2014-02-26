@@ -11,7 +11,7 @@ class PicturesController extends PhotoAppController {
   public function beforeFilter() {
     parent::beforeFilter();
     $this->Auth->allow(array('index', 'updateViews'));
-    $this->Security->unlockedActions = array('updateViews');
+    $this->Security->unlockedActions = array('makeCover');
   }
 
   public function index() {
@@ -32,6 +32,40 @@ class PicturesController extends PhotoAppController {
       }
 
       $this->Picture->updateAll(array('Picture.views' => '`Picture`.`views` + 1'), array('Picture.id' => $this->request->data['id']));
+    }
+  }
+  
+  public function showHidePictures() {
+    $this->autoRender = false;
+
+    if ($this->request->is('ajax')) {
+      $data = array(
+          'Picture' => array()
+      );
+    }
+  }
+  
+  public function makeCover() {
+    $this->autoRender = false;
+
+    if ($this->request->is('ajax')) {
+      
+      $data = array(
+          'Picture' => array(
+              0 => array(
+                  'cover' => false,
+                  'id' => $this->request->data['removeId'][0]
+              ),
+              1 => array(
+                  'cover' => true,
+                  'id' => $this->request->data['id'][0]
+              )
+          )
+      );
+      
+      $res = array();
+      $res['success'] = $this->Picture->saveMany($data['Picture']);
+      echo json_encode($res);
     }
   }
 

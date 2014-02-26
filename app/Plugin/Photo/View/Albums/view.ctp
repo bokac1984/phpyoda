@@ -1,10 +1,10 @@
 <?php
+$this->Html->addCrumb('Galerija', array('plugin' => 'photo', 'controller' => 'albums', 'action' => 'index'));
+$this->Html->addCrumb($album['Album']['name'], array('plugin' => 'photo', 'controller' => 'albums', 'action' => 'view', $album['Album']['id']));
+
 $this->startIfEmpty('maintitle');
 echo $this->element('titles', array('maintitle' => 'Albums', 'subtitle' => 'View Album'));
 $this->end();
-
-$this->Html->addCrumb('Galerija', array('plugin' => 'photo', 'controller' => 'albums', 'action' => 'index'));
-$this->Html->addCrumb($album['Album']['name'], array('plugin' => 'photo', 'controller' => 'albums', 'action' => 'view', $album['Album']['id']));
 
 echo $this->Html->css('/js/lib/fancybox/source/jquery.fancybox', null, array('inline' => false));
 echo $this->Html->script('/js/lib/fancybox/source/jquery.fancybox.pack', array('block'=>'scriptBottom'));

@@ -3,6 +3,8 @@ App::uses('Security', 'Utility');
 App::uses('PhotoAppModel', 'Photo.Model');
 
 class Album extends PhotoAppModel {
+  
+  public $actsAs = array('Containable');
 
   public $hasMany = array(
       'Picture' => array(
