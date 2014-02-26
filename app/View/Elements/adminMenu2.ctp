@@ -80,8 +80,8 @@ $url = $this->request->here;
       <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
-      <li><?php echo $this->Link->cLink("Logs", array('plugin' => 'error_manager', 'controller' => 'errorlogs', 'action' => 'index'), 'fa fa-star'); ?></li>
-      <li><?php echo $this->Link->cLink("User Messages", array('plugin' => 'error_manager', 'controller' => 'usermessages', 'action' => 'index'), 'fa fa-star'); ?></li>
+      <li><?php echo $this->Link->cLink("Logs", array('plugin' => 'error_manager', 'controller' => 'error_logs', 'action' => 'index'), 'fa fa-star'); ?></li>
+      <li><?php echo $this->Link->cLink("User Messages", array('plugin' => 'error_manager', 'controller' => 'user_messages', 'action' => 'index'), 'fa fa-star'); ?></li>
     </ul>
   </li>
 </ul>
