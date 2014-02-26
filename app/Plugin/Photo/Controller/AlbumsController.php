@@ -98,7 +98,16 @@ class AlbumsController extends PhotoAppController {
       throw new NotFoundException(__('Album does not exist'));
     }
 
-    $album = $this->Album->read(null, $id);
+    $album = $this->Album->find('first', array(
+        'conditions' => array('Album.id' => $id),
+        'contain' => array(
+            'Picture' => array(
+                'order' => array(
+                    'Picture.views' => 'DESC'
+                )
+            )
+        )
+    ));
     if (empty($album['Picture'])) {
         $this->Session->setFlash(__('The selected album is empty, please add some photos to it.', 'flashError'));
         $this->redirect(array('action' => 'addPhotos', $id));
