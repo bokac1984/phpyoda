@@ -7,6 +7,12 @@ App::uses('ErrorManagerAppController', 'ErrorManager.Controller');
  */
 class ErrorLogsController extends ErrorManagerAppController {
 
+  public $paginate = array(
+      'limit' => 25,
+      'order' => array(
+          'ErrorLog.created' => 'desc'
+      )
+  );
 /**
  * index method
  *

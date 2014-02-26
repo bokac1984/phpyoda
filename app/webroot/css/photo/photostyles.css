@@ -3,11 +3,11 @@
     Author     : Bokac
 */
 .displayed-img {
-  background: #9ad717;
+  background: rgba(154, 215, 23, 0.58);
 }
 
 .hidden-img {
-  background: #d58512;
+  background: rgba(180, 108, 108, 0.37);
 }
 
 .space-img {

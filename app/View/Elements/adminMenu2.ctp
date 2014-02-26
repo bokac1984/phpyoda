@@ -72,9 +72,6 @@ $url = $this->request->here;
     </a>
     <ul class="treeview-menu">
       <li><?php echo $this->Link->cLink("Albums", array('plugin' => 'photo', 'controller' => 'albums', 'action' => 'index'), 'fa fa-star'); ?></li>
-      <li><?php echo $this->Link->cLink("Photos", array('plugin' => 'photo', 'controller' => 'photos', 'action' => 'add'), 'fa fa-wrench'); ?></li>
-      <li><?php echo $this->Link->cLink("Manage Comments", array('plugin' => 'photo', 'controller' => 'comments', 'action' => 'index'), 'fa fa-comment-o'); ?></li>
-      <li><?php echo $this->Link->cLink("New Post", array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'add'), 'fa fa-pencil'); ?></li>
     </ul>
   </li>
   <li class="treeview">

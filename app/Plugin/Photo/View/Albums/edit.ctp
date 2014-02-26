@@ -62,8 +62,8 @@ echo $this->Html->script('/js/photo/photo', array('block' => 'scriptBottom'));
               Action <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Mark as visible</a></li>
-              <li><a href="#">Mark as hidden</a></li>
+              <li><a href="#" class="mark-visible" data-set="show">Mark as visible</a></li>
+              <li><a href="#" class="mark-visible" data-set="hide">Mark as hidden</a></li>
               <li class="divider"></li>
               <li><a href="#">Delete</a></li>
             </ul>

@@ -20,9 +20,11 @@ foreach ($albums as $album):
 <div class="col-md-3 thumbnail horizontal-space album" data-id="<?php echo $album["Album"]['id']; ?>">
   
   <?php 
-  if ($album['Picture'][0]['cover']) {
+  if (!empty($album['Picture'])) {
     echo $this->Html->image($album['Picture'][0]['medium'], array('class' => 'img-rounded'));
-  } 
+  } else {
+    echo $this->Html->image('/img/avatar.png', array('class' => 'img-rounded'));
+  }
   ?>
 
   <h4><?php echo $album['Album']['name']; ?></h4>
