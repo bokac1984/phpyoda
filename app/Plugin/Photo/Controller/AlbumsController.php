@@ -43,13 +43,14 @@ class AlbumsController extends PhotoAppController {
     }
 
     $album = $this->Album->find('first', array(
-      'contain' => array(
-          'Picture' => array(
-              'conditions' => array(
-                  'display' => true
-              )
-          )
-      )
+        'conditions' => array('Album.id' => $id),
+        'contain' => array(
+            'Picture' => array(
+                'conditions' => array(
+                    'display' => true
+                )
+            )
+        )
     ));
     
     if (empty($album['Picture'])) {
