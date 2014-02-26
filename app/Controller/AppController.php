@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Application level Controller
  *
@@ -23,6 +24,9 @@
 App::uses('Controller', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
 
+App::uses('UserMessage', 'ErrorManager.Model');
+App::uses('ClassRegistry', 'Utility');
+
 /**
  * Application Controller
  *
@@ -33,93 +37,104 @@ App::uses('CakeEmail', 'Network/Email');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-    
-    protected $adminUser = true;
-    
-    /**
-    * Pagination
-    */
-    public $paginate = array(
-		'limit' => 10,
-	);
-	
-    public $components = array(
-        'Acl',
-        'Auth' => array(
-            'authorize' => array(
-                'Actions' => array('actionPath' => 'controllers')
-            )
-        ),
-        'Session',
-        'RequestHandler',
-        'Cookie',
-        //'DebugKit.Toolbar',
-        'Security'
+
+  protected $adminUser = true;
+
+  /**
+   * Pagination
+   */
+  public $paginate = array(
+      'limit' => 10,
+  );
+  public $components = array(
+      'Acl',
+      'Auth' => array(
+          'authorize' => array(
+              'Actions' => array('actionPath' => 'controllers')
+          )
+      ),
+      'Session',
+      'RequestHandler',
+      'Cookie',
+      //'DebugKit.Toolbar',
+      'Security'
+  );
+  public $helpers = array('Html', 'Link', 'Form', 'Session', 'Js', 'Display');
+
+  public function beforeFilter() {
+    //Configure AuthComponent
+    $this->Auth->autoRedirect = false;
+    $this->Auth->loginAction = array(
+        'prefix' => null,
+        'plugin' => null,
+        'controller' => 'users',
+        'action' => 'login'
     );
-    
-    public $helpers = array('Html', 'Link', 'Form', 'Session', 'Js', 'Display');
-	
-    public function beforeFilter() {
-        //Configure AuthComponent
-        $this->Auth->autoRedirect = false;
-        $this->Auth->loginAction = array(
-                'prefix' => null,
-                'plugin' => null,
-                'controller' => 'users',
-                'action' => 'login'
-            );
-        $this->Auth->logoutRedirect = array(
-                'prefix' => null,
-                'plugin' => null,
-                'controller' => 'pages',
-                'action' => 'index'
-            );
-        $this->Auth->authError = __('Did you really think, allowed to see that, you are, hmm?');
-        $this->Auth->loginError = __('Invalid Username or Password entered, please try again.');
-        $this->Auth->flash['element'] = "flashError"; 
-        
-        $this->Security->blackHoleCallback = 'blackhole';
-        
-        $this->Cookie->name = Configure::read('Website.cookie.name');
-        $this->checkCookie();
-        
-        if (!$this->Auth->user()) {
-            $this->adminUser = false;
-        } else {
-          $this->layout = 'admin2';
+    $this->Auth->logoutRedirect = array(
+        'prefix' => null,
+        'plugin' => null,
+        'controller' => 'pages',
+        'action' => 'index'
+    );
+    $this->Auth->authError = __('Did you really think, allowed to see that, you are, hmm?');
+    $this->Auth->loginError = __('Invalid Username or Password entered, please try again.');
+    $this->Auth->flash['element'] = "flashError";
+
+    $this->Security->blackHoleCallback = 'blackhole';
+
+    $this->Cookie->name = Configure::read('Website.cookie.name');
+    $this->checkCookie();
+
+    if (!$this->Auth->user()) {
+      $this->adminUser = false;
+      
+      if (!$_COOKIE['message']) {
+        $UserMessage = ClassRegistry::init('UserMessage');
+        $re = $UserMessage->find('first', array(
+            'conditions' => array(
+                'UserMessage.display' => true
+            )
+        ));
+        if (!empty($re)) {
+          $this->set('userMessage', $re['UserMessage']);
         }
-        
-        $this->set('admin', $this->adminUser);
+      }
+    } else {
+      $this->layout = 'admin2';
     }
-    
-    public function blackhole($type) {
-        $this->Session->setFlash(__('<br />If you are having trouble with this, email admin, else STOP THIS.<br/> Error type: %s', $type), 'flashError');
+
+    $this->set('admin', $this->adminUser);
+  }
+
+  public function blackhole($type) {
+    $this->Session->setFlash(__('<br />If you are having trouble with this, email admin, else STOP THIS.<br/> Error type: %s', $type), 'flashError');
+  }
+
+  protected function checkCookie() {
+    if ($this->Auth->user() == null) {
+      $user = $this->Cookie->read('User');
+
+      if (!empty($user) && $this->Auth->login($user)) {
+        $this->redirect($this->Auth->redirect());
+      }
     }
-    
-    protected function checkCookie() {
-        if ($this->Auth->user() == null) {
-            $user = $this->Cookie->read('User');
-            
-            if (!empty($user) && $this->Auth->login($user)) {
-                $this->redirect($this->Auth->redirect());
-            }
-        }
-    }
-    
-    public function sendEmail($data = array()) {
+  }
+
+  public function sendEmail($data = array()) {
     $Email = new CakeEmail();
-    
+
     $Email->helpers(array('Html'));
     $Email->template('mail');
     $Email->emailFormat('html');
-    
+
     $Email->from(array('admin@phpyoda.com' => Configure::read('Website.title')));
     $Email->to(Configure::read('Website.admin.mail'));
     $Email->viewVars(array(
         'message' => $data['message']
-      )
+            )
     );
     $Email->subject($data['subject']);
     $Email->send();
   }
+
 }

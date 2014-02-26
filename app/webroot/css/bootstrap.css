@@ -6803,3 +6803,15 @@ td.visible-print {
     display: none !important;
   }
 }
+
+.user-message {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 99999;
+  background: #ff8000;
+  text-align: center;
+  color: #fff;
+  padding: 10px 0;
+  cursor: pointer;
+}

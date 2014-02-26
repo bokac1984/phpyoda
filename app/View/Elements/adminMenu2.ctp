@@ -81,6 +81,7 @@ $url = $this->request->here;
     </a>
     <ul class="treeview-menu">
       <li><?php echo $this->Link->cLink("Logs", array('plugin' => 'error_manager', 'controller' => 'errorlogs', 'action' => 'index'), 'fa fa-star'); ?></li>
+      <li><?php echo $this->Link->cLink("User Messages", array('plugin' => 'error_manager', 'controller' => 'usermessages', 'action' => 'index'), 'fa fa-star'); ?></li>
     </ul>
   </li>
 </ul>

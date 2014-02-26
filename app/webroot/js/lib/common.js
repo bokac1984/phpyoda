@@ -17,7 +17,7 @@ function processErrors(errorArr, form) {
 function capitalize(a) {
     s = [];
     for (var i=0; i<a.length; i++) {
-        if (i == 0) {
+        if (i === 0) {
             s.push(a[i].charAt(i).toUpperCase());
         } else {
             s.push(a[i]);
@@ -26,3 +26,18 @@ function capitalize(a) {
     s = s.join('');
     return s;
 }
+
+function setCookie(cname,cvalue,exdays)
+{
+  var d = new Date();
+  d.setTime(d.getTime()+(exdays*24*60*60*1000));
+  var expires = "expires="+d.toGMTString();
+  document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
+(function(){
+  $('.user-message').click(function(){
+    setCookie('message', '1', 50);
+    $(this).slideUp();
+  });
+})();

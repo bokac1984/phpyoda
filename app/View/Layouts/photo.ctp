@@ -33,7 +33,9 @@
   </head>
 
   <body style="">
-
+    <?php if ($userMessage != NULL): ?>
+    <div class="user-message"><?php echo $userMessage['message']; ?></div>
+    <?php endif; ?>
     <!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
