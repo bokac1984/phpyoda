@@ -98,8 +98,12 @@ class AlbumsController extends PhotoAppController {
     }
     
     $album = $this->Album->find('first', array(
+
       'contain' => array(
           'Picture' => array(
+              'conditions' => array(
+                  'album_id' => $id
+              ),
               'order' => array(
                   'views' => 'DESC'
               )
