@@ -42,7 +42,7 @@ class AlbumsController extends PhotoAppController {
       throw new NotFoundException(__('Invalid contact'));
     }
 
-    $album = $this->Album->find('all', array(
+    $album = $this->Album->find('first', array(
       'contain' => array(
           'Picture' => array(
               'conditions' => array(
