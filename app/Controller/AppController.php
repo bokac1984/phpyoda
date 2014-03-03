@@ -100,7 +100,7 @@ class AppController extends Controller {
         }
       }
     } else {
-      $this->layout = 'admin2';
+      //$this->layout = 'admin2';
     }
 
     $this->set('admin', $this->adminUser);

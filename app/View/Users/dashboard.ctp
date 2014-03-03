@@ -23,7 +23,7 @@ $this->end();
       echo $this->Html->link('More info <i class="fa fa-arrow-circle-right"></i>',
               array(
                   'plugin' => 'error_manager',
-                  'controller' => 'errorlogs',
+                  'controller' => 'error_logs',
                   'action' => 'index'
               ),
               array(

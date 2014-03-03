@@ -50,16 +50,10 @@ class Post extends BlogAppModel {
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
 		),
         'Category' => array(
 			'className' => 'Category',
 			'foreignKey' => 'category_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
 		)
 	);
 
@@ -72,15 +66,7 @@ class Post extends BlogAppModel {
 		'Comment' => array(
 			'className' => 'Comment',
 			'foreignKey' => 'post_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
+			'dependent' => true,
 		)
 	);
     
@@ -98,7 +84,8 @@ class Post extends BlogAppModel {
 			'joinTable' => 'posts_tags',
 			'foreignKey' => 'post_id',
         ),
-        'Containable'
+        'Containable',
+        'Search.Searchable'
     );
 
     public function extractTags($data){

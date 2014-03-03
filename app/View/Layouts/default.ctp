@@ -19,7 +19,7 @@ echo $this->Html->script('/js/lib/jquery-2.0.0.min');
 ?>
     </head>
     <body>
-      <?php if ($userMessage != NULL): ?>
+      <?php if (isset($userMessage) && $userMessage != NULL): ?>
       <div class="user-message"><?php echo $userMessage['message']; ?></div>
       <?php endif; ?>
         <div class="container">

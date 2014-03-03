@@ -18,7 +18,7 @@
                         </span>
                     </div>
                     <div class="sub-data">
-                        <small> posted by <?php echo $post['User']['nickname']; ?> in <?php echo $this->Html->link($post['Category']['name'], array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'search', $post['Category']['name'])); ?> | 
+                        <small> posted by <?php echo $post['User']['nickname']; ?> in <?php echo $this->Html->link($post['Category']['name'], array('plugin' => 'blog', 'controller' => 'posts', 'action' => 'search', 'category', $post['Category']['name'])); ?> | 
                             <?php 
                             $numComments = count($post['Comment']) ? count($post['Comment']) : 0;
                             $title = "Comments ($numComments)";
