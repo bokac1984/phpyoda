@@ -14,7 +14,13 @@
       <tr>
         <td><?php echo h($errorLog['ErrorLog']['type']); ?>&nbsp;</td>
         <td><?php echo h($errorLog['ErrorLog']['ip']); ?>&nbsp;</td>
-        <td><?php echo h(substr($errorLog['ErrorLog']['url'], 0, 20)); ?>&nbsp;</td>
+        <td><?php 
+        $err = $errorLog['ErrorLog']['url'];
+        if (strlen($err) > 20) {
+          $err = h(substr($err, 0, 19)) . " <b style='color: red;'>...</b>"; 
+        }
+        echo $err;
+        ?>&nbsp;</td>
         <td><?php echo h($errorLog['ErrorLog']['port']); ?>&nbsp;</td>
         <td><?php echo h($errorLog['ErrorLog']['created']); ?>&nbsp;</td>
         <td class="actions">
