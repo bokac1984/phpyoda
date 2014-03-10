@@ -90,7 +90,7 @@ class AppController extends Controller {
     if (!$this->Auth->user()) {
       $this->adminUser = false;
       
-      if (!$_COOKIE['message']) {
+      if (!isset($_COOKIE['message'])) {
         $UserMessage = ClassRegistry::init('UserMessage');
         $re = $UserMessage->find('first', array(
             'conditions' => array(
