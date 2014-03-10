@@ -4,6 +4,7 @@ echo $this->element('titles', array('maintitle' => 'Error Log', 'subtitle' => 'D
 $this->end();
 $this->Html->addCrumb('View All Logs', array('plugin' => 'error_manager', 'controller' => 'error_logs', 'action' => 'index'));
 echo $this->Html->css('errormanager/errormanager', null, array('inline' => false));
+echo $this->Html->script('error/errors', array('block'=>'scriptBottom'));
 ?>
 <div class="errorLogs view">
 <table class="error-log-table">
@@ -25,7 +26,7 @@ echo $this->Html->css('errormanager/errormanager', null, array('inline' => false
   </tr>
   <tr class="first-row">
     <th>IP</th>
-    <td><?php echo h($errorLog['ErrorLog']['ip']); ?></td>
+    <td><span id="search-address"><?php echo h($errorLog['ErrorLog']['ip']); ?></span>&nbsp;<i id="ip-address" title="Locate" class="fa fa-globe red-globe"></i></td>
   </tr>
 </table>
 	<dl>
