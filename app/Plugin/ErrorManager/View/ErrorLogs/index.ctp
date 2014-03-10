@@ -14,12 +14,11 @@
       <tr>
         <td><?php echo h($errorLog['ErrorLog']['type']); ?>&nbsp;</td>
         <td><?php echo h($errorLog['ErrorLog']['ip']); ?>&nbsp;</td>
-        <td><?php echo h($errorLog['ErrorLog']['url']); ?>&nbsp;</td>
+        <td><?php echo h(substr($errorLog['ErrorLog']['url'], 0, 20)); ?>&nbsp;</td>
         <td><?php echo h($errorLog['ErrorLog']['port']); ?>&nbsp;</td>
         <td><?php echo h($errorLog['ErrorLog']['created']); ?>&nbsp;</td>
         <td class="actions">
           <?php echo $this->Html->link(__('View'), array('action' => 'view', $errorLog['ErrorLog']['id'])); ?>
-          <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $errorLog['ErrorLog']['id'])); ?>
           <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $errorLog['ErrorLog']['id']), null, __('Are you sure you want to delete # %s?', $errorLog['ErrorLog']['id'])); ?>
         </td>
       </tr>

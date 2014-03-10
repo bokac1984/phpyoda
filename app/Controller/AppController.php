@@ -39,6 +39,8 @@ App::uses('ClassRegistry', 'Utility');
 class AppController extends Controller {
 
   protected $adminUser = true;
+  
+  private $adminLayout = '';
 
   /**
    * Pagination
@@ -100,8 +102,10 @@ class AppController extends Controller {
         }
       }
     } else {
-      //$this->layout = 'admin2';
+      $this->getAdminLayout();
+      $this->layout = $this->adminLayout;
     }
+    
 
     $this->set('admin', $this->adminUser);
   }
@@ -135,6 +139,18 @@ class AppController extends Controller {
     );
     $Email->subject($data['subject']);
     $Email->send();
+  }
+  
+  private function getAdminLayout() {
+    App::uses('Setting', 'Model');
+    $Setting = ClassRegistry::init('Setting');
+    $a = $Setting->find('first', array(
+        'conditions' => array(
+            'active' => true
+        )
+    ));
+    
+    $this->adminLayout = $a['Setting']['value'];
   }
 
 }

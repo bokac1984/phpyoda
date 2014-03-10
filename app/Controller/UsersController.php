@@ -6,15 +6,19 @@ App::uses('AppController', 'Controller');
  * Users Controller
  *
  * @property User $User
+ * @property BruteForceComponent $BruteForce
+ * @property IPCheckComponent $IPCheck
  */
 class UsersController extends AppController {
 
-  public $uses = array('ErrorManager.ErrorLog', 'Blog.Post', 'Blog.Comment', 'Photo.Picture', 'User');
-  public $components = array('BruteForce');
+  public $uses = array('User', 'ErrorManager.ErrorLog', 'Blog.Post', 'Blog.Comment', 'Photo.Picture');
+  public $components = array('BruteForce', 'IPCheck');
 
   public function beforeFilter() {
     parent::beforeFilter();
-    $this->Auth->allow(array('contact', 'about'));
+    $this->Auth->allow(array('contact', 'about', 'logout'));
+    $this->Security->allowedActions = array('checkpoint');
+    //$this->IPCheck->initialize($this);
   }
 
   public function beforeRender() {
@@ -43,18 +47,21 @@ class UsersController extends AppController {
 
     if (!empty($this->request->data) && !$bf) {
       // try to login in user with data
-
       if ($this->Auth->login()) {
+        if (!$this->IPCheck->verifyLogInIP()) {
+          $this->IPCheck->startAnswering();
+          $this->redirect(array('action' => 'checkpoint'));
+        }
+
         if ($this->request->data['User']['rememberme']) {
           $this->Cookie->write('User', array_intersect_key(
-              $this->request->data['User'], array('username' => null, 'password' => null)
-            )
+                          $this->request->data['User'], array('username' => null, 'password' => null)
+                  )
           );
         } elseif ($this->Cookie->read('User') !== null) {
           $this->Cookie->delete('User');
         }
-        //$this->redirect($this->Auth->redirect());
-        $this->lastLogin = date("Y-m-d H:i:s");
+
         $this->User->updateAll(array('User.last_login' => 'NOW()'), array('User.id' => $this->Auth->user('id')));
         $this->redirect(array('action' => 'dashboard'));
       } else {
@@ -73,6 +80,32 @@ class UsersController extends AppController {
     $this->redirect($this->Auth->logout());
   }
 
+  public function checkpoint() {
+    $this->layout = 'signin';
+    $this->set('question', $this->Auth->user('secret_question'));
+
+    if (!$this->IPCheck->canAnswerAgain()) {
+      $this->Session->setFlash('Too many wrong answers here.', 'flashError');
+      $this->Auth->logout();
+      $this->redirect('/');
+    }
+
+    if ($this->request->is('post') && $this->Session->read('checkpoint')) {
+      if ($this->User->validSecretAnswer($this->request->data['User']['secret_answer'])) {
+        $data = array(
+            'UserIp' => array(
+                'user_id' => $this->Auth->user('id'),
+                'ip' => $this->IPCheck->getLogginInIP()
+            )
+        );
+        $this->User->UserIp->save($data);
+        $this->redirect(array('action' => 'dashboard'));
+      }
+      $this->User->validationErrors['secret_answer'] = array('Wrong answer provided.');
+      $this->IPCheck->wrongAnswer();
+    }
+  }
+
   /**
    * index method
    *
@@ -86,7 +119,7 @@ class UsersController extends AppController {
   public function dashboard() {
     $logs = $this->ErrorLog->getLogCountByDate($this->Auth->user('last_login'));
     $totalPosts = $this->Post->getTotalViews();
-    
+
     $this->set(compact('logs', 'totalPosts'));
   }
 
@@ -173,9 +206,4 @@ class UsersController extends AppController {
     $this->Session->setFlash(__('User was not deleted'));
     $this->redirect(array('action' => 'index'));
   }
-
-  public function about() {
-    //$this->Session->destroy();
-  }
-
 }

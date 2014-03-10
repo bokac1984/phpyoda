@@ -292,7 +292,7 @@
                         ), 
                         array(
                           'text' => 'Home',
-                          'url' => array('plugin' => 'photo', 'controller' => 'galleries', 'action' => 'index'),
+                          'url' => array('plugin' => null, 'controller' => 'users', 'action' => 'dashboard'),
                           'escape' => false
                         )
                       ); 

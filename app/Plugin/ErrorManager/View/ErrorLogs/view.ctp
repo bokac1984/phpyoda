@@ -1,29 +1,37 @@
+<?php 
+$this->startIfEmpty('maintitle');
+echo $this->element('titles', array('maintitle' => 'Error Log', 'subtitle' => 'Display info about error log'));
+$this->end();
+$this->Html->addCrumb('View All Logs', array('plugin' => 'error_manager', 'controller' => 'error_logs', 'action' => 'index'));
+echo $this->Html->css('errormanager/errormanager', null, array('inline' => false));
+?>
 <div class="errorLogs view">
-<h2><?php  echo __('Error Log'); ?></h2>
+<table class="error-log-table">
+  <tr class="first-row">
+    <th>Occured on</th>
+    <td><?php echo $this->Time->nice($errorLog['ErrorLog']['created'], 'Europe/Belgrade'); ?></td>
+  </tr>
+  <tr class="first-row">
+    <th>Type</th>
+    <td><?php echo h($errorLog['ErrorLog']['type']); ?></td>
+  </tr>
+  <tr class="first-row">
+    <th>Port</th>
+    <td><?php echo h($errorLog['ErrorLog']['port']); ?></td>
+  </tr>
+  <tr class="first-row">
+    <th>Method</th>
+    <td><?php echo h($errorLog['ErrorLog']['method']); ?></td>
+  </tr>
+  <tr class="first-row">
+    <th>IP</th>
+    <td><?php echo h($errorLog['ErrorLog']['ip']); ?></td>
+  </tr>
+</table>
 	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($errorLog['ErrorLog']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($errorLog['ErrorLog']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Type'); ?></dt>
-		<dd>
-			<?php echo h($errorLog['ErrorLog']['type']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Error'); ?></dt>
 		<dd>
 			<?php echo h($errorLog['ErrorLog']['error']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Ip'); ?></dt>
-		<dd>
-			<?php echo h($errorLog['ErrorLog']['ip']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('User Agent'); ?></dt>
@@ -34,16 +42,6 @@
 		<dt><?php echo __('Url'); ?></dt>
 		<dd>
 			<?php echo h($errorLog['ErrorLog']['url']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Port'); ?></dt>
-		<dd>
-			<?php echo h($errorLog['ErrorLog']['port']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Method'); ?></dt>
-		<dd>
-			<?php echo h($errorLog['ErrorLog']['method']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Path'); ?></dt>

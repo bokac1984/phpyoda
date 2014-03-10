@@ -26,7 +26,7 @@ class CommentsController extends BlogAppController {
           )
       )
   );
-
+  
   public function index() {
     
     $status = isset($this->passedArgs['status']) ? $this->passedArgs['status'] : null;
