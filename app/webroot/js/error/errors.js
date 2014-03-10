@@ -6,11 +6,6 @@ $(document).ready(function() {
     var newPos = posClicked;
     newPos.left += 20;
     
-    if ($('.ip-results').length) {
-      $('.ip-results').show();
-      return false;
-    }
-    
     $.ajax({
       type: 'POST',
       url: 'http://api.hostip.info/get_json.php',
@@ -31,7 +26,7 @@ $('body').append("<div class='ip-results' style='top: "+newPos.top+"px; left: "+
     if (!container.is(e.target) // if the target of the click isn't the container...
             && container.has(e.target).length === 0) // ... nor a descendant of the container
     {
-      container.hide();
+      container.remove();
     }
   });
 });

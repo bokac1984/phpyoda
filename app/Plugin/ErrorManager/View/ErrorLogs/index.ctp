@@ -1,3 +1,7 @@
+<?php
+echo $this->Html->css('errormanager/popup', null, array('inline' => false));
+echo $this->Html->script('error/errors', array('block'=>'scriptBottom'));
+?>
 <div class="errorLogs index">
   <h2><?php echo __('Error Logs'); ?></h2>
   <table class="table table-bordered table-hover" cellpadding="0" cellspacing="0">
@@ -13,7 +17,9 @@
     <?php foreach ($errorLogs as $errorLog): ?>
       <tr>
         <td><?php echo h($errorLog['ErrorLog']['type']); ?>&nbsp;</td>
-        <td><?php echo h($errorLog['ErrorLog']['ip']); ?>&nbsp;</td>
+        <td>
+          <span id="search-address"><?php echo h($errorLog['ErrorLog']['ip']); ?></span>&nbsp;<i id="ip-address" title="Locate" class="fa fa-globe red-globe"></i>
+          &nbsp;</td>
         <td><?php 
         $err = $errorLog['ErrorLog']['url'];
         if (strlen($err) > 20) {

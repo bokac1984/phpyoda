@@ -3,7 +3,7 @@ $this->startIfEmpty('maintitle');
 echo $this->element('titles', array('maintitle' => 'Error Log', 'subtitle' => 'Display info about error log'));
 $this->end();
 $this->Html->addCrumb('View All Logs', array('plugin' => 'error_manager', 'controller' => 'error_logs', 'action' => 'index'));
-echo $this->Html->css('errormanager/errormanager', null, array('inline' => false));
+echo $this->Html->css('errormanager/popup', null, array('inline' => false));
 echo $this->Html->script('error/errors', array('block'=>'scriptBottom'));
 ?>
 <div class="errorLogs view">
